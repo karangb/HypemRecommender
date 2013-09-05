@@ -1,4 +1,4 @@
-Hypem Recommender "!https://travis-ci.org/karangb/HypemRecommender.png!":https://travis-ci.org/karangb/HypemRecommender
+Hypem Recommender [![Build Status](https://secure.travis-ci.org/karangb/HypemRecommender.png)](https://travis-ci.org/karangb/HypemRecommender)
 ====================
 
 Introduction

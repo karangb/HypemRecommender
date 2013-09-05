@@ -13,6 +13,12 @@ public class Rating {
     @JsonProperty
     private List<Track> tracks;
 
+    @SuppressWarnings("UnusedDeclaration")
+    public Rating()
+    {
+        // Do Nothing
+    }
+
     public Rating(List<Track> tracks) {
         this.tracks = tracks;
     }
@@ -25,5 +31,20 @@ public class Rating {
     @SuppressWarnings("UnusedDeclaration")
     public void setTracks(List<Track> tracks) {
         this.tracks = tracks;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Rating rating = (Rating) o;
+
+        return (!(tracks != null ? !tracks.equals(rating.tracks) : rating.tracks != null));
+    }
+
+    @Override
+    public int hashCode() {
+        return tracks != null ? tracks.hashCode() : 0;
     }
 }

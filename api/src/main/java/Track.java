@@ -15,6 +15,7 @@ public class Track {
     @JsonProperty
     private String artist;
 
+    @SuppressWarnings("UnusedDeclaration")
     public Track()
     {
         // Do Nothing

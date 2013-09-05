@@ -23,4 +23,12 @@ public class TrackTest {
                 asJson(track),
                 is(equalTo(jsonFixture("fixtures/track.json"))));
     }
+
+    @Test
+    public void deserializesFromJSON() throws Exception {
+        final Track track = new Track("Melt Feat. Kilo Kish", "Chet Faker");
+        assertThat("a Track can be deserialized from JSON",
+                fromJson(jsonFixture("fixtures/track.json"), Track.class),
+                equalTo(track));
+    }
 }

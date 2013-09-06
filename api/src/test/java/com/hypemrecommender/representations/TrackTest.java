@@ -1,4 +1,5 @@
-import com.hypemrecommender.representations.Track;
+package com.hypemrecommender.representations;
+
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;

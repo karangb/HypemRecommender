@@ -1,5 +1,5 @@
-import com.hypemrecommender.representations.Rating;
-import com.hypemrecommender.representations.Track;
+package com.hypemrecommender.representations;
+
 import org.junit.Before;
 import org.junit.Test;
 

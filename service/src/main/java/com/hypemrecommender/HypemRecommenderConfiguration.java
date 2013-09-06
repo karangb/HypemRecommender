@@ -1,3 +1,5 @@
+package com.hypemrecommender;
+
 import com.yammer.dropwizard.config.Configuration;
 
 /**

@@ -1,3 +1,5 @@
+package com.hypemrecommender;
+
 import com.hypemrecommender.dao.MongoRatingDao;
 import com.hypemrecommender.resources.RatingResource;
 import com.yammer.dropwizard.Service;

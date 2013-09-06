@@ -1,4 +1,6 @@
+package com.hypemrecommender.resources;
 
+import com.hypemrecommender.dao.RatingDAO;
 import com.hypemrecommender.representations.Rating;
 import com.hypemrecommender.representations.Track;
 import com.yammer.dropwizard.testing.ResourceTest;

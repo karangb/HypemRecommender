@@ -1,3 +1,5 @@
+import com.hypemrecommender.dao.MongoRatingDao;
+import com.hypemrecommender.resources.RatingResource;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;

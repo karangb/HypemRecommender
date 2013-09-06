@@ -1,3 +1,5 @@
+package com.hypemrecommender.dao;
+
 import com.hypemrecommender.representations.Rating;
 
 /**

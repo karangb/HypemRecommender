@@ -1,3 +1,5 @@
+package com.hypemrecommender.dao;
+
 import com.hypemrecommender.representations.Rating;
 
 /**
@@ -9,6 +11,6 @@ import com.hypemrecommender.representations.Rating;
 public class MongoRatingDao implements RatingDAO {
     @Override
     public Rating getRating(String username) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 }

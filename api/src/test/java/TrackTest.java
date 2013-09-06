@@ -1,3 +1,4 @@
+import com.hypemrecommender.representations.Track;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;

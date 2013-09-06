@@ -1,3 +1,4 @@
+import com.hypemrecommender.representations.Rating;
 import com.yammer.metrics.annotation.Timed;
 
 import javax.ws.rs.GET;

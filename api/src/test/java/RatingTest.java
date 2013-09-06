@@ -1,3 +1,5 @@
+import com.hypemrecommender.representations.Rating;
+import com.hypemrecommender.representations.Track;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +26,7 @@ public class RatingTest {
     @Before
     public void setUp()
     {
-        List<Track> tracks = new ArrayList<Track>();
+        List<Track> tracks = new ArrayList<>();
         tracks.add(new Track("Melt Feat. Kilo Kish", "Chet Faker"));
         tracks.add(new Track("Think Of You RAC Mix", "MS MR"));
 

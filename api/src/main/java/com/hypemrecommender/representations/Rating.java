@@ -1,3 +1,5 @@
+package com.hypemrecommender.representations;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;

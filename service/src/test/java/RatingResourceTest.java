@@ -1,4 +1,6 @@
 
+import com.hypemrecommender.representations.Rating;
+import com.hypemrecommender.representations.Track;
 import com.yammer.dropwizard.testing.ResourceTest;
 import org.junit.Test;
 import org.junit.Before;

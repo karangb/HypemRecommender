@@ -1,3 +1,5 @@
+import com.hypemrecommender.representations.Rating;
+
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb

@@ -27,7 +27,7 @@
             <version>0.6.2</version>
         </dependency>
         <dependency>
-            <groupId>com.hypem.recommender</groupId>
+            <groupId>com.hypemrecommender</groupId>
             <artifactId>api</artifactId>
             <version>${project.version}</version>
         </dependency>

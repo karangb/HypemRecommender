@@ -1,6 +1,6 @@
 package com.hypemrecommender;
 
-import com.hypemrecommender.dao.MongoRecommendationEngine;
+import com.hypemrecommender.engine.MongoRecommendationEngine;
 import com.hypemrecommender.resources.RecommendationResource;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;

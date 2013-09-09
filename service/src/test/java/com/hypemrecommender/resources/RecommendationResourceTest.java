@@ -1,6 +1,6 @@
 package com.hypemrecommender.resources;
 
-import com.hypemrecommender.dao.RecommendationEngine;
+import com.hypemrecommender.engine.RecommendationEngine;
 import com.hypemrecommender.representations.Recommendation;
 import com.hypemrecommender.representations.Track;
 import com.yammer.dropwizard.testing.ResourceTest;

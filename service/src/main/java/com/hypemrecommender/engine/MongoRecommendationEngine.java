@@ -1,4 +1,4 @@
-package com.hypemrecommender.dao;
+package com.hypemrecommender.engine;
 
 import com.hypemrecommender.representations.Recommendation;
 

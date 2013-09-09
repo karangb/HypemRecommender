@@ -19,9 +19,9 @@ import static org.junit.Assert.assertThat;
  * Date: 03/09/2013
  * Time: 23:01
  */
-public class RatingTest {
+public class RecommendationTest {
 
-    private Rating rating;
+    private Recommendation recommendation;
 
     @Before
     public void setUp()
@@ -30,21 +30,21 @@ public class RatingTest {
         tracks.add(new Track("Melt Feat. Kilo Kish", "Chet Faker"));
         tracks.add(new Track("Think Of You RAC Mix", "MS MR"));
 
-        rating = new Rating(tracks);
+        recommendation = new Recommendation(tracks);
     }
 
     @Test
     public void serializesToJson() throws Exception
     {
-        assertThat("a rating can be serialized to JSON",
-                asJson(rating),
-                is(equalTo(jsonFixture("fixtures/rating.json"))));
+        assertThat("a recommendation can be serialized to JSON",
+                asJson(recommendation),
+                is(equalTo(jsonFixture("fixtures/recommendation.json"))));
     }
 
     @Test
     public void deserializesFromJSON() throws Exception {
-        assertThat("a Rating can be deserialized from JSON",
-                fromJson(jsonFixture("fixtures/rating.json"), Rating.class),
-                equalTo(rating));
+        assertThat("a Recommendation can be deserialized from JSON",
+                fromJson(jsonFixture("fixtures/recommendation.json"), Recommendation.class),
+                equalTo(recommendation));
     }
 }

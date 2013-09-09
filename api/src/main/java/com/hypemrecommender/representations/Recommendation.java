@@ -10,18 +10,18 @@ import java.util.List;
  * Date: 03/09/2013
  * Time: 23:03
  */
-public class Rating {
+public class Recommendation {
 
     @JsonProperty
     private List<Track> tracks;
 
     @SuppressWarnings("UnusedDeclaration")
-    public Rating()
+    public Recommendation()
     {
         // Do Nothing
     }
 
-    public Rating(List<Track> tracks) {
+    public Recommendation(List<Track> tracks) {
         this.tracks = tracks;
     }
 
@@ -40,9 +40,9 @@ public class Rating {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Rating rating = (Rating) o;
+        Recommendation recommendation = (Recommendation) o;
 
-        return (!(tracks != null ? !tracks.equals(rating.tracks) : rating.tracks != null));
+        return (!(tracks != null ? !tracks.equals(recommendation.tracks) : recommendation.tracks != null));
     }
 
     @Override

@@ -1,7 +1,7 @@
 package com.hypemrecommender;
 
-import com.hypemrecommender.dao.MongoRatingDao;
-import com.hypemrecommender.resources.RatingResource;
+import com.hypemrecommender.dao.MongoRecommendationEngine;
+import com.hypemrecommender.resources.RecommendationResource;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
@@ -25,6 +25,6 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
 
     @Override
     public void run(HypemRecommenderConfiguration hypemRecommenderConfiguration, Environment environment) throws Exception {
-        environment.addResource(new RatingResource(new MongoRatingDao()));
+        environment.addResource(new RecommendationResource(new MongoRecommendationEngine()));
     }
 }

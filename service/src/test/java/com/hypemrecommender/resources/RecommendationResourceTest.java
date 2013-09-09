@@ -1,7 +1,7 @@
 package com.hypemrecommender.resources;
 
-import com.hypemrecommender.dao.RatingDAO;
-import com.hypemrecommender.representations.Rating;
+import com.hypemrecommender.dao.RecommendationEngine;
+import com.hypemrecommender.representations.Recommendation;
 import com.hypemrecommender.representations.Track;
 import com.yammer.dropwizard.testing.ResourceTest;
 import org.junit.Test;
@@ -21,34 +21,34 @@ import static org.mockito.Mockito.when;
  * Date: 03/09/2013
  * Time: 23:19
  */
-public class RatingResourceTest extends ResourceTest {
+public class RecommendationResourceTest extends ResourceTest {
     private final Track track1 = new Track("track1", "artist1");
     private final Track track2 = new Track("track2", "artist2");
-    private final RatingDAO ratingDao = mock(RatingDAO.class);
+    private final RecommendationEngine recommendationEngine = mock(RecommendationEngine.class);
     
     private List<Track> tracks;
-    private Rating rating;
+    private Recommendation recommendation;
 
 
     @Before
     public void setUp()
     {
-        tracks = new ArrayList<Track>();
+        tracks = new ArrayList<>();
         tracks.add(track1);
         tracks.add(track2);
-        rating = new Rating(tracks);
-        when(ratingDao.getRating("karan")).thenReturn(rating);
+        recommendation = new Recommendation(tracks);
+        when(recommendationEngine.getRating("karan")).thenReturn(recommendation);
     }
 
     @Override
     protected void setUpResources() throws Exception {
-        addResource(new RatingResource(ratingDao));
+        addResource(new RecommendationResource(recommendationEngine));
     }
 
     @Test
     public void testRatingsGetsTracks() throws Exception{
-        assertThat(client().resource("/ratings").queryParam("username", "karan").get(Rating.class)).isEqualTo(rating);
-        verify(ratingDao).getRating("karan");
+        assertThat(client().resource("/recommendations").queryParam("username", "karan").get(Recommendation.class)).isEqualTo(recommendation);
+        verify(recommendationEngine).getRating("karan");
     }
 
 }

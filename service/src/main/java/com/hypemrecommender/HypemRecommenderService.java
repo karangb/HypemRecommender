@@ -25,6 +25,6 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
 
     @Override
     public void run(HypemRecommenderConfiguration hypemRecommenderConfiguration, Environment environment) throws Exception {
-        environment.addResource(new RecommendationResource(new MongoRecommendationEngine()));
+        environment.addResource(new RecommendationResource(new MongoRecommendationEngine(null, null, null)));
     }
 }

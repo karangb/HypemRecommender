@@ -1,6 +1,10 @@
 package com.hypemrecommender.engine;
 
 import com.hypemrecommender.representations.Recommendation;
+import com.hypemrecommender.representations.Track;
+import org.apache.mahout.cf.taste.common.TasteException;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,4 +14,6 @@ import com.hypemrecommender.representations.Recommendation;
  */
 public interface RecommendationEngine {
     public Recommendation getRating(String username);
+
+    List<Track> getRecommendedTracks(String karan) throws TasteException;
 }

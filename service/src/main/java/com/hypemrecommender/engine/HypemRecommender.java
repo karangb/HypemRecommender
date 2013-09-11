@@ -17,12 +17,12 @@ import java.util.List;
  * Date: 06/09/2013
  * Time: 22:06
  */
-public class MongoRecommendationEngine implements RecommendationEngine {
+public class HypemRecommender implements RecommendationEngine {
     private final Recommender mahout;
     private final UserDao userDao;
     private final TrackDao trackDao;
 
-    public MongoRecommendationEngine(final Recommender mahout, final UserDao userDao, final TrackDao trackDao) {
+    public HypemRecommender(final Recommender mahout, final UserDao userDao, final TrackDao trackDao) {
         this.mahout = mahout;
         this.userDao = userDao;
         this.trackDao = trackDao;

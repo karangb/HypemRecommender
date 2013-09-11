@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
  * Date: 09/09/2013
  * Time: 22:33
  */
-public class MongoRecommendationEngineTest {
+public class HypemRecommenderTest {
     private Recommender mahout;
     private UserDao userDao;
     private TrackDao trackDao;
@@ -56,7 +56,7 @@ public class MongoRecommendationEngineTest {
         when(trackDao.getTrack(55)).thenReturn(track1);
         when(trackDao.getTrack(66)).thenReturn(track2);
 
-        MongoRecommendationEngine musicRecommender = new MongoRecommendationEngine(mahout, userDao, trackDao);
+        HypemRecommender musicRecommender = new HypemRecommender(mahout, userDao, trackDao);
         List<Track> recommendedTracks = musicRecommender.getRecommendedTracks("karan");
 
         Assert.assertThat(recommendedTracks.get(0), equalTo(track2));

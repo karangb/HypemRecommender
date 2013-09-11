@@ -45,8 +45,8 @@ public class HypemRecommenderTest {
         RecommendedItem recommendedItem2 = new FakeRecommendedItem(66);
 
         recommendedItems = new ArrayList<>();
-        recommendedItems.add(recommendedItem2);
         recommendedItems.add(recommendedItem1);
+        recommendedItems.add(recommendedItem2);
     }
 
     @Test
@@ -59,8 +59,8 @@ public class HypemRecommenderTest {
         HypemRecommender musicRecommender = new HypemRecommender(mahout, userDao, trackDao);
         List<Track> recommendedTracks = musicRecommender.getRecommendedTracks("karan");
 
-        Assert.assertThat(recommendedTracks.get(0), equalTo(track2));
-        Assert.assertThat(recommendedTracks.get(1), equalTo(track1));
+        Assert.assertThat(recommendedTracks.get(0), equalTo(track1));
+        Assert.assertThat(recommendedTracks.get(1), equalTo(track2));
     }
 
     private class FakeRecommendedItem implements RecommendedItem {

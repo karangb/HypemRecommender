@@ -3,6 +3,7 @@ package com.hypemrecommender.resources;
 import com.hypemrecommender.engine.RecommendationEngine;
 import com.hypemrecommender.representations.Recommendation;
 import com.yammer.metrics.annotation.Timed;
+import org.apache.mahout.cf.taste.common.TasteException;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -27,7 +28,7 @@ public class RecommendationResource {
 
     @GET
     @Timed
-    public Recommendation getRating(@QueryParam("username") String username)  {
-        return recommendationEngine.getRating(username);
+    public Recommendation getRating(@QueryParam("username") String username) throws TasteException {
+        return new Recommendation(recommendationEngine.getRecommendedTracks(username));
     }
 }

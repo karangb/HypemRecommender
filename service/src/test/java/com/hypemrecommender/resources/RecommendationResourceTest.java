@@ -4,6 +4,7 @@ import com.hypemrecommender.engine.RecommendationEngine;
 import com.hypemrecommender.representations.Recommendation;
 import com.hypemrecommender.representations.Track;
 import com.yammer.dropwizard.testing.ResourceTest;
+import org.apache.mahout.cf.taste.common.TasteException;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -31,13 +32,12 @@ public class RecommendationResourceTest extends ResourceTest {
 
 
     @Before
-    public void setUp()
-    {
+    public void setUp() throws TasteException {
         tracks = new ArrayList<>();
         tracks.add(track1);
         tracks.add(track2);
         recommendation = new Recommendation(tracks);
-        when(recommendationEngine.getRating("karan")).thenReturn(recommendation);
+        when(recommendationEngine.getRecommendedTracks("karan")).thenReturn(tracks);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class RecommendationResourceTest extends ResourceTest {
     @Test
     public void testRatingsGetsTracks() throws Exception{
         assertThat(client().resource("/recommendations").queryParam("username", "karan").get(Recommendation.class)).isEqualTo(recommendation);
-        verify(recommendationEngine).getRating("karan");
+        verify(recommendationEngine).getRecommendedTracks("karan");
     }
 
 }

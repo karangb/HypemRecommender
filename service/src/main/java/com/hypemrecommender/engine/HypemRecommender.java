@@ -2,7 +2,6 @@ package com.hypemrecommender.engine;
 
 import com.hypemrecommender.dal.TrackDao;
 import com.hypemrecommender.dal.UserDao;
-import com.hypemrecommender.representations.Recommendation;
 import com.hypemrecommender.representations.Track;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
@@ -26,11 +25,6 @@ public class HypemRecommender implements RecommendationEngine {
         this.mahout = mahout;
         this.userDao = userDao;
         this.trackDao = trackDao;
-    }
-
-    @Override
-    public Recommendation getRating(String username) {
-        return null;
     }
 
     @Override

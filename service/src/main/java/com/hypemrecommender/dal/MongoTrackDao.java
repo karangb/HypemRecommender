@@ -4,8 +4,6 @@ import com.hypemrecommender.representations.Track;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
-import java.net.UnknownHostException;
-
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb
@@ -18,7 +16,7 @@ public class MongoTrackDao implements com.hypemrecommender.dal.TrackDao {
     private final DBCollection modelMap;
     private final DBCollection tracks;
 
-    public MongoTrackDao(DBCollection modelMap, DBCollection tracks) throws UnknownHostException {
+    public MongoTrackDao(DBCollection modelMap, DBCollection tracks) {
         this.modelMap = modelMap;
         this.tracks = tracks;
     }

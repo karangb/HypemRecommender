@@ -10,7 +10,7 @@ import org.bson.types.ObjectId;
  * Date: 26/09/2013
  * Time: 21:53
  */
-public class MongoTrackDao implements com.hypemrecommender.dal.TrackDao {
+public class MongoTrackDao implements TrackDao {
     private final DBCollection modelMap;
     private final DBCollection tracks;
 

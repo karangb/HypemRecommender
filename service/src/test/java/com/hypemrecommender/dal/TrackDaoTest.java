@@ -1,20 +1,12 @@
 package com.hypemrecommender.dal;
 
 import com.hypemrecommender.representations.Track;
-import com.mongodb.*;
-import de.flapdoodle.embed.mongo.MongodExecutable;
-import de.flapdoodle.embed.mongo.MongodProcess;
-import de.flapdoodle.embed.mongo.MongodStarter;
-import de.flapdoodle.embed.mongo.config.IMongodConfig;
-import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
-import de.flapdoodle.embed.mongo.distribution.Version;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
 import junit.framework.Assert;
 import org.bson.types.ObjectId;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.net.UnknownHostException;
 
 /**
@@ -23,30 +15,7 @@ import java.net.UnknownHostException;
  * Date: 13/09/2013
  * Time: 18:57
  */
-public class TrackDaoTest{
-
-    private MongodExecutable mongodExe;
-    private MongodProcess mongod;
-    private DB testDb;
-
-    @Before
-    public void setUp() throws IOException {
-        IMongodConfig mongodConfig = new MongodConfigBuilder().version(Version.Main.DEVELOPMENT).build();
-        MongodStarter runtime = MongodStarter.getDefaultInstance();
-        mongodExe = runtime.prepare(mongodConfig);
-        mongod = mongodExe.start();
-        MongoClient client = new MongoClient("127.0.0.1");
-        testDb = client.getDB("test");
-    }
-
-    @After
-    public void cleanUp()
-    {
-        testDb.dropDatabase();
-        mongod.stop();
-        mongodExe.stop();
-    }
-
+public class TrackDaoTest extends MongoFixture{
     @Test
     public void testGetTrack() throws UnknownHostException {
         Track track = new Track("RÜFÜS (official)", "Desert Night");

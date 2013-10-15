@@ -26,7 +26,7 @@ public class MongoUserDaoTest extends MongoFixture{
         userDoc = new BasicDBObject("username", "karan");
         users.insert(userDoc);
 
-        userDao = new MongoUserDao(HOST, "test");
+        userDao = new MongoUserDao(HOST, TEST_DB);
     }
 
     @Test

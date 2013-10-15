@@ -8,7 +8,7 @@ import com.yammer.dropwizard.config.Configuration;
  * Date: 04/09/2013
  * Time: 22:51
  */
-public class HypemRecommenderConfiguration extends Configuration {
+class HypemRecommenderConfiguration extends Configuration {
 
 
 }

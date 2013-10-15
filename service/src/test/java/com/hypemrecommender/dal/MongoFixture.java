@@ -24,6 +24,7 @@ import java.io.IOException;
 public class MongoFixture {
 
     public static final String HOST = "127.0.0.1";
+    public static final String TEST_DB = "test";
     private MongodExecutable mongodExe;
     private MongodProcess mongod;
     protected DB testDb;

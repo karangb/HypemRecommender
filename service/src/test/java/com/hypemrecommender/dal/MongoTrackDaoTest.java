@@ -20,11 +20,11 @@ public class MongoTrackDaoTest extends MongoFixture{
     public void testGetTrack() throws UnknownHostException {
         Track track = new Track("RÜFÜS (official)", "Desert Night");
         provision(track);
-        TrackDao trackDao = new MongoTrackDao("127.0.0.1", "test");
+        TrackDao trackDao = new MongoTrackDao(HOST, TEST_DB);
         Assert.assertEquals(track, trackDao.getTrack(1));
     }
 
-    private void provision(final Track track) throws UnknownHostException {
+    private void provision(final Track track) {
         DBCollection tracks = testDb.createCollection("tracks", new BasicDBObject());
         BasicDBObject trackDoc = new BasicDBObject("media_id", "1x990").append("artist", track.getArtist()).append("title", track.getTitle());
         tracks.insert(trackDoc);

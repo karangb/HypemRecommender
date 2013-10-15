@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/recommendations")
 @Produces(MediaType.APPLICATION_JSON)
 public class RecommendationResource {
-    private RecommendationEngine recommendationEngine;
+    private final RecommendationEngine recommendationEngine;
 
     public RecommendationResource(RecommendationEngine recommendationEngine) {
         this.recommendationEngine = recommendationEngine;

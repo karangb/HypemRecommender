@@ -12,5 +12,5 @@ import java.util.List;
  * Time: 23:25
  */
 public interface RecommendationEngine {
-    List<Track> getRecommendedTracks(String karan) throws TasteException;
+    List<Track> getRecommendedTracks(String username) throws TasteException;
 }

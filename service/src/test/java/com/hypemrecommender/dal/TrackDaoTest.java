@@ -8,6 +8,8 @@ import de.flapdoodle.embed.mongo.MongodStarter;
 import de.flapdoodle.embed.mongo.config.IMongodConfig;
 import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
 import de.flapdoodle.embed.mongo.distribution.Version;
+import junit.framework.Assert;
+import org.bson.types.ObjectId;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,17 +49,19 @@ public class TrackDaoTest{
 
     @Test
     public void testGetTrack() throws UnknownHostException {
-        Track track = new Track("artist", "title");
+        Track track = new Track("RÜFÜS (official)", "Desert Night");
         provision(track);
-        TrackDao trackDao = new MongoTrackDao();
-        trackDao.getTrack(1);
+        TrackDao trackDao = new MongoTrackDao("127.0.0.1", "test");
+        Assert.assertEquals(track, trackDao.getTrack(1));
     }
 
     private void provision(final Track track) throws UnknownHostException {
         DBCollection tracks = testDb.createCollection("tracks", new BasicDBObject());
-        BasicDBObject trackDoc = new BasicDBObject("media_id", "1x990").append("artist", "RÜFÜS (official)").append("title", "Desert Night");
+        BasicDBObject trackDoc = new BasicDBObject("media_id", "1x990").append("artist", track.getArtist()).append("title", track.getTitle());
         tracks.insert(trackDoc);
+
+        ObjectId id = (ObjectId)trackDoc.get( "_id" );
         DBCollection dataModelMap = testDb.createCollection("mongo_data_model_map", new BasicDBObject());
-        dataModelMap.insert(new BasicDBObject());
+        dataModelMap.insert(new BasicDBObject("element_id", id).append("long_value", 1));
     }
 }

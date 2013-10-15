@@ -2,7 +2,6 @@ package com.hypemrecommender.dal;
 
 import com.mongodb.*;
 
-import java.net.UnknownHostException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,11 +13,9 @@ public class MongoUserDao implements UserDao{
     private final DBCollection modelMap;
     private final DBCollection users;
 
-    public MongoUserDao(String host, String dbName) throws UnknownHostException {
-        MongoClient client = new MongoClient(host);
-        DB db = client.getDB(dbName);
-        modelMap = db.getCollection("mongo_data_model_map");
-        users = db.getCollection("users");
+    public MongoUserDao(DBCollection modelMap, DBCollection users) {
+        this.modelMap = modelMap;
+        this.users = users;
     }
 
     @Override

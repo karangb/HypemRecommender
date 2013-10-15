@@ -30,7 +30,7 @@ public class MongoTrackDaoTest extends MongoFixture{
         tracks.insert(trackDoc);
 
         ObjectId id = (ObjectId)trackDoc.get( "_id" );
-        DBCollection dataModelMap = testDb.createCollection("mongo_data_model_map", new BasicDBObject());
+
         dataModelMap.insert(new BasicDBObject("element_id", id).append("long_value", 1));
     }
 }

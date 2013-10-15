@@ -18,11 +18,9 @@ public class MongoTrackDao implements com.hypemrecommender.dal.TrackDao {
     private final DBCollection modelMap;
     private final DBCollection tracks;
 
-    public MongoTrackDao(String host, String dbName) throws UnknownHostException {
-        MongoClient client = new MongoClient(host);
-        DB db = client.getDB(dbName);
-        modelMap = db.getCollection("mongo_data_model_map");
-        tracks = db.getCollection("tracks");
+    public MongoTrackDao(DBCollection modelMap, DBCollection tracks) throws UnknownHostException {
+        this.modelMap = modelMap;
+        this.tracks = tracks;
     }
 
     @Override

@@ -15,7 +15,7 @@ import java.net.UnknownHostException;
  * Date: 13/09/2013
  * Time: 18:57
  */
-public class TrackDaoTest extends MongoFixture{
+public class MongoTrackDaoTest extends MongoFixture{
     @Test
     public void testGetTrack() throws UnknownHostException {
         Track track = new Track("RÜFÜS (official)", "Desert Night");

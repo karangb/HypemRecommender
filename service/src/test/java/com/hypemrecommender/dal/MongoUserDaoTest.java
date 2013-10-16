@@ -2,6 +2,7 @@ package com.hypemrecommender.dal;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +34,8 @@ public class MongoUserDaoTest extends MongoFixture{
     public void testGetUser()
     {
         int userId = 1;
-        dataModelMap.insert(new BasicDBObject("element_id", userDoc.get("_id")).append("long_value", userId));
+        ObjectId objectId = (ObjectId)userDoc.get("_id");
+        dataModelMap.insert(new BasicDBObject("element_id", objectId.toString()).append("long_value", userId));
 
         assertEquals(userId, userDao.getUserId("karan"));
     }

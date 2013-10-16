@@ -29,7 +29,7 @@ public class HypemRecommender implements RecommendationEngine {
 
     @Override
     public List<Track> getRecommendedTracks(final String username) throws TasteException {
-        int id = userDao.getUserId(username);
+        long id = userDao.getUserId(username);
         List<RecommendedItem> recommendedItems = mahout.recommend(id, 100);
         List<Track> recommendedTracks = new ArrayList<>();
         for(RecommendedItem recommendedItem : recommendedItems)

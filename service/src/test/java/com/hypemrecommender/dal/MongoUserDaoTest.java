@@ -33,10 +33,9 @@ public class MongoUserDaoTest extends MongoFixture{
     @Test
     public void testGetUser()
     {
-        int userId = 1;
         ObjectId objectId = (ObjectId)userDoc.get("_id");
-        dataModelMap.insert(new BasicDBObject("element_id", objectId.toString()).append("long_value", userId));
+        dataModelMap.insert(new BasicDBObject("element_id", objectId.toString()).append("long_value", "45"));
 
-        assertEquals(userId, userDao.getUserId("karan"));
+        assertEquals(45, userDao.getUserId("karan"));
     }
 }

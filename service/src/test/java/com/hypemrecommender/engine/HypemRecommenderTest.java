@@ -51,8 +51,9 @@ public class HypemRecommenderTest {
 
     @Test
     public void testGetRecommendationForUser() throws TasteException {
-        when(userDao.getUserId("karan")).thenReturn(123);
-        when(mahout.recommend(123, 100)).thenReturn(recommendedItems);
+        long userId = 123;
+        when(userDao.getUserId("karan")).thenReturn(userId);
+        when(mahout.recommend(userId, 100)).thenReturn(recommendedItems);
         when(trackDao.getTrack(55)).thenReturn(track1);
         when(trackDao.getTrack(66)).thenReturn(track2);
 

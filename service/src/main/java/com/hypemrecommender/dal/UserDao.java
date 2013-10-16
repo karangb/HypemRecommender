@@ -7,5 +7,5 @@ package com.hypemrecommender.dal;
  * Time: 22:01
  */
 public interface UserDao {
-    int getUserId(String username);
+    long getUserId(String username);
 }

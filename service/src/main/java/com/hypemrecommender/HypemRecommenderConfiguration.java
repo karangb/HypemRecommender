@@ -13,18 +13,18 @@ import org.hibernate.validator.constraints.NotEmpty;
 class HypemRecommenderConfiguration extends Configuration {
     @NotEmpty
     @JsonProperty
-    private String host;
+    public String host;
 
     @NotEmpty
     @JsonProperty
-    private String db;
+    public String db;
 
     public String getHost()
     {
         return host;
     }
 
-    public String getDbName()
+    public String getDb()
     {
         return db;
     }

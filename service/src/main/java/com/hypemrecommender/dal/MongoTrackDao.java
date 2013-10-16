@@ -22,9 +22,10 @@ public class MongoTrackDao implements TrackDao {
     @Override
     public Track getTrack(final long modelMapId)
     {
-        DBObject modelMapping = modelMap.findOne(new BasicDBObject("long_value", modelMapId));
-        ObjectId trackId = (ObjectId)modelMapping.get("element_id");
-        DBObject trackDoc = tracks.findOne(new BasicDBObject("_id", trackId));
+        DBObject modelMapping = modelMap.findOne(new BasicDBObject("long_value", String.valueOf(modelMapId)));
+        String trackId = (String)modelMapping.get("element_id");
+        ObjectId bsonTrackId = new ObjectId(trackId);
+        DBObject trackDoc = tracks.findOne(new BasicDBObject("_id", bsonTrackId));
         return new Track((String)trackDoc.get("title"), (String)trackDoc.get("artist"));
     }
 }

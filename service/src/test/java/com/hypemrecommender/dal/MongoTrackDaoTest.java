@@ -37,6 +37,6 @@ public class MongoTrackDaoTest extends MongoFixture{
         BasicDBObject trackDoc = new BasicDBObject("media_id", "1x990").append("artist", track.getArtist()).append("title", track.getTitle());
         tracks.insert(trackDoc);
         ObjectId id = (ObjectId)trackDoc.get( "_id" );
-        dataModelMap.insert(new BasicDBObject("element_id", id).append("long_value", 1));
+        dataModelMap.insert(new BasicDBObject("element_id", id.toString()).append("long_value", "1"));
     }
 }

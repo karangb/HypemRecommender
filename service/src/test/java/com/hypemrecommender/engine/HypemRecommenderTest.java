@@ -38,8 +38,8 @@ public class HypemRecommenderTest {
         trackDao = mock(TrackDao.class);
         mahout = mock(Recommender.class);
 
-        track1 = new Track("track1", "artist1");
-        track2 = new Track("track2", "artist2");
+        track1 = new Track("1x991", "track1", "artist1");
+        track2 = new Track("1x992", "track2", "artist2");
 
         RecommendedItem recommendedItem1 = new FakeRecommendedItem(55);
         RecommendedItem recommendedItem2 = new FakeRecommendedItem(66);

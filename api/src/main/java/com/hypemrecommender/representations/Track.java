@@ -11,6 +11,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @SuppressWarnings("ALL")
 public class Track {
+
+    @JsonProperty
+    private String hypemId;
+
     @JsonProperty
     private String title;
 
@@ -23,7 +27,8 @@ public class Track {
         // Do Nothing
     }
 
-    public Track(String title, String artist) {
+    public Track(String hypemId, String title, String artist) {
+        this.hypemId = hypemId;
         this.title = title;
         this.artist = artist;
     }
@@ -47,13 +52,14 @@ public class Track {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Track track = (Track) o;
+        final Track track = (Track) o;
 
         if (artist != null ? !artist.equals(track.artist) : track.artist != null) return false;
+        if (hypemId != null ? !hypemId.equals(track.hypemId) : track.hypemId != null) return false;
         if (title != null ? !title.equals(track.title) : track.title != null) return false;
 
         return true;
@@ -61,7 +67,8 @@ public class Track {
 
     @Override
     public int hashCode() {
-        int result = title != null ? title.hashCode() : 0;
+        int result = hypemId != null ? hypemId.hashCode() : 0;
+        result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (artist != null ? artist.hashCode() : 0);
         return result;
     }

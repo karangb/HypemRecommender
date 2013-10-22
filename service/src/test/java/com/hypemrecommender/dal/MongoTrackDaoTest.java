@@ -27,7 +27,7 @@ public class MongoTrackDaoTest extends MongoFixture{
 
     @Test
     public void testGetTrack() throws UnknownHostException {
-        Track track = new Track("RÜFÜS (official)", "Desert Night");
+        Track track = new Track("1x990", "RÜFÜS (official)", "Desert Night");
         provision(track);
         TrackDao trackDao = new MongoTrackDao(dataModelMap, tracks);
         Assert.assertEquals(track, trackDao.getTrack(1));

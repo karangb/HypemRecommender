@@ -23,8 +23,8 @@ import static org.mockito.Mockito.when;
  * Time: 23:19
  */
 public class RecommendationResourceTest extends ResourceTest {
-    private final Track track1 = new Track("track1", "artist1");
-    private final Track track2 = new Track("track2", "artist2");
+    private final Track track1 = new Track("1x990", "track1", "artist1");
+    private final Track track2 = new Track("1x991", "track2", "artist2");
     private final RecommendationEngine recommendationEngine = mock(RecommendationEngine.class);
     
     private List<Track> tracks;

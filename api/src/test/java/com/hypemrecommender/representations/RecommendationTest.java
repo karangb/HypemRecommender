@@ -27,8 +27,8 @@ public class RecommendationTest {
     public void setUp()
     {
         List<Track> tracks = new ArrayList<>();
-        tracks.add(new Track("Melt Feat. Kilo Kish", "Chet Faker"));
-        tracks.add(new Track("Think Of You RAC Mix", "MS MR"));
+        tracks.add(new Track("1yhd0", "Melt Feat. Kilo Kish", "Chet Faker"));
+        tracks.add(new Track("1yy7c", "Think Of You RAC Mix", "MS MR"));
 
         recommendation = new Recommendation(tracks);
     }

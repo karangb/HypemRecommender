@@ -12,7 +12,10 @@
     <modules>
         <module>api</module>
         <module>service</module>
+        <module>dal</module>
+        <module>crawler</module>
     </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.mockito</groupId>

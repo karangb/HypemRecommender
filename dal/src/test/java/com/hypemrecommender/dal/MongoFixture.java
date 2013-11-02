@@ -37,7 +37,7 @@ public class MongoFixture {
         mongodExe = runtime.prepare(mongodConfig);
         mongod = mongodExe.start();
         MongoClient client = new MongoClient(HOST);
-        testDb = client.getDB("test");
+        testDb = client.getDB(TEST_DB);
         dataModelMap = testDb.createCollection("mongo_data_model_map", new BasicDBObject());
     }
 

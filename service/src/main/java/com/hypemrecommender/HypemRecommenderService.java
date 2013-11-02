@@ -12,12 +12,14 @@ import com.mongodb.MongoClient;
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
+import com.yammer.dropwizard.config.FilterBuilder;
 import org.apache.mahout.cf.taste.impl.model.mongodb.MongoDBDataModel;
 import org.apache.mahout.cf.taste.impl.recommender.GenericItemBasedRecommender;
 import org.apache.mahout.cf.taste.impl.similarity.LogLikelihoodSimilarity;
 import org.apache.mahout.cf.taste.model.DataModel;
 import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.ItemSimilarity;
+import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 /**
  * Created with IntelliJ IDEA.
@@ -42,11 +44,19 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
         ItemSimilarity itemSimilarity = new LogLikelihoodSimilarity(dataModel);
         Recommender recommender = new GenericItemBasedRecommender(dataModel, itemSimilarity);
 
+        allowOrigins(environment);
+
         MongoClient client = new MongoClient(configuration.getHost());
         DB db = client.getDB(configuration.getDb());
         DBCollection mongo_data_model_map = db.getCollection("mongo_data_model_map");
         UserDao userDao = new MongoUserDao(mongo_data_model_map, db.getCollection("users"));
         TrackDao trackDao = new MongoTrackDao(mongo_data_model_map, db.getCollection("tracks"));
         environment.addResource(new RecommendationResource(new HypemRecommender(recommender, userDao, trackDao)));
+    }
+
+    private void allowOrigins(final Environment environment) {
+        FilterBuilder filterConfig = environment.addFilter(CrossOriginFilter.class, "/*");
+        filterConfig.setInitParam(CrossOriginFilter.PREFLIGHT_MAX_AGE_PARAM, String.valueOf(60*60*24)); // 1 day - jetty-servlet CrossOriginFilter will convert to Int.
+        filterConfig.setInitParam(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "http://localhost"); // comma separated list of allowed origin domains
     }
 }

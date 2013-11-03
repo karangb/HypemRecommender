@@ -8,4 +8,5 @@ package com.hypemrecommender.dal;
  */
 public interface UserDao {
     long getUserId(String username);
+    boolean exists(String username);
 }

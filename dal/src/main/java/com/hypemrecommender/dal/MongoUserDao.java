@@ -24,4 +24,9 @@ public class MongoUserDao implements UserDao{
         DBObject mappedUser = modelMap.findOne(new BasicDBObject("element_id", user.get("_id").toString()));
         return Long.valueOf((String)mappedUser.get("long_value"));
     }
+
+    @Override
+    public boolean exists(final String username) {
+        return users.count(new BasicDBObject("username", username)) > 0;
+    }
 }

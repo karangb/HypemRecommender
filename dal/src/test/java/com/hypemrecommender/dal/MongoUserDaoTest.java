@@ -8,7 +8,9 @@ import org.junit.Test;
 
 import java.net.UnknownHostException;
 
+import static com.mongodb.util.MyAsserts.assertFalse;
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,5 +39,12 @@ public class MongoUserDaoTest extends MongoFixture{
         dataModelMap.insert(new BasicDBObject("element_id", objectId.toString()).append("long_value", "45"));
 
         assertEquals(45, userDao.getUserId("karan"));
+    }
+
+    @Test
+    public void testExists()
+    {
+        assertTrue(userDao.exists("karan"));
+        assertFalse(userDao.exists("john"));
     }
 }

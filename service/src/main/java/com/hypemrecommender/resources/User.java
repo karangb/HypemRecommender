@@ -8,4 +8,6 @@ package com.hypemrecommender.resources;
  */
 public interface User {
     long getId();
+
+    void updateFavourites();
 }

@@ -1,5 +1,6 @@
 package com.hypemrecommender.dal;
 
+import com.hypemrecommender.representations.UserRepresentation;
 import com.mongodb.*;
 
 
@@ -28,5 +29,10 @@ public class MongoUserDao implements UserDao{
     @Override
     public boolean exists(final String username) {
         return users.count(new BasicDBObject("username", username)) > 0;
+    }
+
+    @Override
+    public void provision(final UserRepresentation userRepresentation) {
+        //TODO
     }
 }

@@ -1,6 +1,7 @@
 package com.hypemrecommender.resources;
 
 
+import com.hypemrecommender.Crawler;
 import com.hypemrecommender.dal.UserDao;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,12 +20,14 @@ public class HypemUserRepositoryTest {
 
     private HypemUserRepository userRepository;
     private UserDao userDao;
+    private Crawler crawler;
 
     @Before
     public void setUp()
     {
         userDao = mock(UserDao.class);
-        userRepository = new HypemUserRepository(userDao);
+        crawler = mock(Crawler.class);
+        userRepository = new HypemUserRepository(userDao, crawler);
     }
 
     @Test

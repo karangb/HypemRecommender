@@ -1,5 +1,6 @@
 package com.hypemrecommender.resources;
 
+import com.hypemrecommender.Crawler;
 import com.hypemrecommender.dal.UserDao;
 
 /**
@@ -11,13 +12,15 @@ import com.hypemrecommender.dal.UserDao;
 public class HypemUserRepository implements UserRepository{
 
     private final UserDao userDao;
+    private final Crawler crawler;
 
-    public HypemUserRepository(final UserDao userDao) {
+    public HypemUserRepository(final UserDao userDao, final Crawler crawler) {
         this.userDao = userDao;
+        this.crawler = crawler;
     }
 
     @Override
     public User getUser(final String username) {
-        return new HypemUser(username, userDao);
+        return new HypemUser(username, userDao, crawler);
     }
 }

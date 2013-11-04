@@ -13,5 +13,12 @@
     <artifactId>crawler</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.hypemrecommender</groupId>
+            <artifactId>api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
     
 </project>

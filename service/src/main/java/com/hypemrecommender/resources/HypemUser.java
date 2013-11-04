@@ -1,6 +1,8 @@
 package com.hypemrecommender.resources;
 
+import com.hypemrecommender.Crawler;
 import com.hypemrecommender.dal.UserDao;
+import com.hypemrecommender.representations.UserRepresentation;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,15 +13,26 @@ import com.hypemrecommender.dal.UserDao;
 public class HypemUser implements User{
     private final String username;
     private final UserDao userDao;
+    private final Crawler crawler;
 
-    public HypemUser(final String username, final UserDao userDao) {
+    public HypemUser(final String username, final UserDao userDao, final Crawler crawler) {
 
         this.username = username;
         this.userDao = userDao;
+        this.crawler = crawler;
     }
 
     @Override
     public long getId() {
         return userDao.getUserId(this.username);
+    }
+
+    @Override
+    public void updateFavourites() {
+        if(!userDao.exists(username))
+        {
+            UserRepresentation userRepresentation = crawler.fetchUser(username);
+            userDao.provision(userRepresentation);
+        }
     }
 }

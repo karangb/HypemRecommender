@@ -2,6 +2,8 @@ package com.hypemrecommender.resources;
 
 import com.hypemrecommender.Crawler;
 import com.hypemrecommender.dal.UserDao;
+import com.hypemrecommender.models.HypemUser;
+import com.hypemrecommender.models.User;
 import com.hypemrecommender.representations.UserRepresentation;
 import org.junit.Test;
 

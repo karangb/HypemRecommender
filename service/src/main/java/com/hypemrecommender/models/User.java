@@ -1,4 +1,4 @@
-package com.hypemrecommender.resources;
+package com.hypemrecommender.models;
 
 /**
  * Created with IntelliJ IDEA.

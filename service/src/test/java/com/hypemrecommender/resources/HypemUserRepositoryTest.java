@@ -3,6 +3,8 @@ package com.hypemrecommender.resources;
 
 import com.hypemrecommender.Crawler;
 import com.hypemrecommender.dal.UserDao;
+import com.hypemrecommender.models.HypemUserRepository;
+import com.hypemrecommender.models.User;
 import org.junit.Before;
 import org.junit.Test;
 

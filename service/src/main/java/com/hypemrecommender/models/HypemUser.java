@@ -1,4 +1,4 @@
-package com.hypemrecommender.resources;
+package com.hypemrecommender.models;
 
 import com.hypemrecommender.Crawler;
 import com.hypemrecommender.dal.UserDao;

@@ -25,7 +25,7 @@ public class HypemUserTest {
         List<HypemTrackRepresentation> tracks = new ArrayList<>();
         tracks.add(track1);
         tracks.add(track2);
-        final Obsessed obsessed = new Obsessed(tracks);
+        final ObsessedRepresentation obsessed = new ObsessedRepresentation(tracks);
 
         final HypemUserRepresentation expectedHypemUser = new HypemUserRepresentation("karan", obsessed);
 

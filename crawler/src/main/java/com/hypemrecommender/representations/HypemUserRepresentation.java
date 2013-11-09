@@ -18,14 +18,14 @@ public class HypemUserRepresentation {
     public String name;
 
     @JsonProperty("@o_p")
-    public Obsessed obsessed;
+    public ObsessedRepresentation obsessed;
 
     public HypemUserRepresentation()
     {
         //EMPTY
     }
 
-    public HypemUserRepresentation(final String name, final Obsessed obsessed) {
+    public HypemUserRepresentation(final String name, final ObsessedRepresentation obsessed) {
         this.name = name;
         this.obsessed = obsessed;
     }
@@ -38,11 +38,11 @@ public class HypemUserRepresentation {
         this.name = name;
     }
 
-    public Obsessed getObsessed() {
+    public ObsessedRepresentation getObsessed() {
         return obsessed;
     }
 
-    public void setObsessed(final Obsessed obsessed) {
+    public void setObsessed(final ObsessedRepresentation obsessed) {
         this.obsessed = obsessed;
     }
 

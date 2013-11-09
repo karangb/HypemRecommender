@@ -13,16 +13,16 @@ import java.util.List;
  */
 @SuppressWarnings("ALL")
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class Obsessed {
+public class ObsessedRepresentation {
     @JsonProperty("@tracks")
     public List<HypemTrackRepresentation> tracks;
 
-    public Obsessed()
+    public ObsessedRepresentation()
     {
         //EMPTY
     }
 
-    public Obsessed(final List<HypemTrackRepresentation> tracks)
+    public ObsessedRepresentation(final List<HypemTrackRepresentation> tracks)
     {
         this.tracks = tracks;
     }
@@ -40,7 +40,7 @@ public class Obsessed {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        final Obsessed obsessed = (Obsessed) o;
+        final ObsessedRepresentation obsessed = (ObsessedRepresentation) o;
 
         return !(tracks != null ? !tracks.equals(obsessed.tracks) : obsessed.tracks != null);
 

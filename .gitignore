@@ -4,3 +4,5 @@ api/target
 service/target
 
 *.class
+
+crawler/target/*

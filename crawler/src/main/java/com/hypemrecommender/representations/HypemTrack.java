@@ -1,5 +1,6 @@
 package com.hypemrecommender.representations;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -9,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Time: 20:27
  */
 @SuppressWarnings("ALL")
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class HypemTrack {
 
     @JsonProperty("@media_id")

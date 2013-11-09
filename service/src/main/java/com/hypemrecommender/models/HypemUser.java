@@ -2,7 +2,7 @@ package com.hypemrecommender.models;
 
 import com.hypemrecommender.Crawler;
 import com.hypemrecommender.dal.UserDao;
-import com.hypemrecommender.representations.UserRepresentation;
+import com.hypemrecommender.representations.HypemUserRepresentation;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,7 +31,7 @@ public class HypemUser implements User{
     public void updateFavourites() {
         if(!userDao.exists(username))
         {
-            UserRepresentation userRepresentation = crawler.fetchUser(username);
+            HypemUserRepresentation userRepresentation = crawler.fetchUser(username);
             userDao.provision(userRepresentation);
         }
     }

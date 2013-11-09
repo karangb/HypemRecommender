@@ -27,10 +27,10 @@ public class HypemUserTest {
         tracks.add(track2);
         final Obsessed obsessed = new Obsessed(tracks);
 
-        final HypemUser expectedHypemUser = new HypemUser("karan", obsessed);
+        final HypemUserRepresentation expectedHypemUser = new HypemUserRepresentation("karan", obsessed);
 
-        assertThat("a HypemUser can be deserialized from JSON",
-                fromJson(jsonFixture("fixtures/hypemUser.json"), HypemUser.class),
+        assertThat("a HypemUserRepresentation can be deserialized from JSON",
+                fromJson(jsonFixture("fixtures/hypemUser.json"), HypemUserRepresentation.class),
                 equalTo(expectedHypemUser));
     }
 }

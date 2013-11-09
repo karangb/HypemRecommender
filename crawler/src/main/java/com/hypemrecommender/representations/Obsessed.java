@@ -1,5 +1,6 @@
 package com.hypemrecommender.representations;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * Time: 20:56
  */
 @SuppressWarnings("ALL")
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Obsessed {
     @JsonProperty("@tracks")
     public List<HypemTrack> tracks;

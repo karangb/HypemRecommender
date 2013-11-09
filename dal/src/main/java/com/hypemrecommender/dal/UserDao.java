@@ -1,6 +1,6 @@
 package com.hypemrecommender.dal;
 
-import com.hypemrecommender.representations.UserRepresentation;
+import com.hypemrecommender.representations.HypemUserRepresentation;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,5 +11,5 @@ import com.hypemrecommender.representations.UserRepresentation;
 public interface UserDao {
     long getUserId(String username);
     boolean exists(String username);
-    void provision(UserRepresentation userRepresentation);
+    void provision(HypemUserRepresentation userRepresentation);
 }

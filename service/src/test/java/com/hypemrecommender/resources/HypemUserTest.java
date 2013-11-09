@@ -4,7 +4,7 @@ import com.hypemrecommender.Crawler;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.models.HypemUser;
 import com.hypemrecommender.models.User;
-import com.hypemrecommender.representations.UserRepresentation;
+import com.hypemrecommender.representations.HypemUserRepresentation;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;
@@ -24,14 +24,13 @@ public class HypemUserTest {
     {
         UserDao userDao = mock(UserDao.class);
         Crawler crawler = mock(Crawler.class);
-        UserRepresentation userRepresentation = new UserRepresentation();
-
+        final HypemUserRepresentation hypemUser = new HypemUserRepresentation();
         when(userDao.exists("karan")).thenReturn(false);
-        when(crawler.fetchUser("karan")).thenReturn(userRepresentation);
+        when(crawler.fetchUser("karan")).thenReturn(hypemUser);
 
         User user = new HypemUser("karan", userDao, crawler);
         user.updateFavourites();
 
-        verify(userDao).provision(userRepresentation);
+        verify(userDao).provision(hypemUser);
     }
 }

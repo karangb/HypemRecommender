@@ -1,6 +1,6 @@
 package com.hypemrecommender;
 
-import com.hypemrecommender.representations.UserRepresentation;
+import com.hypemrecommender.representations.HypemUserRepresentation;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,5 +9,5 @@ import com.hypemrecommender.representations.UserRepresentation;
  * Time: 23:58
  */
 public interface Crawler {
-    UserRepresentation fetchUser(String username);
+    HypemUserRepresentation fetchUser(String username);
 }

@@ -1,5 +1,6 @@
 package com.hypemrecommender.representations;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -9,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Time: 20:55
  */
 @SuppressWarnings("ALL")
-public class HypemUser {
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class HypemUserRepresentation {
+
 
     @JsonProperty("@name")
     public String name;
@@ -17,12 +20,12 @@ public class HypemUser {
     @JsonProperty("@o_p")
     public Obsessed obsessed;
 
-    public HypemUser()
+    public HypemUserRepresentation()
     {
         //EMPTY
     }
 
-    public HypemUser(final String name, final Obsessed obsessed) {
+    public HypemUserRepresentation(final String name, final Obsessed obsessed) {
         this.name = name;
         this.obsessed = obsessed;
     }
@@ -48,7 +51,7 @@ public class HypemUser {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        final HypemUser hypemUser = (HypemUser) o;
+        final HypemUserRepresentation hypemUser = (HypemUserRepresentation) o;
 
         if (name != null ? !name.equals(hypemUser.name) : hypemUser.name != null) return false;
         return !(obsessed != null ? !obsessed.equals(hypemUser.obsessed) : hypemUser.obsessed != null);

@@ -24,6 +24,19 @@
             <artifactId>dropwizard-client</artifactId>
             <version>0.6.2</version>
         </dependency>
+        <dependency>
+            <scope>test</scope>
+            <groupId>co.freeside</groupId>
+            <artifactId>betamax</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+        <dependency>
+            <scope>test</scope>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>2.2.0-rc-2</version>
+        </dependency>
+
     </dependencies>
     
 </project>

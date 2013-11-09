@@ -1,6 +1,6 @@
 package com.hypemrecommender.dal;
 
-import com.hypemrecommender.representations.UserRepresentation;
+import com.hypemrecommender.representations.HypemUserRepresentation;
 import com.mongodb.*;
 
 
@@ -32,7 +32,7 @@ public class MongoUserDao implements UserDao{
     }
 
     @Override
-    public void provision(final UserRepresentation userRepresentation) {
+    public void provision(final HypemUserRepresentation userRepresentation) {
         //TODO
     }
 }

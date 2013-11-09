@@ -19,10 +19,10 @@ public class HypemUserTest {
 
     @Test
     public void deserializesFromJSON() throws Exception {
-        final HypemTrack track1 = new HypemTrack("1a13f", "Parov Stelar", "The Golden Boy");
-        final HypemTrack track2 = new HypemTrack("qfxh", "Caravan Palace", "Jolie Coquine");
+        final HypemTrackRepresentation track1 = new HypemTrackRepresentation("1a13f", "Parov Stelar", "The Golden Boy");
+        final HypemTrackRepresentation track2 = new HypemTrackRepresentation("qfxh", "Caravan Palace", "Jolie Coquine");
 
-        List<HypemTrack> tracks = new ArrayList<>();
+        List<HypemTrackRepresentation> tracks = new ArrayList<>();
         tracks.add(track1);
         tracks.add(track2);
         final Obsessed obsessed = new Obsessed(tracks);

@@ -15,23 +15,23 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Obsessed {
     @JsonProperty("@tracks")
-    public List<HypemTrack> tracks;
+    public List<HypemTrackRepresentation> tracks;
 
     public Obsessed()
     {
         //EMPTY
     }
 
-    public Obsessed(final List<HypemTrack> tracks)
+    public Obsessed(final List<HypemTrackRepresentation> tracks)
     {
         this.tracks = tracks;
     }
 
-    public List<HypemTrack> getTracks() {
+    public List<HypemTrackRepresentation> getTracks() {
         return tracks;
     }
 
-    public void setTracks(final List<HypemTrack> tracks) {
+    public void setTracks(final List<HypemTrackRepresentation> tracks) {
         this.tracks = tracks;
     }
 

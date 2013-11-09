@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @SuppressWarnings("ALL")
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class HypemTrack {
+public class HypemTrackRepresentation {
 
     @JsonProperty("@media_id")
     public String mediaId;
@@ -23,12 +23,12 @@ public class HypemTrack {
     public String title;
 
     @SuppressWarnings("UnusedDeclaration")
-    public HypemTrack()
+    public HypemTrackRepresentation()
     {
         // Do Nothing
     }
 
-    public HypemTrack(String mediaId, String artist, String title)
+    public HypemTrackRepresentation(String mediaId, String artist, String title)
     {
         this.mediaId = mediaId;
         this.artist = artist;
@@ -64,7 +64,7 @@ public class HypemTrack {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        final HypemTrack that = (HypemTrack) o;
+        final HypemTrackRepresentation that = (HypemTrackRepresentation) o;
 
         if (artist != null ? !artist.equals(that.artist) : that.artist != null) return false;
         if (mediaId != null ? !mediaId.equals(that.mediaId) : that.mediaId != null) return false;

@@ -19,8 +19,8 @@ public class HypemUserTest {
 
     @Test
     public void deserializesFromJSON() throws Exception {
-        final HypemTrackRepresentation track1 = new HypemTrackRepresentation("1a13f", "Parov Stelar", "The Golden Boy");
-        final HypemTrackRepresentation track2 = new HypemTrackRepresentation("qfxh", "Caravan Palace", "Jolie Coquine");
+        final HypemTrackRepresentation track1 = new HypemTrackRepresentation("1a13f", "Parov Stelar", "The Golden Boy", 30, "http://static-ak.hypem.net/thumbs_new/25/1434405.jpg", "http://static-ak.hypem.net/thumbs_new/25/1434405_120.jpg", "http://static-ak.hypem.net/thumbs_new/25/1434405_320.jpg");
+        final HypemTrackRepresentation track2 = new HypemTrackRepresentation("qfxh", "Caravan Palace", "Jolie Coquine", 21, "http://static-ak.hypem.net/thumbs_new/4c/2267468.jpg", "http://static-ak.hypem.net/thumbs_new/4c/2267468_120.jpg", "http://static-ak.hypem.net/thumbs_new/4c/2267468_320.jpg");
 
         List<HypemTrackRepresentation> tracks = new ArrayList<>();
         tracks.add(track1);

@@ -2,3 +2,5 @@
 .idea
 api/target
 service/target
+
+*.class

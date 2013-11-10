@@ -38,7 +38,7 @@
         </dependency>
         <dependency>
             <groupId>com.hypemrecommender</groupId>
-            <artifactId>crawler</artifactId>
+            <artifactId>hypem-client</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

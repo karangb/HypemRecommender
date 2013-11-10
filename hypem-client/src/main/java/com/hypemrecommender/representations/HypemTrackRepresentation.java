@@ -2,6 +2,8 @@ package com.hypemrecommender.representations;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hypemrecommender.Visitable;
+import com.hypemrecommender.Visitor;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @SuppressWarnings("ALL")
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class HypemTrackRepresentation {
+public class HypemTrackRepresentation implements Visitable {
 
     @JsonProperty("@media_id")
     public String mediaId;
@@ -140,5 +142,10 @@ public class HypemTrackRepresentation {
         result = 31 * result + (thumbUrlLarge != null ? thumbUrlLarge.hashCode() : 0);
         result = 31 * result + plays;
         return result;
+    }
+
+    @Override
+    public void accept(final Visitor visitor) {
+        visitor.visit(this);
     }
 }

@@ -2,6 +2,8 @@ package com.hypemrecommender.representations;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hypemrecommender.Visitable;
+import com.hypemrecommender.Visitor;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @SuppressWarnings("ALL")
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class HypemUserRepresentation {
+public class HypemUserRepresentation implements Visitable {
 
 
     @JsonProperty("@name")
@@ -63,5 +65,11 @@ public class HypemUserRepresentation {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (obsessed != null ? obsessed.hashCode() : 0);
         return result;
+    }
+
+
+    @Override
+    public void accept(final Visitor visitor) {
+        visitor.visit(this);
     }
 }

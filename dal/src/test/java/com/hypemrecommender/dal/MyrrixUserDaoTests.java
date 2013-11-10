@@ -12,11 +12,10 @@ import org.junit.Test;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 /**
@@ -64,9 +63,11 @@ public class MyrrixUserDaoTests extends MongoFixture{
 
         userDao.provision(userRepresentation);
 
+        verify(trackDao, never()).provision(trackRepresentation1);
         verify(trackDao).provision(trackRepresentation2);
     }
 
+    @SuppressWarnings("unchecked")
     private void assertThatUserRepresentationProvisioned() {
         DBObject myUser = userCollection.findOne(new BasicDBObject("username", "karan"));
         ArrayList<DBObject> tracks = (ArrayList<DBObject>) myUser.get("obsession");

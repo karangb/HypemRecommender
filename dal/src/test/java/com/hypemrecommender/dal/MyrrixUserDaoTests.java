@@ -2,7 +2,6 @@ package com.hypemrecommender.dal;
 
 import com.hypemrecommender.representations.HypemTrackRepresentation;
 import com.hypemrecommender.representations.HypemUserRepresentation;
-import com.hypemrecommender.representations.ObsessedRepresentation;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -11,7 +10,6 @@ import org.junit.Test;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -29,24 +27,26 @@ public class MyrrixUserDaoTests extends MongoFixture{
     private MyrrixUserDao userDao;
     private DBCollection userCollection;
 
-    private HypemTrackRepresentation trackRepresentation1;
-    private HypemTrackRepresentation trackRepresentation2;
     private TrackDao trackDao;
     private HypemUserRepresentation userRepresentation;
+    private HypemTrackRepresentation trackRepresentation1;
+    private HypemTrackRepresentation trackRepresentation2;
 
     @Before
     public void setUp() throws UnknownHostException {
         userCollection = testDb.createCollection("hypemUsers", new BasicDBObject());
-        trackRepresentation1 = new HypemTrackRepresentation("1a13f", "Parov Stelar", "Parov Stelar", 30, "http://static-ak.hypem.net/thumbs_new/25/1434405.jpg", "http://static-ak.hypem.net/thumbs_new/25/1434405_120.jpg", "http://static-ak.hypem.net/thumbs_new/25/1434405_320.jpg");
-        trackRepresentation2 = new HypemTrackRepresentation("qfxh", "Caravan Palace", "Jolie Coquine", 21, "http://static-ak.hypem.net/thumbs_new/4c/2267468.jpg", "http://static-ak.hypem.net/thumbs_new/4c/2267468_120.jpg", "http://static-ak.hypem.net/thumbs_new/4c/2267468_320.jpg");
+
         trackDao = mock(TrackDao.class);
-        userRepresentation = createFakeUserRepresentation();
+        userRepresentation = FakeRepresentations.userRepresentation();
+        trackRepresentation1 = userRepresentation.getObsessed().getTracks().get(0);
+        trackRepresentation2 = userRepresentation.getObsessed().getTracks().get(1);
         userDao = new MyrrixUserDao(trackDao, userCollection);
     }
 
     @Test
     public void testProvision()
     {
+
         when(trackDao.exists(trackRepresentation1)).thenReturn(true);
         when(trackDao.exists(trackRepresentation2)).thenReturn(true);
 
@@ -79,12 +79,5 @@ public class MyrrixUserDaoTests extends MongoFixture{
         assertThat((Integer) tracks.get(1).get("plays"), equalTo(21));
     }
 
-    private HypemUserRepresentation createFakeUserRepresentation() {
 
-        List<HypemTrackRepresentation> tracks = new ArrayList<>();
-        tracks.add(trackRepresentation1);
-        tracks.add(trackRepresentation2);
-        ObsessedRepresentation obsessedRepresentation = new ObsessedRepresentation(tracks);
-        return new HypemUserRepresentation("karan", obsessedRepresentation);
-    }
 }

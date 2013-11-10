@@ -6,3 +6,4 @@ service/target
 *.class
 
 crawler/target/*
+hypem-client/target/*

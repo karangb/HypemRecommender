@@ -46,7 +46,6 @@ public class MyrrixUserDaoTests extends MongoFixture{
     @Test
     public void testProvision()
     {
-
         when(trackDao.exists(trackRepresentation1)).thenReturn(true);
         when(trackDao.exists(trackRepresentation2)).thenReturn(true);
 

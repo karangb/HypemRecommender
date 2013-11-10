@@ -20,6 +20,11 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Maven: com.yammer.dropwizard:dropwizard-client:0.6.2" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jersey.contribs:jersey-apache-client4:1.17.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.2.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.2.2" level="project" />
+    <orderEntry type="library" name="Maven: com.yammer.metrics:metrics-httpclient:2.2.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.9.5" level="project" />
     <orderEntry type="library" name="Maven: com.yammer.dropwizard:dropwizard-testing:0.6.2" level="project" />
     <orderEntry type="library" name="Maven: com.yammer.dropwizard:dropwizard-core:0.6.2" level="project" />

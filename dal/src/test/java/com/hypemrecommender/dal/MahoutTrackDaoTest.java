@@ -16,7 +16,7 @@ import java.net.UnknownHostException;
  * Date: 13/09/2013
  * Time: 18:57
  */
-public class MongoTrackDaoTest extends MongoFixture{
+public class MahoutTrackDaoTest extends MongoFixture{
     private DBCollection tracks;
 
     @Before

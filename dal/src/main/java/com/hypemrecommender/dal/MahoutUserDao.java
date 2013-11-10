@@ -10,11 +10,11 @@ import com.mongodb.*;
  * Date: 15/10/2013
  * Time: 21:15
  */
-public class MongoUserDao implements UserDao{
+public class MahoutUserDao implements UserDao{
     private final DBCollection modelMap;
     private final DBCollection users;
 
-    public MongoUserDao(DBCollection modelMap, DBCollection users) {
+    public MahoutUserDao(DBCollection modelMap, DBCollection users) {
         this.modelMap = modelMap;
         this.users = users;
     }

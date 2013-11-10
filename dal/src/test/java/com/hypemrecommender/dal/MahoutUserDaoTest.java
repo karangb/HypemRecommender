@@ -18,9 +18,9 @@ import static junit.framework.Assert.assertTrue;
  * Date: 15/10/2013
  * Time: 21:22
  */
-public class MongoUserDaoTest extends MongoFixture{
+public class MahoutUserDaoTest extends MongoFixture{
     private BasicDBObject userDoc;
-    private MongoUserDao userDao;
+    private MahoutUserDao userDao;
 
     @Before
     public void setUp() throws UnknownHostException {
@@ -29,7 +29,7 @@ public class MongoUserDaoTest extends MongoFixture{
         userDoc = new BasicDBObject("username", "karan");
         users.insert(userDoc);
 
-        userDao = new MongoUserDao(dataModelMap, users);
+        userDao = new MahoutUserDao(dataModelMap, users);
     }
 
     @Test

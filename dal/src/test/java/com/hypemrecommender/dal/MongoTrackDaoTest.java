@@ -29,7 +29,7 @@ public class MongoTrackDaoTest extends MongoFixture{
     public void testGetTrack() throws UnknownHostException {
         Track track = new Track("1x990", "RÜFÜS (official)", "Desert Night");
         provision(track);
-        TrackDao trackDao = new MongoTrackDao(dataModelMap, tracks);
+        TrackDao trackDao = new MahoutTrackDao(dataModelMap, tracks);
         Assert.assertEquals(track, trackDao.getTrack(1));
     }
 

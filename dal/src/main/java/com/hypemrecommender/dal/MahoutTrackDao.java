@@ -1,5 +1,6 @@
 package com.hypemrecommender.dal;
 
+import com.hypemrecommender.representations.HypemTrackRepresentation;
 import com.hypemrecommender.representations.Track;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
@@ -27,5 +28,15 @@ public class MahoutTrackDao implements TrackDao {
         ObjectId bsonTrackId = new ObjectId(trackId);
         DBObject trackDoc = tracks.findOne(new BasicDBObject("_id", bsonTrackId));
         return new Track((String)trackDoc.get("media_id"), (String)trackDoc.get("title"), (String)trackDoc.get("artist"));
+    }
+
+    @Override
+    public boolean exists(final HypemTrackRepresentation trackRepresentation) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Void provision(final HypemTrackRepresentation trackRepresentation) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

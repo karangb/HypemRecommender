@@ -1,5 +1,6 @@
 package com.hypemrecommender.dal;
 
+import com.hypemrecommender.representations.HypemTrackRepresentation;
 import com.hypemrecommender.representations.Track;
 
 /**
@@ -10,4 +11,8 @@ import com.hypemrecommender.representations.Track;
  */
 public interface TrackDao {
     Track getTrack(long itemID);
+
+    boolean exists(HypemTrackRepresentation trackRepresentation);
+
+    Void provision(HypemTrackRepresentation trackRepresentation);
 }

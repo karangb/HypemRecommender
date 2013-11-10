@@ -18,9 +18,11 @@ import java.util.List;
 public class MyrrixUserDao implements UserDao {
 
 
+    private final TrackDao trackDao;
     private final DBCollection userCollection;
 
-    public MyrrixUserDao(final DBCollection userCollection) {
+    public MyrrixUserDao(final TrackDao trackDao, final DBCollection userCollection) {
+        this.trackDao = trackDao;
         this.userCollection = userCollection;
     }
 
@@ -42,6 +44,11 @@ public class MyrrixUserDao implements UserDao {
             DBObject trackDoc = BasicDBObjectBuilder.start().add("media_id", track.getMediaId()).
                                                         add("plays", track.getPlays()).get();
             tracks.add(trackDoc);
+
+            if(!trackDao.exists(track))
+            {
+                trackDao.provision(track);
+            }
         }
         DBObject userDoc = BasicDBObjectBuilder.start().add("username", userRepresentation.getName()).add("obsession", tracks).get();
         userCollection.insert(userDoc);

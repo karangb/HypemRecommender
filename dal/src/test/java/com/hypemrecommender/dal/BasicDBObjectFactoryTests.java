@@ -32,4 +32,14 @@ public class BasicDBObjectFactoryTests {
         DBObject doc = factory.createObsessed(FakeRepresentations.obsessed());
         assertThat(doc, equalTo(expectedDoc));
     }
+
+    @Test
+    public void testUser()
+    {
+        DBObject expectedDoc = FakeRepresentations.userRepresentationDoc();
+        BasicDBObjectFactory factory = new BasicDBObjectFactory();
+
+        DBObject doc = factory.createUser(FakeRepresentations.userRepresentation());
+        assertThat(doc, equalTo(expectedDoc));
+    }
 }

@@ -1,6 +1,7 @@
 package com.hypemrecommender.dal;
 
 import com.hypemrecommender.representations.HypemTrackRepresentation;
+import com.hypemrecommender.representations.HypemUserRepresentation;
 import com.hypemrecommender.representations.ObsessedRepresentation;
 import com.mongodb.BasicDBObject;
 import com.mongodb.BasicDBObjectBuilder;
@@ -34,5 +35,10 @@ public class BasicDBObjectFactory {
             tracks.add(createTrack(track));
         }
         return new BasicDBObject("tracks", tracks);
+    }
+
+    public DBObject createUser(final HypemUserRepresentation hypemUserRepresentation) {
+        return new BasicDBObject("username", hypemUserRepresentation.getName())
+                .append("obsessed", createObsessed(hypemUserRepresentation.getObsessed()));
     }
 }

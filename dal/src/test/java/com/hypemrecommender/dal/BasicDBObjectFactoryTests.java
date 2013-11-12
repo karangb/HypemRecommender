@@ -22,4 +22,14 @@ public class BasicDBObjectFactoryTests {
         DBObject doc = factory.createTrack(FakeRepresentations.track1());
         assertThat(doc, equalTo(expectedDoc));
     }
+
+    @Test
+    public void testCreateObsession()
+    {
+        DBObject expectedDoc = FakeRepresentations.obsessedDoc();
+        BasicDBObjectFactory factory = new BasicDBObjectFactory();
+
+        DBObject doc = factory.createObsessed(FakeRepresentations.obsessed());
+        assertThat(doc, equalTo(expectedDoc));
+    }
 }

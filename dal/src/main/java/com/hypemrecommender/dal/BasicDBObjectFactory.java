@@ -1,8 +1,13 @@
 package com.hypemrecommender.dal;
 
 import com.hypemrecommender.representations.HypemTrackRepresentation;
+import com.hypemrecommender.representations.ObsessedRepresentation;
+import com.mongodb.BasicDBObject;
 import com.mongodb.BasicDBObjectBuilder;
 import com.mongodb.DBObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,4 +27,12 @@ public class BasicDBObjectFactory {
     }
 
 
+    public DBObject createObsessed(final ObsessedRepresentation obsessed) {
+        List<DBObject> tracks = new ArrayList<>();
+        for(HypemTrackRepresentation track : obsessed.getTracks())
+        {
+            tracks.add(createTrack(track));
+        }
+        return new BasicDBObject("tracks", tracks);
+    }
 }

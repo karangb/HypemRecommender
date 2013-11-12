@@ -14,5 +14,5 @@ public interface TrackDao {
 
     boolean exists(HypemTrackRepresentation trackRepresentation);
 
-    Void provision(HypemTrackRepresentation trackRepresentation);
+    void provision(HypemTrackRepresentation trackRepresentation);
 }

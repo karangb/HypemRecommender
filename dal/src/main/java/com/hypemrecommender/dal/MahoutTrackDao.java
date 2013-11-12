@@ -32,11 +32,11 @@ public class MahoutTrackDao implements TrackDao {
 
     @Override
     public boolean exists(final HypemTrackRepresentation trackRepresentation) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return false;
     }
 
     @Override
-    public Void provision(final HypemTrackRepresentation trackRepresentation) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public void provision(final HypemTrackRepresentation trackRepresentation) {
+
     }
 }

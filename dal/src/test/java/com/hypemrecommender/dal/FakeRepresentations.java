@@ -32,7 +32,7 @@ public class FakeRepresentations {
 
     public static HypemTrackRepresentation track1()
     {
-        return new HypemTrackRepresentation("1a13f", "Parov Stelar", "Parov Stelar", 30, "http://static-ak.hypem.net/thumbs_new/25/1434405.jpg", "http://static-ak.hypem.net/thumbs_new/25/1434405_120.jpg", "http://static-ak.hypem.net/thumbs_new/25/1434405_320.jpg");
+        return new HypemTrackRepresentation("1a13f", "Parov Stelar", "The Golden Boy", 30, "http://static-ak.hypem.net/thumbs_new/25/1434405.jpg", "http://static-ak.hypem.net/thumbs_new/25/1434405_120.jpg", "http://static-ak.hypem.net/thumbs_new/25/1434405_320.jpg");
     }
 
     public static HypemTrackRepresentation track2()
@@ -56,8 +56,8 @@ public class FakeRepresentations {
 
     public static DBObject track1Doc() {
         return BasicDBObjectBuilder.start().add("media_id", "1a13f")
-                                           .add("artist", "The Golden Boy")
                                            .add("artist", "Parov Stelar")
+                                           .add("title", "The Golden Boy")
                                            .add("plays", 30)
                                            .add("thumb_url", "http://static-ak.hypem.net/thumbs_new/25/1434405.jpg")
                                            .add("thumb_url_medium", "http://static-ak.hypem.net/thumbs_new/25/1434405_120.jpg")
@@ -69,7 +69,7 @@ public class FakeRepresentations {
     public static DBObject track2Doc() {
         return BasicDBObjectBuilder.start().add("media_id", "qfxh")
                                            .add("artist", "Caravan Palace")
-                                           .add("artist", "Jolie Coquine")
+                                           .add("title", "Jolie Coquine")
                                            .add("plays", 21)
                                            .add("thumb_url", "http://static-ak.hypem.net/thumbs_new/4c/2267468.jpg")
                                            .add("thumb_url_medium", "http://static-ak.hypem.net/thumbs_new/4c/2267468_120.jpg")

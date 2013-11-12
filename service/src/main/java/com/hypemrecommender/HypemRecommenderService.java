@@ -21,6 +21,8 @@ import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.ItemSimilarity;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb
@@ -44,7 +46,7 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
         ItemSimilarity itemSimilarity = new LogLikelihoodSimilarity(dataModel);
         Recommender recommender = new GenericItemBasedRecommender(dataModel, itemSimilarity);
 
-        allowOrigins(environment);
+        allowOrigins(environment, configuration.getAllowedOrigins());
 
         MongoClient client = new MongoClient(configuration.getHost());
         DB db = client.getDB(configuration.getDb());
@@ -54,9 +56,24 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
         environment.addResource(new RecommendationResource(new HypemRecommender(recommender, userDao, trackDao)));
     }
 
-    private void allowOrigins(final Environment environment) {
+    private void allowOrigins(final Environment environment, List<String> allowedOrigins) {
         FilterBuilder filterConfig = environment.addFilter(CrossOriginFilter.class, "/*");
         filterConfig.setInitParam(CrossOriginFilter.PREFLIGHT_MAX_AGE_PARAM, String.valueOf(60*60*24)); // 1 day - jetty-servlet CrossOriginFilter will convert to Int.
-        filterConfig.setInitParam(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, "http://localhost"); // comma separated list of allowed origin domains
+
+        StringBuffer commaSeparatedAllowedOrigins = commaSeparated(allowedOrigins);
+        filterConfig.setInitParam(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, commaSeparatedAllowedOrigins.toString()); // comma separated list of allowed origin domains
+    }
+
+    private StringBuffer commaSeparated(final List<String> allowedOrigins) {
+        StringBuffer commaSeparatedAllowedOrigins = new StringBuffer();
+        for(int i=0; i<allowedOrigins.size(); i++)
+        {
+            commaSeparatedAllowedOrigins.append(allowedOrigins.get(i));
+            if(i != allowedOrigins.size()-1)
+            {
+                commaSeparatedAllowedOrigins.append(",");
+            }
+        }
+        return commaSeparatedAllowedOrigins;
     }
 }

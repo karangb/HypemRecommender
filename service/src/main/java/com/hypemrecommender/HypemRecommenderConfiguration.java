@@ -4,6 +4,8 @@ import com.yammer.dropwizard.config.Configuration;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb
@@ -19,6 +21,9 @@ class HypemRecommenderConfiguration extends Configuration {
     @JsonProperty
     public String db;
 
+    @JsonProperty
+    public List<String> allowedOrigins;
+
     public String getHost()
     {
         return host;
@@ -27,5 +32,10 @@ class HypemRecommenderConfiguration extends Configuration {
     public String getDb()
     {
         return db;
+    }
+
+    public List<String> getAllowedOrigins()
+    {
+        return allowedOrigins;
     }
 }

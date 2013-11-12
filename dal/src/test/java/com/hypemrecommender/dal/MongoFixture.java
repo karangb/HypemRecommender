@@ -4,12 +4,6 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
-import de.flapdoodle.embed.mongo.MongodExecutable;
-import de.flapdoodle.embed.mongo.MongodProcess;
-import de.flapdoodle.embed.mongo.MongodStarter;
-import de.flapdoodle.embed.mongo.config.IMongodConfig;
-import de.flapdoodle.embed.mongo.config.MongodConfigBuilder;
-import de.flapdoodle.embed.mongo.distribution.Version;
 import org.junit.After;
 import org.junit.Before;
 
@@ -25,17 +19,11 @@ public class MongoFixture {
 
     public static final String HOST = "127.0.0.1";
     public static final String TEST_DB = "test";
-    private MongodExecutable mongodExe;
-    private MongodProcess mongod;
     protected DB testDb;
     protected DBCollection dataModelMap;
 
     @Before
     public void baseSetUp() throws IOException {
-        IMongodConfig mongodConfig = new MongodConfigBuilder().version(Version.Main.DEVELOPMENT).build();
-        MongodStarter runtime = MongodStarter.getDefaultInstance();
-        mongodExe = runtime.prepare(mongodConfig);
-        mongod = mongodExe.start();
         MongoClient client = new MongoClient(HOST);
         testDb = client.getDB(TEST_DB);
         dataModelMap = testDb.createCollection("mongo_data_model_map", new BasicDBObject());
@@ -45,7 +33,5 @@ public class MongoFixture {
     public void cleanUp()
     {
         testDb.dropDatabase();
-        mongod.stop();
-        mongodExe.stop();
     }
 }

@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import java.net.UnknownHostException;
 
+import static com.hypemrecommender.dal.FakeRepresentations.track1;
+import static com.hypemrecommender.dal.FakeRepresentations.track1Doc;
 import static com.mongodb.util.MyAsserts.assertFalse;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -33,18 +35,18 @@ public class MyrrixTrackDaoTests extends MongoFixture{
     @Test
     public void testProvision()
     {
-        HypemTrackRepresentation track = FakeRepresentations.track1();
+        HypemTrackRepresentation track = track1();
         trackDao.provision(track);
 
         DBObject trackDoc = trackCollection.findOne(new BasicDBObject("media_id", track.getMediaId()));
         trackDoc.removeField("_id");
-        assertThat(trackDoc, equalTo(FakeRepresentations.track1Doc()));
+        assertThat(trackDoc, equalTo(track1Doc()));
     }
 
     @Test
     public void testExist()
     {
-        HypemTrackRepresentation track = FakeRepresentations.track1();
+        HypemTrackRepresentation track = track1();
 
         trackDao.provision(track);
 
@@ -54,6 +56,6 @@ public class MyrrixTrackDaoTests extends MongoFixture{
     @Test
     public void testExistWithoutTrack()
     {
-        assertFalse(trackDao.exists(FakeRepresentations.track1()));
+        assertFalse(trackDao.exists(track1()));
     }
 }

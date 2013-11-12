@@ -56,6 +56,7 @@ public class FakeRepresentations {
 
     public static DBObject track1Doc() {
         return BasicDBObjectBuilder.start().add("media_id", "1a13f")
+                                           .add("artist", "The Golden Boy")
                                            .add("artist", "Parov Stelar")
                                            .add("plays", 30)
                                            .add("thumb_url", "http://static-ak.hypem.net/thumbs_new/25/1434405.jpg")
@@ -68,6 +69,7 @@ public class FakeRepresentations {
     public static DBObject track2Doc() {
         return BasicDBObjectBuilder.start().add("media_id", "qfxh")
                                            .add("artist", "Caravan Palace")
+                                           .add("artist", "Jolie Coquine")
                                            .add("plays", 21)
                                            .add("thumb_url", "http://static-ak.hypem.net/thumbs_new/4c/2267468.jpg")
                                            .add("thumb_url_medium", "http://static-ak.hypem.net/thumbs_new/4c/2267468_120.jpg")

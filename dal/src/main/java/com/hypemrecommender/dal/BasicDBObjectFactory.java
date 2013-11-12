@@ -20,6 +20,7 @@ public class BasicDBObjectFactory {
     public DBObject createTrack(final HypemTrackRepresentation trackRepresentation) {
         return BasicDBObjectBuilder.start().add("media_id", trackRepresentation.getMediaId())
                 .add("artist", trackRepresentation.getArtist())
+                .add("title", trackRepresentation.getTitle())
                 .add("plays", trackRepresentation.getPlays())
                 .add("thumb_url", trackRepresentation.getThumbUrl())
                 .add("thumb_url_medium", trackRepresentation.getThumbUrlMedium())

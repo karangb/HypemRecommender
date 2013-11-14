@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
  * Date: 09/11/2013
  * Time: 21:18
  */
-public class HypemCrawlerTests {
+public class HypemCrawlerTest {
 
 
     /*

@@ -22,7 +22,7 @@ import static org.mockito.Mockito.*;
  * Date: 10/11/2013
  * Time: 01:31
  */
-public class MyrrixUserDaoTests extends MongoFixture{
+public class MyrrixUserDaoTest extends MongoFixture{
     
     private MyrrixUserDao userDao;
     private DBCollection userCollection;

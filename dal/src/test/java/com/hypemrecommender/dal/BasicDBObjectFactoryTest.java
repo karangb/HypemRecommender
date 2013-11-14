@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat;
  * Date: 12/11/2013
  * Time: 21:01
  */
-public class BasicDBObjectFactoryTests {
+public class BasicDBObjectFactoryTest {
     @Test
     public void testCreateTrack()
     {

@@ -22,7 +22,7 @@ import static org.junit.Assert.assertTrue;
  * Date: 10/11/2013
  * Time: 16:05
  */
-public class MyrrixTrackDaoTests extends MongoFixture{
+public class MyrrixTrackDaoTest extends MongoFixture{
     private DBCollection trackCollection;
     private MyrrixTrackDao trackDao;
 

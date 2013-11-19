@@ -4,6 +4,8 @@ import com.hypemrecommender.Crawler;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.representations.HypemUserRepresentation;
 
+import java.util.Collection;
+
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb
@@ -34,5 +36,20 @@ public class HypemUser implements User{
             HypemUserRepresentation userRepresentation = crawler.fetchUser(username);
             userDao.provision(userRepresentation);
         }
+    }
+
+    @Override
+    public Void provision() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Collection<Track> getFavourites() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public boolean exists() {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

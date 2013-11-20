@@ -33,7 +33,7 @@ public class HypemUserFactoryTest {
     }
 
     @Test
-    public void testGetUser()
+    public void testCreateUser()
     {
         long hypemId = 123;
         when(userDao.getUserId("karan")).thenReturn(hypemId);

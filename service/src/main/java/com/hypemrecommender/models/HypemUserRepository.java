@@ -1,6 +1,6 @@
 package com.hypemrecommender.models;
 
-import com.hypemrecommender.Crawler;
+import com.hypemrecommender.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
 
 /**
@@ -12,15 +12,15 @@ import com.hypemrecommender.dal.UserDao;
 public class HypemUserRepository implements UserRepository{
 
     private final UserDao userDao;
-    private final Crawler crawler;
+    private final MusicCloudApi musicCloudApi;
 
-    public HypemUserRepository(final UserDao userDao, final Crawler crawler) {
+    public HypemUserRepository(final UserDao userDao, final MusicCloudApi musicCloudApi) {
         this.userDao = userDao;
-        this.crawler = crawler;
+        this.musicCloudApi = musicCloudApi;
     }
 
     @Override
     public User getUser(final String username) {
-        return new HypemUser(username, userDao, crawler);
+        return new HypemUser(username, userDao, musicCloudApi);
     }
 }

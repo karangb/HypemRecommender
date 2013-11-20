@@ -1,6 +1,6 @@
 package com.hypemrecommender.resources;
 
-import com.hypemrecommender.Crawler;
+import com.hypemrecommender.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.models.HypemUser;
 import com.hypemrecommender.models.User;
@@ -23,12 +23,12 @@ public class HypemUserTest {
     public void testRefreshWhenUserDoesNotExist()
     {
         UserDao userDao = mock(UserDao.class);
-        Crawler crawler = mock(Crawler.class);
+        MusicCloudApi musicCloudApi = mock(MusicCloudApi.class);
         final HypemUserRepresentation hypemUser = new HypemUserRepresentation();
         when(userDao.exists("karan")).thenReturn(false);
-        when(crawler.fetchUser("karan")).thenReturn(hypemUser);
+        when(musicCloudApi.fetchUser("karan")).thenReturn(hypemUser);
 
-        User user = new HypemUser("karan", userDao, crawler);
+        User user = new HypemUser("karan", userDao, musicCloudApi);
         user.updateFavourites();
 
         verify(userDao).provision(hypemUser);

@@ -1,7 +1,7 @@
 package com.hypemrecommender.resources;
 
 
-import com.hypemrecommender.Crawler;
+import com.hypemrecommender.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.models.HypemUserRepository;
 import com.hypemrecommender.models.User;
@@ -22,14 +22,14 @@ public class HypemUserRepositoryTest {
 
     private HypemUserRepository userRepository;
     private UserDao userDao;
-    private Crawler crawler;
+    private MusicCloudApi musicCloudApi;
 
     @Before
     public void setUp()
     {
         userDao = mock(UserDao.class);
-        crawler = mock(Crawler.class);
-        userRepository = new HypemUserRepository(userDao, crawler);
+        musicCloudApi = mock(MusicCloudApi.class);
+        userRepository = new HypemUserRepository(userDao, musicCloudApi);
     }
 
     @Test

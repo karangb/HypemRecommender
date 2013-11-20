@@ -1,6 +1,6 @@
 package com.hypemrecommender.models;
 
-import com.hypemrecommender.Crawler;
+import com.hypemrecommender.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.representations.HypemUserRepresentation;
 
@@ -15,13 +15,13 @@ import java.util.Collection;
 public class HypemUser implements User{
     private final String username;
     private final UserDao userDao;
-    private final Crawler crawler;
+    private final MusicCloudApi musicCloudApi;
 
-    public HypemUser(final String username, final UserDao userDao, final Crawler crawler) {
+    public HypemUser(final String username, final UserDao userDao, final MusicCloudApi musicCloudApi) {
 
         this.username = username;
         this.userDao = userDao;
-        this.crawler = crawler;
+        this.musicCloudApi = musicCloudApi;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class HypemUser implements User{
     public void updateFavourites() {
         if(!userDao.exists(username))
         {
-            HypemUserRepresentation userRepresentation = crawler.fetchUser(username);
+            HypemUserRepresentation userRepresentation = musicCloudApi.fetchUser(username);
             userDao.provision(userRepresentation);
         }
     }

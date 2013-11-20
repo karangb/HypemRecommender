@@ -20,7 +20,7 @@ public class Crawler extends Task {
     private final UserRepository userRepository;
     private final Queue<User> users;
 
-    protected Crawler(final String name, final UserRepository userRepository, final Queue<User> users) {
+    public Crawler(final String name, final UserRepository userRepository, final Queue<User> users) {
         super(name);
         this.userRepository = userRepository;
         this.users = users;

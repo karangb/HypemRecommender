@@ -9,11 +9,11 @@ import com.sun.jersey.api.client.WebResource;
  * Date: 05/11/2013
  * Time: 23:01
  */
-public class HypemCrawler implements Crawler {
+public class HypemApi implements MusicCloudApi {
 
     private final WebResource userResource;
 
-    public HypemCrawler(final WebResource userResource) {
+    public HypemApi(final WebResource userResource) {
         this.userResource = userResource;
     }
 

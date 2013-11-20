@@ -6,6 +6,6 @@ package com.hypemrecommender.models;
  * Date: 03/11/2013
  * Time: 23:25
  */
-public interface UserRepository {
-    User getUser(String username);
+public interface UserFactory {
+    User createUser(String primaryId);
 }

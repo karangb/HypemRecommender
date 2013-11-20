@@ -1,5 +1,7 @@
 package com.hypemrecommender.models;
 
+import java.util.Collection;
+
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb
@@ -10,4 +12,10 @@ public interface User {
     long getId();
 
     void updateFavourites();
+
+    Void provision();
+
+    Collection<Track> getFavourites();
+
+    boolean exists();
 }

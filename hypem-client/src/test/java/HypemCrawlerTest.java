@@ -1,4 +1,4 @@
-import com.hypemrecommender.HypemCrawler;
+import com.hypemrecommender.HypemApi;
 import com.hypemrecommender.representations.HypemUserRepresentation;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -26,7 +26,7 @@ public class HypemCrawlerTest {
         Client client = Client.create();
         WebResource userResource = client.resource("http://gijwi.com:3001/user");
 
-        HypemCrawler crawler = new HypemCrawler(userResource);
+        HypemApi crawler = new HypemApi(userResource);
         HypemUserRepresentation user = crawler.fetchUser("karan");
 
         assertThat(user.name, equalTo("karan"));

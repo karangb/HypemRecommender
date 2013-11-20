@@ -1,9 +1,9 @@
 package com.hypemrecommender.resources;
 
 
-import com.hypemrecommender.Crawler;
+import com.hypemrecommender.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
-import com.hypemrecommender.models.HypemUserRepository;
+import com.hypemrecommender.models.HypemUserFactory;
 import com.hypemrecommender.models.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,27 +18,27 @@ import static org.mockito.Mockito.when;
  * Date: 03/11/2013
  * Time: 23:26
  */
-public class HypemUserRepositoryTest {
+public class HypemUserFactoryTest {
 
-    private HypemUserRepository userRepository;
+    private HypemUserFactory userFactory;
     private UserDao userDao;
-    private Crawler crawler;
+    private MusicCloudApi musicCloudApi;
 
     @Before
     public void setUp()
     {
         userDao = mock(UserDao.class);
-        crawler = mock(Crawler.class);
-        userRepository = new HypemUserRepository(userDao, crawler);
+        musicCloudApi = mock(MusicCloudApi.class);
+        userFactory = new HypemUserFactory(userDao, musicCloudApi);
     }
 
     @Test
-    public void testGetUser()
+    public void testCreateUser()
     {
         long hypemId = 123;
         when(userDao.getUserId("karan")).thenReturn(hypemId);
 
-        User user = userRepository.getUser("karan");
+        User user = userFactory.createUser("karan");
         assertEquals(user.getId(), 123);
     }
 }

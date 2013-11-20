@@ -8,6 +8,6 @@ import com.hypemrecommender.representations.HypemUserRepresentation;
  * Date: 03/11/2013
  * Time: 23:58
  */
-public interface Crawler {
+public interface MusicCloudApi {
     HypemUserRepresentation fetchUser(String username);
 }

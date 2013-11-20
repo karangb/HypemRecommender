@@ -1,13 +1,9 @@
 package com.hypemrecommender.tasks;
 
-import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSetMultimap;
-import com.hypemrecommender.Crawler;
 import com.hypemrecommender.models.Track;
 import com.hypemrecommender.models.User;
 import com.hypemrecommender.models.UserRepository;
-import com.hypemrecommender.representations.HypemTrackRepresentation;
-import com.hypemrecommender.representations.HypemUserRepresentation;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -16,7 +12,6 @@ import org.mockito.MockitoAnnotations;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 
 import static org.mockito.Mockito.*;
 

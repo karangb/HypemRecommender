@@ -7,5 +7,5 @@ package com.hypemrecommender.models;
  * Time: 23:25
  */
 public interface UserRepository {
-    User getUser(String username);
+    User getUser(String primaryId);
 }

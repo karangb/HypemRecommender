@@ -20,7 +20,7 @@ public class HypemUserRepository implements UserRepository{
     }
 
     @Override
-    public User getUser(final String username) {
-        return new HypemUser(username, userDao, musicCloudApi);
+    public User getUser(final String primaryId) {
+        return new HypemUser(primaryId, userDao, musicCloudApi);
     }
 }

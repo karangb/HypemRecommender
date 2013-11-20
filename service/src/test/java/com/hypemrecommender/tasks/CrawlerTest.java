@@ -74,7 +74,7 @@ public class CrawlerTest {
         when(user2.exists()).thenReturn(true);
         when(user3.exists()).thenReturn(false);
 
-        when(userFactory.getUser("karan")).thenReturn(user1);
+        when(userFactory.createUser("karan")).thenReturn(user1);
     }
 
     @Test

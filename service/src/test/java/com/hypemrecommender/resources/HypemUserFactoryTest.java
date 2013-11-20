@@ -38,7 +38,7 @@ public class HypemUserFactoryTest {
         long hypemId = 123;
         when(userDao.getUserId("karan")).thenReturn(hypemId);
 
-        User user = userRepository.getUser("karan");
+        User user = userRepository.createUser("karan");
         assertEquals(user.getId(), 123);
     }
 }

@@ -29,7 +29,7 @@ public class Crawler extends Task {
     @Override
     public void execute(final ImmutableMultimap<String, String> parameters, final PrintWriter output) throws Exception {
         String initialUsername = parameters.get("initialUser").iterator().next();
-        User initialUser = userFactory.getUser(initialUsername);
+        User initialUser = userFactory.createUser(initialUsername);
 
         Set<User> seen = new HashSet<>();
         users.offer(initialUser);

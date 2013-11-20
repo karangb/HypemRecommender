@@ -20,7 +20,7 @@ public class HypemUserFactory implements UserFactory {
     }
 
     @Override
-    public User getUser(final String primaryId) {
+    public User createUser(final String primaryId) {
         return new HypemUser(primaryId, userDao, musicCloudApi);
     }
 }

@@ -7,5 +7,5 @@ package com.hypemrecommender.models;
  * Time: 23:25
  */
 public interface UserFactory {
-    User getUser(String primaryId);
+    User createUser(String primaryId);
 }

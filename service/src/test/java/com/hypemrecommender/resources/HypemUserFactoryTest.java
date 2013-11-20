@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
  */
 public class HypemUserFactoryTest {
 
-    private HypemUserFactory userRepository;
+    private HypemUserFactory userFactory;
     private UserDao userDao;
     private MusicCloudApi musicCloudApi;
 
@@ -29,7 +29,7 @@ public class HypemUserFactoryTest {
     {
         userDao = mock(UserDao.class);
         musicCloudApi = mock(MusicCloudApi.class);
-        userRepository = new HypemUserFactory(userDao, musicCloudApi);
+        userFactory = new HypemUserFactory(userDao, musicCloudApi);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class HypemUserFactoryTest {
         long hypemId = 123;
         when(userDao.getUserId("karan")).thenReturn(hypemId);
 
-        User user = userRepository.createUser("karan");
+        User user = userFactory.createUser("karan");
         assertEquals(user.getId(), 123);
     }
 }

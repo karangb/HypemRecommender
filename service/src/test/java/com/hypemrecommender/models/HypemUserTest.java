@@ -1,9 +1,7 @@
-package com.hypemrecommender.resources;
+package com.hypemrecommender.models;
 
 import com.hypemrecommender.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
-import com.hypemrecommender.models.HypemUser;
-import com.hypemrecommender.models.User;
 import com.hypemrecommender.representations.HypemUserRepresentation;
 import org.junit.Test;
 

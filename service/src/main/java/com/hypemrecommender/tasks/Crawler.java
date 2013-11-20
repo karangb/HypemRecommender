@@ -3,7 +3,7 @@ package com.hypemrecommender.tasks;
 import com.google.common.collect.ImmutableMultimap;
 import com.hypemrecommender.models.Track;
 import com.hypemrecommender.models.User;
-import com.hypemrecommender.models.UserRepository;
+import com.hypemrecommender.models.UserFactory;
 import com.yammer.dropwizard.tasks.Task;
 
 import java.io.PrintWriter;
@@ -17,19 +17,19 @@ import java.util.*;
  */
 public class Crawler extends Task {
 
-    private final UserRepository userRepository;
+    private final UserFactory userFactory;
     private final Queue<User> users;
 
-    public Crawler(final String name, final UserRepository userRepository, final Queue<User> users) {
+    public Crawler(final String name, final UserFactory userFactory, final Queue<User> users) {
         super(name);
-        this.userRepository = userRepository;
+        this.userFactory = userFactory;
         this.users = users;
     }
 
     @Override
     public void execute(final ImmutableMultimap<String, String> parameters, final PrintWriter output) throws Exception {
         String initialUsername = parameters.get("initialUser").iterator().next();
-        User initialUser = userRepository.getUser(initialUsername);
+        User initialUser = userFactory.getUser(initialUsername);
 
         Set<User> seen = new HashSet<>();
         users.offer(initialUser);

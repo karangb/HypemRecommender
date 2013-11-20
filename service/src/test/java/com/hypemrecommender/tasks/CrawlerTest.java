@@ -3,7 +3,7 @@ package com.hypemrecommender.tasks;
 import com.google.common.collect.ImmutableSetMultimap;
 import com.hypemrecommender.models.Track;
 import com.hypemrecommender.models.User;
-import com.hypemrecommender.models.UserRepository;
+import com.hypemrecommender.models.UserFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -23,7 +23,8 @@ import static org.mockito.Mockito.*;
  */
 public class CrawlerTest {
 
-    @Mock UserRepository userRepository;
+    @Mock
+    UserFactory userFactory;
     @Mock User user1;
     @Mock User user2;
     @Mock User user3;
@@ -73,7 +74,7 @@ public class CrawlerTest {
         when(user2.exists()).thenReturn(true);
         when(user3.exists()).thenReturn(false);
 
-        when(userRepository.getUser("karan")).thenReturn(user1);
+        when(userFactory.getUser("karan")).thenReturn(user1);
     }
 
     @Test
@@ -90,7 +91,7 @@ public class CrawlerTest {
         when(user2.getFavourites()).thenReturn(user2Favourites);
         when(user3.getFavourites()).thenReturn(user3Favourites);
 
-        Crawler crawlTask = new Crawler("crawl", userRepository, new LinkedList<User>());
+        Crawler crawlTask = new Crawler("crawl", userFactory, new LinkedList<User>());
         crawlTask.execute(parameters, null);
 
         verify(user1).provision();

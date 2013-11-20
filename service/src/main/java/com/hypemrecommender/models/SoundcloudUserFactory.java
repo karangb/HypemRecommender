@@ -6,7 +6,7 @@ package com.hypemrecommender.models;
  * Date: 20/11/2013
  * Time: 21:33
  */
-public class SoundcloudUserRepository implements UserRepository {
+public class SoundcloudUserFactory implements UserFactory {
     @Override
     public User getUser(final String primaryId) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.

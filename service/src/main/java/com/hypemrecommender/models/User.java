@@ -11,8 +11,6 @@ import java.util.Collection;
 public interface User {
     long getId();
 
-    void updateFavourites();
-
     Void provision();
 
     Collection<Track> getFavourites();

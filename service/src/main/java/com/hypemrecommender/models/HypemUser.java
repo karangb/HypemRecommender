@@ -30,15 +30,6 @@ public class HypemUser implements User{
     }
 
     @Override
-    public void updateFavourites() {
-        if(!userDao.exists(username))
-        {
-            HypemUserRepresentation userRepresentation = musicCloudApi.fetchUser(username);
-            userDao.provision(userRepresentation);
-        }
-    }
-
-    @Override
     public Void provision() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }

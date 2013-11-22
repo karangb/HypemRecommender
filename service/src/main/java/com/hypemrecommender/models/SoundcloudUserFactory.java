@@ -8,7 +8,7 @@ package com.hypemrecommender.models;
  */
 public class SoundcloudUserFactory implements UserFactory {
     @Override
-    public User createUser(final String primaryId) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public User createUser(final String soundcloudId) {
+        return new SoundcloudUser(soundcloudId);
     }
 }

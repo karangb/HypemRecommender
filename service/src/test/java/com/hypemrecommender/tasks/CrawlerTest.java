@@ -33,9 +33,9 @@ public class CrawlerTest {
     @Mock Track track2;
     @Mock Track track3;
 
-    Collection<User> track1Users;
-    Collection<User> track2Users;
-    Collection<User> track3Users;
+    Collection<User> track1FavouritedBy;
+    Collection<User> track2FavouritedBy;
+    Collection<User> track3FavouritedBy;
 
     Collection<Track> user1Favourites;
     Collection<Track> user2Favourites;
@@ -47,29 +47,8 @@ public class CrawlerTest {
     {
         MockitoAnnotations.initMocks(this);
 
-        track1Users = new ArrayList<>();
-        track2Users = new ArrayList<>();
-        track3Users = new ArrayList<>();
-
-        user1Favourites = new ArrayList<>();
-        user2Favourites = new ArrayList<>();
-        user3Favourites = new ArrayList<>();
-
-        track1Users.add(user1);
-
-        track2Users.add(user1);
-        track2Users.add(user2);
-        track2Users.add(user3);
-
-        track3Users.add(user3);
-
-        user1Favourites.add(track1);
-        user1Favourites.add(track2);
-
-        user2Favourites.add(track2);
-
-        user3Favourites.add(track2);
-        user3Favourites.add(track3);
+        populateTrackFavouritedByList();
+        populateUserFavourites();
 
         when(user1.exists()).thenReturn(false);
         when(user2.exists()).thenReturn(true);
@@ -110,9 +89,9 @@ public class CrawlerTest {
     }
 
     private void setFavouritesExpectations() {
-        when(track1.getFavouritedBy()).thenReturn(track1Users);
-        when(track2.getFavouritedBy()).thenReturn(track2Users);
-        when(track3.getFavouritedBy()).thenReturn(track3Users);
+        when(track1.getFavouritedBy()).thenReturn(track1FavouritedBy);
+        when(track2.getFavouritedBy()).thenReturn(track2FavouritedBy);
+        when(track3.getFavouritedBy()).thenReturn(track3FavouritedBy);
 
         when(user1.getFavourites()).thenReturn(user1Favourites);
         when(user2.getFavourites()).thenReturn(user2Favourites);
@@ -124,4 +103,32 @@ public class CrawlerTest {
         when(track2.exists()).thenReturn(true);
         when(track3.exists()).thenReturn(false);
     }
+
+    private void populateUserFavourites() {
+        user1Favourites = new ArrayList<>();
+        user2Favourites = new ArrayList<>();
+        user3Favourites = new ArrayList<>();
+
+        user1Favourites.add(track1);
+        user1Favourites.add(track2);
+
+        user2Favourites.add(track2);
+
+        user3Favourites.add(track2);
+        user3Favourites.add(track3);
+    }
+
+    private void populateTrackFavouritedByList() {
+        track1FavouritedBy = new ArrayList<>();
+        track2FavouritedBy = new ArrayList<>();
+        track3FavouritedBy = new ArrayList<>();
+        track1FavouritedBy.add(user1);
+
+        track2FavouritedBy.add(user1);
+        track2FavouritedBy.add(user2);
+        track2FavouritedBy.add(user3);
+
+        track3FavouritedBy.add(user3);
+    }
+
 }

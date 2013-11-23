@@ -2,7 +2,8 @@ package com.hypemrecommender.engine;
 
 import com.hypemrecommender.dal.TrackDao;
 import com.hypemrecommender.dal.UserDao;
-import com.hypemrecommender.representations.Track;
+import com.hypemrecommender.representations.TrackRepresentation;
+import com.hypemrecommender.representations.TrackRepresentation;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.apache.mahout.cf.taste.recommender.Recommender;
@@ -28,10 +29,10 @@ public class HypemRecommender implements RecommendationEngine {
     }
 
     @Override
-    public List<Track> getRecommendedTracks(final String username) throws TasteException {
+    public List<TrackRepresentation> getRecommendedTracks(final String username) throws TasteException {
         long id = userDao.getUserId(username);
         List<RecommendedItem> recommendedItems = mahout.recommend(id, 100);
-        List<Track> recommendedTracks = new ArrayList<>();
+        List<TrackRepresentation> recommendedTracks = new ArrayList<>();
         for(RecommendedItem recommendedItem : recommendedItems)
         {
             recommendedTracks.add(trackDao.getTrack(recommendedItem.getItemID()));

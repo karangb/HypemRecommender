@@ -1,6 +1,6 @@
 package com.hypemrecommender.dal;
 
-import com.hypemrecommender.representations.Track;
+import com.hypemrecommender.representations.TrackRepresentation;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import junit.framework.Assert;
@@ -27,14 +27,14 @@ public class MahoutTrackDaoTest extends MongoFixture{
 
     @Test
     public void testGetTrack() throws UnknownHostException {
-        Track track = new Track("1x990", "RÜFÜS (official)", "Desert Night");
-        provision(track);
+        TrackRepresentation trackRepresentation = new TrackRepresentation("1x990", "RÜFÜS (official)", "Desert Night");
+        provision(trackRepresentation);
         TrackDao trackDao = new MahoutTrackDao(dataModelMap, tracks);
-        Assert.assertEquals(track, trackDao.getTrack(1));
+        Assert.assertEquals(trackRepresentation, trackDao.getTrack(1));
     }
 
-    private void provision(final Track track) {
-        BasicDBObject trackDoc = new BasicDBObject("media_id", "1x990").append("artist", track.getArtist()).append("title", track.getTitle());
+    private void provision(final TrackRepresentation trackRepresentation) {
+        BasicDBObject trackDoc = new BasicDBObject("media_id", "1x990").append("artist", trackRepresentation.getArtist()).append("title", trackRepresentation.getTitle());
         tracks.insert(trackDoc);
         ObjectId id = (ObjectId)trackDoc.get( "_id" );
         dataModelMap.insert(new BasicDBObject("element_id", id.toString()).append("long_value", "1"));

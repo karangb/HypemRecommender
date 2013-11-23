@@ -15,22 +15,22 @@ import static com.yammer.dropwizard.testing.JsonHelpers.*;
  */
 
 
-public class TrackTest {
+public class TrackRepresentationTest {
 
     @Test
     public void serializesToJson() throws Exception
     {
-        final Track track = new Track("1yhd0", "Melt Feat. Kilo Kish", "Chet Faker");
+        final TrackRepresentation trackRepresentation = new TrackRepresentation("1yhd0", "Melt Feat. Kilo Kish", "Chet Faker");
         assertThat("a Track can be serialized to JSON",
-                asJson(track),
+                asJson(trackRepresentation),
                 is(equalTo(jsonFixture("fixtures/track.json"))));
     }
 
     @Test
     public void deserializesFromJSON() throws Exception {
-        final Track track = new Track("1yhd0", "Melt Feat. Kilo Kish", "Chet Faker");
+        final TrackRepresentation trackRepresentation = new TrackRepresentation("1yhd0", "Melt Feat. Kilo Kish", "Chet Faker");
         assertThat("a Track can be deserialized from JSON",
-                fromJson(jsonFixture("fixtures/track.json"), Track.class),
-                equalTo(track));
+                fromJson(jsonFixture("fixtures/track.json"), TrackRepresentation.class),
+                equalTo(trackRepresentation));
     }
 }

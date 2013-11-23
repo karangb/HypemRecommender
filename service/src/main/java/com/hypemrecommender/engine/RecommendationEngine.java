@@ -1,6 +1,6 @@
 package com.hypemrecommender.engine;
 
-import com.hypemrecommender.representations.Track;
+import com.hypemrecommender.representations.TrackRepresentation;
 import org.apache.mahout.cf.taste.common.TasteException;
 
 import java.util.List;
@@ -12,5 +12,5 @@ import java.util.List;
  * Time: 23:25
  */
 public interface RecommendationEngine {
-    List<Track> getRecommendedTracks(String username) throws TasteException;
+    List<TrackRepresentation> getRecommendedTracks(String username) throws TasteException;
 }

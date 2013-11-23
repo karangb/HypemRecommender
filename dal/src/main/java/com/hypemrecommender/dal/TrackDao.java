@@ -1,7 +1,7 @@
 package com.hypemrecommender.dal;
 
 import com.hypemrecommender.representations.HypemTrackRepresentation;
-import com.hypemrecommender.representations.Track;
+import com.hypemrecommender.representations.TrackRepresentation;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,7 +10,7 @@ import com.hypemrecommender.representations.Track;
  * Time: 22:13
  */
 public interface TrackDao {
-    Track getTrack(long itemID);
+    TrackRepresentation getTrack(long itemID);
 
     boolean exists(HypemTrackRepresentation trackRepresentation);
 

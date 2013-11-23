@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * To change this template use File | Settings | File Templates.
  */
 @SuppressWarnings("ALL")
-public class Track {
+public class TrackRepresentation {
 
     @JsonProperty
     private String hypemId;
@@ -22,12 +22,12 @@ public class Track {
     private String artist;
 
     @SuppressWarnings("UnusedDeclaration")
-    public Track()
+    public TrackRepresentation()
     {
         // Do Nothing
     }
 
-    public Track(String hypemId, String title, String artist) {
+    public TrackRepresentation(String hypemId, String title, String artist) {
         this.hypemId = hypemId;
         this.title = title;
         this.artist = artist;
@@ -56,11 +56,11 @@ public class Track {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        final Track track = (Track) o;
+        final TrackRepresentation trackRepresentation = (TrackRepresentation) o;
 
-        if (artist != null ? !artist.equals(track.artist) : track.artist != null) return false;
-        if (hypemId != null ? !hypemId.equals(track.hypemId) : track.hypemId != null) return false;
-        if (title != null ? !title.equals(track.title) : track.title != null) return false;
+        if (artist != null ? !artist.equals(trackRepresentation.artist) : trackRepresentation.artist != null) return false;
+        if (hypemId != null ? !hypemId.equals(trackRepresentation.hypemId) : trackRepresentation.hypemId != null) return false;
+        if (title != null ? !title.equals(trackRepresentation.title) : trackRepresentation.title != null) return false;
 
         return true;
     }

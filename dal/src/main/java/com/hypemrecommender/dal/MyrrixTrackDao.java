@@ -1,7 +1,7 @@
 package com.hypemrecommender.dal;
 
 import com.hypemrecommender.representations.HypemTrackRepresentation;
-import com.hypemrecommender.representations.Track;
+import com.hypemrecommender.representations.TrackRepresentation;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 
@@ -19,7 +19,7 @@ public class MyrrixTrackDao implements TrackDao{
     }
 
     @Override
-    public Track getTrack(final long itemID) {
+    public TrackRepresentation getTrack(final long itemID) {
         return null;
     }
 

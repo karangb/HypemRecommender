@@ -13,7 +13,7 @@ import java.util.List;
 public class Recommendation {
 
     @JsonProperty
-    private List<Track> tracks;
+    private List<TrackRepresentation> tracks;
 
     @SuppressWarnings("UnusedDeclaration")
     public Recommendation()
@@ -21,17 +21,17 @@ public class Recommendation {
         // Do Nothing
     }
 
-    public Recommendation(List<Track> tracks) {
+    public Recommendation(List<TrackRepresentation> tracks) {
         this.tracks = tracks;
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    public List<Track> getTracks() {
+    public List<TrackRepresentation> getTracks() {
         return tracks;
     }
 
     @SuppressWarnings("UnusedDeclaration")
-    public void setTracks(List<Track> tracks) {
+    public void setTracks(List<TrackRepresentation> tracks) {
         this.tracks = tracks;
     }
 

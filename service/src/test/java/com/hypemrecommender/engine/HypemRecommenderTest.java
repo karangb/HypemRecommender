@@ -2,7 +2,7 @@ package com.hypemrecommender.engine;
 
 import com.hypemrecommender.dal.TrackDao;
 import com.hypemrecommender.dal.UserDao;
-import com.hypemrecommender.representations.Track;
+import com.hypemrecommender.representations.TrackRepresentation;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.apache.mahout.cf.taste.recommender.Recommender;
@@ -27,8 +27,8 @@ public class HypemRecommenderTest {
     private Recommender mahout;
     private UserDao userDao;
     private TrackDao trackDao;
-    private Track track2;
-    private Track track1;
+    private TrackRepresentation track2;
+    private TrackRepresentation track1;
     private List<RecommendedItem> recommendedItems;
 
     @Before
@@ -38,8 +38,8 @@ public class HypemRecommenderTest {
         trackDao = mock(TrackDao.class);
         mahout = mock(Recommender.class);
 
-        track1 = new Track("1x991", "track1", "artist1");
-        track2 = new Track("1x992", "track2", "artist2");
+        track1 = new TrackRepresentation("1x991", "track1", "artist1");
+        track2 = new TrackRepresentation("1x992", "track2", "artist2");
 
         RecommendedItem recommendedItem1 = new FakeRecommendedItem(55);
         RecommendedItem recommendedItem2 = new FakeRecommendedItem(66);
@@ -58,7 +58,7 @@ public class HypemRecommenderTest {
         when(trackDao.getTrack(66)).thenReturn(track2);
 
         HypemRecommender musicRecommender = new HypemRecommender(mahout, userDao, trackDao);
-        List<Track> recommendedTracks = musicRecommender.getRecommendedTracks("karan");
+        List<TrackRepresentation> recommendedTracks = musicRecommender.getRecommendedTracks("karan");
 
         Assert.assertThat(recommendedTracks.get(0), equalTo(track1));
         Assert.assertThat(recommendedTracks.get(1), equalTo(track2));

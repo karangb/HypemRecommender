@@ -10,4 +10,8 @@ import java.util.Collection;
  */
 public interface Track {
     Collection<User> getFavouritedBy();
+
+    boolean exists();
+
+    boolean provision();
 }

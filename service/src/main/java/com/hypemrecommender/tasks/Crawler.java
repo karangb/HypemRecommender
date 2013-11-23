@@ -46,6 +46,8 @@ public class Crawler extends Task {
             Collection<Track> favourites = user.getFavourites();
             for(Track favourite : favourites)
             {
+                if(!favourite.exists())
+                    favourite.provision();
                 users.addAll(favourite.getFavouritedBy());
             }
             seen.add(user);

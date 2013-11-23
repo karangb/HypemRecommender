@@ -40,6 +40,7 @@ public class CrawlerTest {
     Collection<Track> user1Favourites;
     Collection<Track> user2Favourites;
     Collection<Track> user3Favourites;
+    private ImmutableSetMultimap<String, String> parameters;
 
     @Before
     public void setUp()
@@ -75,21 +76,15 @@ public class CrawlerTest {
         when(user3.exists()).thenReturn(false);
 
         when(userFactory.createUser("karan")).thenReturn(user1);
-    }
-
-    @Test
-    public void testExecute() throws Exception {
-        ImmutableSetMultimap<String, String> parameters = new ImmutableSetMultimap.Builder<String, String>()
+        parameters = new ImmutableSetMultimap.Builder<String, String>()
                 .put("initialUser", "karan")
                 .put("userCount", "3")
                 .build();
-        when(track1.getFavouritedBy()).thenReturn(track1Users);
-        when(track2.getFavouritedBy()).thenReturn(track2Users);
-        when(track3.getFavouritedBy()).thenReturn(track3Users);
+    }
 
-        when(user1.getFavourites()).thenReturn(user1Favourites);
-        when(user2.getFavourites()).thenReturn(user2Favourites);
-        when(user3.getFavourites()).thenReturn(user3Favourites);
+    @Test
+    public void testNonExistingUsersAreProvisioned() throws Exception {
+        setFavouritesExpectations();
 
         Crawler crawlTask = new Crawler("crawl", userFactory, new LinkedList<User>());
         crawlTask.execute(parameters, null);
@@ -98,5 +93,35 @@ public class CrawlerTest {
         verify(user3).provision();
 
         verify(user2, never()).provision();
+    }
+
+    @Test
+    public void testNonExistingTracksAreProvisioned() throws Exception {
+        setFavouritesExpectations();
+        allTracksExistExceptTrack3();
+
+        Crawler crawlTask = new Crawler("crawl", userFactory, new LinkedList<User>());
+        crawlTask.execute(parameters, null);
+
+        verify(track3).provision();
+
+        verify(track1, never()).provision();
+        verify(track2, never()).provision();
+    }
+
+    private void setFavouritesExpectations() {
+        when(track1.getFavouritedBy()).thenReturn(track1Users);
+        when(track2.getFavouritedBy()).thenReturn(track2Users);
+        when(track3.getFavouritedBy()).thenReturn(track3Users);
+
+        when(user1.getFavourites()).thenReturn(user1Favourites);
+        when(user2.getFavourites()).thenReturn(user2Favourites);
+        when(user3.getFavourites()).thenReturn(user3Favourites);
+    }
+
+    private void allTracksExistExceptTrack3() {
+        when(track1.exists()).thenReturn(true);
+        when(track2.exists()).thenReturn(true);
+        when(track3.exists()).thenReturn(false);
     }
 }

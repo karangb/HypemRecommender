@@ -15,6 +15,7 @@ import java.util.Collection;
 public class HypemUser implements User{
     private final String username;
     private final UserDao userDao;
+    private final MusicCloudApi musicCloudApi;
 
     public HypemUser(final String username, final UserDao userDao, final MusicCloudApi musicCloudApi) {
 
@@ -26,21 +27,6 @@ public class HypemUser implements User{
     @Override
     public long getId() {
         return userDao.getUserId(this.username);
-    }
-
-    @Override
-    public Void provision() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public Collection<Track> getFavourites() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public boolean exists() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

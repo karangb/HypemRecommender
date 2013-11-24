@@ -15,6 +15,7 @@
         <module>dal</module>
         <module>hypem-client</module>
         <module>soundcloud-client</module>
+        <module>external-blog-api</module>
     </modules>
 
     <dependencies>

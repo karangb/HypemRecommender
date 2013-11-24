@@ -3,7 +3,7 @@ package com.hypemrecommender.tasks;
 import com.google.common.collect.ImmutableSetMultimap;
 import com.hypemrecommender.models.Track;
 import com.hypemrecommender.models.User;
-import com.hypemrecommender.models.UserFactory;
+import com.hypemrecommender.models.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 public class CrawlerTest {
 
     @Mock
-    UserFactory userFactory;
+    UserRepository userRepository;
     @Mock User user1;
     @Mock User user2;
     @Mock User user3;
@@ -54,7 +54,7 @@ public class CrawlerTest {
         when(user2.exists()).thenReturn(true);
         when(user3.exists()).thenReturn(false);
 
-        when(userFactory.createUser("karan")).thenReturn(user1);
+        when(userRepository.createUser("karan")).thenReturn(user1);
         parameters = new ImmutableSetMultimap.Builder<String, String>()
                 .put("initialUser", "karan")
                 .put("userCount", "3")
@@ -65,7 +65,7 @@ public class CrawlerTest {
     public void testNonExistingUsersAreProvisioned() throws Exception {
         setFavouritesExpectations();
 
-        Crawler crawlTask = new Crawler("crawl", userFactory, new LinkedList<User>());
+        Crawler crawlTask = new Crawler("crawl", userRepository, new LinkedList<User>());
         crawlTask.execute(parameters, null);
 
         verify(user1).provision();
@@ -79,7 +79,7 @@ public class CrawlerTest {
         setFavouritesExpectations();
         allTracksExistExceptTrack3();
 
-        Crawler crawlTask = new Crawler("crawl", userFactory, new LinkedList<User>());
+        Crawler crawlTask = new Crawler("crawl", userRepository, new LinkedList<User>());
         crawlTask.execute(parameters, null);
 
         verify(track3).provision();

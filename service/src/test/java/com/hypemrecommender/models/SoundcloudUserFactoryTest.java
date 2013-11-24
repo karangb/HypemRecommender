@@ -15,7 +15,7 @@ public class SoundcloudUserFactoryTest {
     @Test
     public void testSoundcloudUserCreated()
     {
-        SoundcloudUserFactory factory = new SoundcloudUserFactory();
+        SoundcloudUserRepository factory = new SoundcloudUserRepository();
         User user = factory.createUser("karan");
         assertThat(user, instanceOf(SoundcloudUser.class));
     }

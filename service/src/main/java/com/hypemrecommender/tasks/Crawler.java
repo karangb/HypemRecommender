@@ -1,8 +1,8 @@
 package com.hypemrecommender.tasks;
 
 import com.google.common.collect.ImmutableMultimap;
-import com.hypemrecommender.CloudTrack;
-import com.hypemrecommender.MusicCloudApi;
+import com.hypemrecommender.blogapi.CloudTrack;
+import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.models.User;
 import com.hypemrecommender.models.UserRepository;
 import com.yammer.dropwizard.tasks.Task;

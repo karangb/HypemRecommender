@@ -1,6 +1,6 @@
 package com.hypemrecommender.models;
 
-import com.hypemrecommender.MusicCloudApi;
+import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
 
 /**

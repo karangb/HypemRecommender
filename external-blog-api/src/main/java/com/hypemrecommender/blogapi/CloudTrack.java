@@ -1,4 +1,4 @@
-package com.hypemrecommender;
+package com.hypemrecommender.blogapi;
 
 import java.util.Collection;
 

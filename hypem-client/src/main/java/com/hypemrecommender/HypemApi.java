@@ -1,5 +1,7 @@
 package com.hypemrecommender;
 
+import com.hypemrecommender.blogapi.CloudTrack;
+import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.representations.HypemUserRepresentation;
 import com.sun.jersey.api.client.WebResource;
 
@@ -17,11 +19,6 @@ public class HypemApi implements MusicCloudApi {
 
     public HypemApi(final WebResource userResource) {
         this.userResource = userResource;
-    }
-
-    @Override
-    public HypemUserRepresentation fetchUser(final String username) {
-        return userResource.queryParam("username", username).get(HypemUserRepresentation.class);
     }
 
     @Override

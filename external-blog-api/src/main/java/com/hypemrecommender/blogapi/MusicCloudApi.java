@@ -1,6 +1,4 @@
-package com.hypemrecommender;
-
-import com.hypemrecommender.representations.HypemUserRepresentation;
+package com.hypemrecommender.blogapi;
 
 import java.util.Collection;
 
@@ -11,7 +9,5 @@ import java.util.Collection;
  * Time: 23:58
  */
 public interface MusicCloudApi {
-    HypemUserRepresentation fetchUser(String username);
-
     Collection<CloudTrack> fetchFavourites(String unCrawledUser);
 }

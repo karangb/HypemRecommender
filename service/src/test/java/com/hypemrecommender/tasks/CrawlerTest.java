@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.io.IOException;
 import java.util.*;
 
 import static org.mockito.Mockito.*;
@@ -66,8 +67,7 @@ public class CrawlerTest {
         verify(userRepository, never()).createUser("myCrawledUser");
     }
 
-    private LikeCollection user(String username)
-    {
+    private LikeCollection user(String username) throws IOException {
          return new LikeCollection(username);
     }
 
@@ -75,8 +75,7 @@ public class CrawlerTest {
         private final String username;
         private final ArrayList<CloudTrack> favourites;
 
-        LikeCollection(String username)
-        {
+        LikeCollection(String username) throws IOException {
             this.username = username;
             favourites = new ArrayList<>();
             when(api.fetchFavourites(username)).thenReturn(favourites);

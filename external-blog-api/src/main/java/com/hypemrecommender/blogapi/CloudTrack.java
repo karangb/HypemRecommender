@@ -10,4 +10,12 @@ import java.util.Collection;
  */
 public interface CloudTrack {
     Collection<String> getFavouritedBy();
+
+    String getId();
+
+    String getArtist();
+
+    String getTitle();
+
+    String getStreamUrl();
 }

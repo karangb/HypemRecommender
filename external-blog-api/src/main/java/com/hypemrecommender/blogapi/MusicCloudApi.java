@@ -1,5 +1,6 @@
 package com.hypemrecommender.blogapi;
 
+import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -9,5 +10,5 @@ import java.util.Collection;
  * Time: 23:58
  */
 public interface MusicCloudApi {
-    Collection<CloudTrack> fetchFavourites(String unCrawledUser);
+    Collection<CloudTrack> fetchFavourites(String unCrawledUser) throws IOException;
 }

@@ -1,8 +1,8 @@
 package com.hypemrecommender.models;
 
+import com.hypemrecommender.CloudTrack;
 import com.hypemrecommender.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
-import com.hypemrecommender.representations.HypemUserRepresentation;
 
 import java.util.Collection;
 
@@ -15,7 +15,6 @@ import java.util.Collection;
 public class HypemUser implements User{
     private final String username;
     private final UserDao userDao;
-    private final MusicCloudApi musicCloudApi;
 
     public HypemUser(final String username, final UserDao userDao, final MusicCloudApi musicCloudApi) {
 
@@ -42,5 +41,10 @@ public class HypemUser implements User{
     @Override
     public boolean exists() {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void addFavourites(final Collection<CloudTrack> myFavourites) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

@@ -8,4 +8,6 @@ package com.hypemrecommender.models;
  */
 public interface UserRepository {
     User createUser(String primaryId);
+
+    boolean exists(String userId);
 }

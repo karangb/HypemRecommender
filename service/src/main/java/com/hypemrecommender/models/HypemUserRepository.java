@@ -23,4 +23,9 @@ public class HypemUserRepository implements UserRepository {
     public User createUser(final String primaryId) {
         return new HypemUser(primaryId, userDao, musicCloudApi);
     }
+
+    @Override
+    public boolean exists(final String userId) {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

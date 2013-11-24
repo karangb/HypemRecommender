@@ -1,7 +1,8 @@
 package com.hypemrecommender.tasks;
 
 import com.google.common.collect.ImmutableMultimap;
-import com.hypemrecommender.models.Track;
+import com.hypemrecommender.CloudTrack;
+import com.hypemrecommender.MusicCloudApi;
 import com.hypemrecommender.models.User;
 import com.hypemrecommender.models.UserRepository;
 import com.yammer.dropwizard.tasks.Task;
@@ -18,39 +19,39 @@ import java.util.*;
 public class Crawler extends Task {
 
     private final UserRepository userRepository;
-    private final Queue<User> users;
+    private final MusicCloudApi api;
+    private final Queue<String> users;
 
-    public Crawler(final String name, final UserRepository userRepository, final Queue<User> users) {
+    public Crawler(final String name, final UserRepository userRepository, final MusicCloudApi api, final Queue<String> users) {
         super(name);
         this.userRepository = userRepository;
+        this.api = api;
         this.users = users;
     }
 
     @Override
     public void execute(final ImmutableMultimap<String, String> parameters, final PrintWriter output) throws Exception {
         String initialUsername = parameters.get("initialUser").iterator().next();
-        User initialUser = userRepository.createUser(initialUsername);
-
-        Set<User> seen = new HashSet<>();
-        users.offer(initialUser);
+        Set<String> seen = new HashSet<>();
+        users.offer(initialUsername);
 
         while(!users.isEmpty())
         {
-            User user = users.poll();
-            if(seen.contains(user))
+            String username = users.poll();
+            if(seen.contains(username) || userRepository.exists(username))
                 continue;
 
-            if(!user.exists())
-                user.provision();
+            Collection<CloudTrack> favourites = api.fetchFavourites(username);
 
-            Collection<Track> favourites = user.getFavourites();
-            for(Track favourite : favourites)
+            User user = userRepository.createUser(username);
+            user.addFavourites(favourites);
+
+            for(CloudTrack favourite : favourites)
             {
-                if(!favourite.exists())
-                    favourite.provision();
-                users.addAll(favourite.getFavouritedBy());
+                Collection<String> favouritedBy = favourite.getFavouritedBy();
+                users.addAll(favouritedBy);
             }
-            seen.add(user);
+            seen.add(username);
         }
     }
 }

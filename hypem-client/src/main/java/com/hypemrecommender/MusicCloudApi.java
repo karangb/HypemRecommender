@@ -2,6 +2,8 @@ package com.hypemrecommender;
 
 import com.hypemrecommender.representations.HypemUserRepresentation;
 
+import java.util.Collection;
+
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb
@@ -10,4 +12,6 @@ import com.hypemrecommender.representations.HypemUserRepresentation;
  */
 public interface MusicCloudApi {
     HypemUserRepresentation fetchUser(String username);
+
+    Collection<CloudTrack> fetchFavourites(String unCrawledUser);
 }

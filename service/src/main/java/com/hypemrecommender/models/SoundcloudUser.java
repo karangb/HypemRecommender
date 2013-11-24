@@ -1,5 +1,7 @@
 package com.hypemrecommender.models;
 
+import com.hypemrecommender.CloudTrack;
+
 import java.util.Collection;
 
 /**
@@ -19,17 +21,7 @@ public class SoundcloudUser implements User{
     }
 
     @Override
-    public Void provision() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public Collection<Track> getFavourites() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public boolean exists() {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    public void addFavourites(final Collection<CloudTrack> myFavourites) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

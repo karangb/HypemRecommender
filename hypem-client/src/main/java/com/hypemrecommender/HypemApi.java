@@ -3,6 +3,8 @@ package com.hypemrecommender;
 import com.hypemrecommender.representations.HypemUserRepresentation;
 import com.sun.jersey.api.client.WebResource;
 
+import java.util.Collection;
+
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb
@@ -20,5 +22,10 @@ public class HypemApi implements MusicCloudApi {
     @Override
     public HypemUserRepresentation fetchUser(final String username) {
         return userResource.queryParam("username", username).get(HypemUserRepresentation.class);
+    }
+
+    @Override
+    public Collection<CloudTrack> fetchFavourites(final String unCrawledUser) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

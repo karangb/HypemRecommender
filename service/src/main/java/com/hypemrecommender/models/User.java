@@ -1,5 +1,7 @@
 package com.hypemrecommender.models;
 
+import com.hypemrecommender.CloudTrack;
+
 import java.util.Collection;
 
 /**
@@ -11,9 +13,5 @@ import java.util.Collection;
 public interface User {
     long getId();
 
-    Void provision();
-
-    Collection<Track> getFavourites();
-
-    boolean exists();
+    void addFavourites(Collection<CloudTrack> myFavourites);
 }

@@ -29,7 +29,7 @@ public class SoundcloudTrack implements CloudTrack{
     private String streamUrl;
 
     @Override
-    public Collection<String> getFavouritedBy() {
+    public Collection<String> getFavouriters() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 

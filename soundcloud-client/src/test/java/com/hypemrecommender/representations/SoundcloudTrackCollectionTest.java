@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
  * Date: 24/11/2013
  * Time: 17:54
  */
-public class UserFavouritesTest {
+public class SoundcloudTrackCollectionTest {
     @Test
     public void deserializesFromJSON() throws Exception {
         SoundcloudTrack[] tracks = fromJson(jsonFixture("fixtures/userFavourites.json"), SoundcloudTrack[].class);

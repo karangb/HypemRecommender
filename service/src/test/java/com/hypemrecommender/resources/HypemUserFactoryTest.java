@@ -1,7 +1,7 @@
 package com.hypemrecommender.resources;
 
 
-import com.hypemrecommender.MusicCloudApi;
+import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.models.HypemUserRepository;
 import com.hypemrecommender.models.User;

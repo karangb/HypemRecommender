@@ -3,7 +3,6 @@ package com.hypemrecommender.engine;
 import com.hypemrecommender.dal.TrackDao;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.representations.TrackRepresentation;
-import com.hypemrecommender.representations.TrackRepresentation;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
 import org.apache.mahout.cf.taste.recommender.Recommender;

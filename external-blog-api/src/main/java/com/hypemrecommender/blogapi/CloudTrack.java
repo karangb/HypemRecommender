@@ -1,4 +1,4 @@
-package com.hypemrecommender;
+package com.hypemrecommender.blogapi;
 
 import java.util.Collection;
 
@@ -10,4 +10,12 @@ import java.util.Collection;
  */
 public interface CloudTrack {
     Collection<String> getFavouritedBy();
+
+    String getId();
+
+    String getArtist();
+
+    String getTitle();
+
+    String getStreamUrl();
 }

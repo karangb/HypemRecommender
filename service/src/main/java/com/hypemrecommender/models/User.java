@@ -1,6 +1,6 @@
 package com.hypemrecommender.models;
 
-import com.hypemrecommender.CloudTrack;
+import com.hypemrecommender.blogapi.CloudTrack;
 
 import java.util.Collection;
 

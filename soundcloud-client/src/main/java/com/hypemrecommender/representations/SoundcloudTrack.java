@@ -1,5 +1,6 @@
 package com.hypemrecommender.representations;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hypemrecommender.blogapi.CloudTrack;
 
@@ -12,6 +13,8 @@ import java.util.Map;
  * Date: 24/11/2013
  * Time: 18:15
  */
+@SuppressWarnings("ALL")
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class SoundcloudTrack implements CloudTrack{
     @JsonProperty
     private int id;

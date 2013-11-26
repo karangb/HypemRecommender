@@ -9,19 +9,19 @@ import com.hypemrecommender.dal.UserDao;
  * Date: 03/11/2013
  * Time: 23:25
  */
-public class HypemUserRepository implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
 
     private final UserDao userDao;
     private final MusicCloudApi musicCloudApi;
 
-    public HypemUserRepository(final UserDao userDao, final MusicCloudApi musicCloudApi) {
+    public UserRepositoryImpl(final UserDao userDao, final MusicCloudApi musicCloudApi) {
         this.userDao = userDao;
         this.musicCloudApi = musicCloudApi;
     }
 
     @Override
     public User createUser(final String primaryId) {
-        return new HypemUser(primaryId, userDao, musicCloudApi);
+        return new UserImpl(primaryId, userDao, musicCloudApi);
     }
 
     @Override

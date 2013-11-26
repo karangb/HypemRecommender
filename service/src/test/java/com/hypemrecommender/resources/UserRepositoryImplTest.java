@@ -3,7 +3,7 @@ package com.hypemrecommender.resources;
 
 import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
-import com.hypemrecommender.models.HypemUserRepository;
+import com.hypemrecommender.models.UserRepositoryImpl;
 import com.hypemrecommender.models.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,9 +18,9 @@ import static org.mockito.Mockito.when;
  * Date: 03/11/2013
  * Time: 23:26
  */
-public class HypemUserFactoryTest {
+public class UserRepositoryImplTest {
 
-    private HypemUserRepository userFactory;
+    private UserRepositoryImpl userFactory;
     private UserDao userDao;
     private MusicCloudApi musicCloudApi;
 
@@ -29,7 +29,7 @@ public class HypemUserFactoryTest {
     {
         userDao = mock(UserDao.class);
         musicCloudApi = mock(MusicCloudApi.class);
-        userFactory = new HypemUserRepository(userDao, musicCloudApi);
+        userFactory = new UserRepositoryImpl(userDao, musicCloudApi);
     }
 
     @Test

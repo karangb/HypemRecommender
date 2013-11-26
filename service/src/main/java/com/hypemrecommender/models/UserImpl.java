@@ -12,12 +12,12 @@ import java.util.Collection;
  * Date: 03/11/2013
  * Time: 23:47
  */
-public class HypemUser implements User{
+public class UserImpl implements User{
     private final String username;
     private final UserDao userDao;
     private final MusicCloudApi musicCloudApi;
 
-    public HypemUser(final String username, final UserDao userDao, final MusicCloudApi musicCloudApi) {
+    public UserImpl(final String username, final UserDao userDao, final MusicCloudApi musicCloudApi) {
 
         this.username = username;
         this.userDao = userDao;

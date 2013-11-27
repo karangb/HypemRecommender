@@ -13,24 +13,17 @@ import java.util.Collection;
  * Time: 23:47
  */
 public class UserImpl implements User{
-    private final String username;
     private final UserDao userDao;
-    private final MusicCloudApi musicCloudApi;
 
-    public UserImpl(final String username, final UserDao userDao, final MusicCloudApi musicCloudApi) {
-
-        this.username = username;
+    public UserImpl(final UserDao userDao) {
         this.userDao = userDao;
-        this.musicCloudApi = musicCloudApi;
     }
 
     @Override
-    public long getId() {
-        return userDao.getUserId(this.username);
-    }
-
-    @Override
-    public void addFavourites(final Collection<CloudTrack> myFavourites) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void addFavourites(final Collection<CloudTrack> favourites) {
+        for(CloudTrack track : favourites)
+        {
+            userDao.provisionFavourite(track);
+        }
     }
 }

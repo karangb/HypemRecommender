@@ -3,14 +3,12 @@ package com.hypemrecommender.models;
 
 import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
-import com.hypemrecommender.models.UserRepositoryImpl;
-import com.hypemrecommender.models.User;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 /**
  * Created with IntelliJ IDEA.
@@ -35,10 +33,7 @@ public class UserRepositoryImplTest {
     @Test
     public void testCreateUser()
     {
-        long hypemId = 123;
-        when(userDao.getUserId("karan")).thenReturn(hypemId);
-
         User user = userFactory.createUser("karan");
-        assertEquals(user.getId(), 123);
+        assertThat(user, instanceOf(UserImpl.class));
     }
 }

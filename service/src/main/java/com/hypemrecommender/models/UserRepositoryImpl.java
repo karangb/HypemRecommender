@@ -21,7 +21,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User createUser(final String primaryId) {
-        return new UserImpl(primaryId, userDao, musicCloudApi);
+        return new UserImpl(userDao, musicCloudApi);
     }
 
     @Override

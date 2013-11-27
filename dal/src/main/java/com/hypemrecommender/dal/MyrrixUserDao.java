@@ -1,5 +1,6 @@
 package com.hypemrecommender.dal;
 
+import com.hypemrecommender.blogapi.CloudTrack;
 import com.hypemrecommender.representations.HypemTrackRepresentation;
 import com.hypemrecommender.representations.HypemUserRepresentation;
 import com.mongodb.BasicDBObjectBuilder;
@@ -52,5 +53,10 @@ public class MyrrixUserDao implements UserDao {
         }
         DBObject userDoc = BasicDBObjectBuilder.start().add("username", userRepresentation.getName()).add("obsession", tracks).get();
         userCollection.insert(userDoc);
+    }
+
+    @Override
+    public void provisionFavourite(final CloudTrack track) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

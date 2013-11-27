@@ -20,14 +20,12 @@ public class UserRepositoryImplTest {
 
     private UserRepositoryImpl userFactory;
     private UserDao userDao;
-    private MusicCloudApi musicCloudApi;
 
     @Before
     public void setUp()
     {
         userDao = mock(UserDao.class);
-        musicCloudApi = mock(MusicCloudApi.class);
-        userFactory = new UserRepositoryImpl(userDao, musicCloudApi);
+        userFactory = new UserRepositoryImpl(userDao);
     }
 
     @Test

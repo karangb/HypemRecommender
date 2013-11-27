@@ -12,16 +12,14 @@ import com.hypemrecommender.dal.UserDao;
 public class UserRepositoryImpl implements UserRepository {
 
     private final UserDao userDao;
-    private final MusicCloudApi musicCloudApi;
 
-    public UserRepositoryImpl(final UserDao userDao, final MusicCloudApi musicCloudApi) {
+    public UserRepositoryImpl(final UserDao userDao) {
         this.userDao = userDao;
-        this.musicCloudApi = musicCloudApi;
     }
 
     @Override
     public User createUser(final String primaryId) {
-        return new UserImpl(userDao, musicCloudApi);
+        return new UserImpl(userDao);
     }
 
     @Override

@@ -36,7 +36,7 @@ public class UserImplTest {
     }
     @Test
     public void testAddFavourites() throws IOException {
-        UserImpl user = new UserImpl(userDao, musicCloudApi);
+        UserImpl user = new UserImpl(userDao);
         user.addFavourites(favourites);
 
         verify(userDao).provisionFavourite(track1);

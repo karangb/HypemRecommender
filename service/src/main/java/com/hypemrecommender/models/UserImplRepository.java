@@ -10,11 +10,11 @@ import com.hypemrecommender.dal.UserDao;
  * Date: 03/11/2013
  * Time: 23:25
  */
-public class UserRepositoryImpl implements UserRepository {
+public class UserImplRepository implements UserRepository {
 
     private final UserDaoRepository userDaoRepository;
 
-    public UserRepositoryImpl(final UserDaoRepository userDaoRepository) {
+    public UserImplRepository(final UserDaoRepository userDaoRepository) {
 
         this.userDaoRepository = userDaoRepository;
     }

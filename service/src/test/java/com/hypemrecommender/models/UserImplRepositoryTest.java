@@ -2,7 +2,6 @@ package com.hypemrecommender.models;
 
 
 import com.hypemrecommender.UserDaoRepository;
-import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +10,6 @@ import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,9 +17,9 @@ import static org.mockito.Mockito.when;
  * Date: 03/11/2013
  * Time: 23:26
  */
-public class UserRepositoryImplTest {
+public class UserImplRepositoryTest {
 
-    private UserRepositoryImpl userFactory;
+    private UserImplRepository userFactory;
     private UserDao userDao;
     private UserDaoRepository userDaoRepository;
 
@@ -30,7 +28,7 @@ public class UserRepositoryImplTest {
     {
         userDao = mock(UserDao.class);
         userDaoRepository = mock(UserDaoRepository.class);
-        userFactory = new UserRepositoryImpl(userDaoRepository);
+        userFactory = new UserImplRepository(userDaoRepository);
     }
 
     @Test

@@ -9,7 +9,7 @@ import java.util.Collection;
  * Time: 01:23
  */
 public interface CloudTrack {
-    Collection<String> getFavouritedBy();
+    Collection<String> getFavouriters();
 
     String getId();
 

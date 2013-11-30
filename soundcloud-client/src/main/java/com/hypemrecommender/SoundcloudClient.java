@@ -1,3 +1,5 @@
+package com.hypemrecommender;
+
 import com.hypemrecommender.blogapi.CloudTrack;
 import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.representations.SoundcloudTrack;

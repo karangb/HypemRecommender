@@ -1,0 +1,56 @@
+[
+  {
+    "id": 39161588,
+    "kind": "user",
+    "permalink": "soloque",
+    "username": "soloque",
+    "uri": "http:\/\/api.soundcloud.com\/users\/39161588",
+    "permalink_url": "http:\/\/soundcloud.com\/soloque",
+    "avatar_url": "http:\/\/i1.sndcdn.com\/avatars-000061033315-wem0no-large.jpg?8063923",
+    "country": null,
+    "full_name": "",
+    "description": null,
+    "city": null,
+    "discogs_name": null,
+    "myspace_name": null,
+    "website": null,
+    "website_title": null,
+    "online": true,
+    "track_count": 0,
+    "playlist_count": 2,
+    "plan": "Free",
+    "public_favorites_count": 76,
+    "followers_count": 6,
+    "followings_count": 16,
+    "subscriptions": [
+
+    ]
+  },
+  {
+      "id": 1293811,
+      "kind": "user",
+      "permalink": "soloque",
+      "username": "soloque",
+      "uri": "http:\/\/api.soundcloud.com\/users\/39161588",
+      "permalink_url": "http:\/\/soundcloud.com\/soloque",
+      "avatar_url": "http:\/\/i1.sndcdn.com\/avatars-000061033315-wem0no-large.jpg?8063923",
+      "country": null,
+      "full_name": "",
+      "description": null,
+      "city": null,
+      "discogs_name": null,
+      "myspace_name": null,
+      "website": null,
+      "website_title": null,
+      "online": true,
+      "track_count": 0,
+      "playlist_count": 2,
+      "plan": "Free",
+      "public_favorites_count": 76,
+      "followers_count": 6,
+      "followings_count": 16,
+      "subscriptions": [
+
+      ]
+    }
+  ]

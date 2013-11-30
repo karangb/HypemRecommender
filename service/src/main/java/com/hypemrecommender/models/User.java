@@ -11,7 +11,5 @@ import java.util.Collection;
  * Time: 23:39
  */
 public interface User {
-    long getId();
-
-    void addFavourites(Collection<CloudTrack> myFavourites);
+    void addFavourites(Collection<CloudTrack> favourites);
 }

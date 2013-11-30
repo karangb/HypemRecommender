@@ -48,7 +48,7 @@ public class Crawler extends Task {
 
             for(CloudTrack favourite : favourites)
             {
-                Collection<String> favouritedBy = favourite.getFavouritedBy();
+                Collection<String> favouritedBy = favourite.getFavouriters();
                 users.addAll(favouritedBy);
             }
             seen.add(username);

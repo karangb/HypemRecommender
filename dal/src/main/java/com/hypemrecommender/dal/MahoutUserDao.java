@@ -1,5 +1,6 @@
 package com.hypemrecommender.dal;
 
+import com.hypemrecommender.blogapi.CloudTrack;
 import com.hypemrecommender.representations.HypemUserRepresentation;
 import com.mongodb.*;
 
@@ -34,5 +35,10 @@ public class MahoutUserDao implements UserDao{
     @Override
     public void provision(final HypemUserRepresentation userRepresentation) {
         //TODO
+    }
+
+    @Override
+    public void provisionFavourite(final CloudTrack track) {
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

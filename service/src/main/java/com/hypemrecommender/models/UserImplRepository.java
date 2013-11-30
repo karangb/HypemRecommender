@@ -1,5 +1,6 @@
 package com.hypemrecommender.models;
 
+import com.hypemrecommender.UserDaoRepository;
 import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.dal.UserDao;
 
@@ -9,19 +10,18 @@ import com.hypemrecommender.dal.UserDao;
  * Date: 03/11/2013
  * Time: 23:25
  */
-public class HypemUserRepository implements UserRepository {
+public class UserImplRepository implements UserRepository {
 
-    private final UserDao userDao;
-    private final MusicCloudApi musicCloudApi;
+    private final UserDaoRepository userDaoRepository;
 
-    public HypemUserRepository(final UserDao userDao, final MusicCloudApi musicCloudApi) {
-        this.userDao = userDao;
-        this.musicCloudApi = musicCloudApi;
+    public UserImplRepository(final UserDaoRepository userDaoRepository) {
+
+        this.userDaoRepository = userDaoRepository;
     }
 
     @Override
     public User createUser(final String primaryId) {
-        return new HypemUser(primaryId, userDao, musicCloudApi);
+        return new UserImpl(userDaoRepository.create(primaryId));
     }
 
     @Override

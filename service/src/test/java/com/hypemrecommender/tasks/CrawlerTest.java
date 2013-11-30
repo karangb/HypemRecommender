@@ -87,7 +87,7 @@ public class CrawlerTest {
             if(!likes.containsKey(cloudTrack))
             {
                 likes.put(cloudTrack, new ArrayList<String>());
-                when(cloudTrack.getFavouritedBy()).thenReturn(likes.get(cloudTrack));
+                when(cloudTrack.getFavouriters()).thenReturn(likes.get(cloudTrack));
             }
             likes.get(cloudTrack).add(username);
 

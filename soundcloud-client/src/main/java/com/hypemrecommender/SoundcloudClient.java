@@ -3,10 +3,7 @@ package com.hypemrecommender;
 import com.hypemrecommender.blogapi.CloudTrack;
 import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.representations.SoundcloudTrack;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
 
-import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,19 +16,26 @@ import java.util.Collection;
  */
 public class SoundcloudClient implements MusicCloudApi {
 
-    private final WebResource userResource;
+    private final SoundcloudResource userResource;
     private final String clientId;
 
     public SoundcloudClient(final String clientId) {
         this.clientId = clientId;
-        final Client client = Client.create();
-        userResource = client.resource("http://api.soundcloud.com/users");
+        userResource = new SoundcloudResource("http://api.soundcloud.com/users", clientId);
     }
 
     @Override
     public Collection<CloudTrack> fetchFavourites(final String userId) throws IOException {
-        WebResource favourites = userResource.path(String.format("%s/favorites.json", userId));
-        CloudTrack[] tracks = favourites.queryParam("client_id", clientId).accept(MediaType.APPLICATION_JSON_TYPE).get(SoundcloudTrack[].class);
-        return Arrays.asList(tracks);
+        SoundcloudResource favourites = userResource.path(String.format("%s/favorites.json", userId));
+
+        SoundcloudTrack[] tracks = favourites.get(SoundcloudTrack[].class);
+        SoundcloudResource trackResource = new SoundcloudResource("http://api.soundcloud.com/tracks", clientId);
+
+        for(SoundcloudTrack track : tracks)
+        {
+            track.setTrackResource(trackResource);
+        }
+
+        return Arrays.asList((CloudTrack[])tracks);
     }
 }

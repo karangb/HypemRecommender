@@ -2,8 +2,10 @@ package com.hypemrecommender.representations;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hypemrecommender.SoundcloudResource;
 import com.hypemrecommender.blogapi.CloudTrack;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
@@ -27,10 +29,17 @@ public class SoundcloudTrack implements CloudTrack{
 
     @JsonProperty("stream_url")
     private String streamUrl;
+    private SoundcloudResource trackResource;
 
     @Override
     public Collection<String> getFavouriters() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        SoundcloudUser[] soundcloudUsers = trackResource.path(String.format("%s/favoriters", id)).get(SoundcloudUser[].class);
+        Collection<String> userIds = new ArrayList<>();
+        for(SoundcloudUser user : soundcloudUsers)
+        {
+            userIds.add(user.getId());
+        }
+        return userIds;
     }
 
     @Override
@@ -67,5 +76,9 @@ public class SoundcloudTrack implements CloudTrack{
 
     public void setStreamUrl(final String streamUrl) {
         this.streamUrl = streamUrl;
+    }
+
+    public void setTrackResource(final SoundcloudResource trackResource) {
+        this.trackResource = trackResource;
     }
 }

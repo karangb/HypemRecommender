@@ -33,6 +33,11 @@
         </dependency>
         <dependency>
             <groupId>com.hypemrecommender</groupId>
+            <artifactId>soundcloud-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hypemrecommender</groupId>
             <artifactId>oryx-client</artifactId>
             <version>${project.version}</version>
         </dependency>

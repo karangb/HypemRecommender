@@ -16,6 +16,7 @@
         <module>hypem-client</module>
         <module>soundcloud-client</module>
         <module>external-blog-api</module>
+        <module>oryx-client</module>
     </modules>
 
     <dependencies>

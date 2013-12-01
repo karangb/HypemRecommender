@@ -1,8 +1,6 @@
 package com.hypemrecommender.models;
 
-import com.hypemrecommender.UserDaoRepository;
-import com.hypemrecommender.blogapi.MusicCloudApi;
-import com.hypemrecommender.dal.UserDao;
+import com.hypemrecommender.dal.UserDaoRepository;
 
 /**
  * Created with IntelliJ IDEA.

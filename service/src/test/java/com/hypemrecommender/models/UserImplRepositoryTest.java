@@ -1,7 +1,7 @@
 package com.hypemrecommender.models;
 
 
-import com.hypemrecommender.UserDaoRepository;
+import com.hypemrecommender.dal.UserDaoRepository;
 import com.hypemrecommender.dal.UserDao;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,13 +20,11 @@ import static org.mockito.Mockito.verify;
 public class UserImplRepositoryTest {
 
     private UserImplRepository userFactory;
-    private UserDao userDao;
     private UserDaoRepository userDaoRepository;
 
     @Before
     public void setUp()
     {
-        userDao = mock(UserDao.class);
         userDaoRepository = mock(UserDaoRepository.class);
         userFactory = new UserImplRepository(userDaoRepository);
     }

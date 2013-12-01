@@ -1,6 +1,5 @@
-package com.hypemrecommender;
+package com.hypemrecommender.dal;
 
-import com.hypemrecommender.dal.UserDao;
 
 /**
  * Created with IntelliJ IDEA.

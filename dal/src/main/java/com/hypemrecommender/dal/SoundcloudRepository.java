@@ -1,7 +1,5 @@
 package com.hypemrecommender.dal;
 
-import com.hypemrecommender.UserDaoRepository;
-
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb

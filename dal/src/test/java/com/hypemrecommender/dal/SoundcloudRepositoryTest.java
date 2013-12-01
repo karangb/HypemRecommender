@@ -4,6 +4,7 @@ import com.mongodb.BasicDBObject;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.mongodb.util.MyAsserts.assertFalse;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -36,5 +37,6 @@ public class SoundcloudRepositoryTest extends MongoFixture{
     {
         userCollection.insert(new BasicDBObject("soundcloudId", "123456"));
         assertTrue(repository.userExists("123456"));
+        assertFalse(repository.userExists("789"));
     }
 }

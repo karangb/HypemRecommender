@@ -23,6 +23,7 @@ public class SoundcloudUserDaoTest extends MongoFixture{
     private int soundcloudUserId;
     private SoundcloudUserDao userDao;
     private BasicDBObject userDoc;
+    private CloudTrack existingTrack;
 
     @Before
     public void setUp()
@@ -34,6 +35,7 @@ public class SoundcloudUserDaoTest extends MongoFixture{
         BasicDBObject existingTrackDoc = new BasicDBObject("soundcloudId", "1234");
         trackCollection.insert(existingTrackDoc);
         existingTrackId = (ObjectId) existingTrackDoc.get("_id");
+        existingTrack = new FakeCloudTrack("1234", "myArtist", "myTitle", "http://someUrl");
         userDao = new SoundcloudUserDao(userCollection, trackCollection, soundcloudUserId);
     }
 
@@ -46,7 +48,6 @@ public class SoundcloudUserDaoTest extends MongoFixture{
     @Test
     public void testProvisionFavouriteLinksUserFavourites()
     {
-        CloudTrack existingTrack = new FakeCloudTrack("1234", "myArtist", "myTitle", "http://someUrl");
         userDao.provisionFavourite(existingTrack);
 
         DBObject myUser = userCollection.findOne(new BasicDBObject("soundcloudId", soundcloudUserId));
@@ -65,5 +66,12 @@ public class SoundcloudUserDaoTest extends MongoFixture{
         assertThat((String) track.get("artist"), equalTo("myNewArtist"));
         assertThat((String) track.get("title"), equalTo("myNewTitle"));
         assertThat((String) track.get("streamUrl"), equalTo("http://someUrl"));
+    }
+
+    @Test
+    public void testProvisionReturnsObjectId()
+    {
+        String id = userDao.provisionFavourite(existingTrack);
+        assertThat(id, equalTo(existingTrackId.toString()));
     }
 }

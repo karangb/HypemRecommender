@@ -29,10 +29,10 @@ public class SoundcloudClient implements MusicCloudApi {
         SoundcloudResource favourites = userResource.path(String.format("%s/favorites.json", userId));
 
         SoundcloudTrack[] tracks = favourites.get(SoundcloudTrack[].class);
-        SoundcloudResource trackResource = new SoundcloudResource("http://api.soundcloud.com/tracks", clientId);
 
         for(SoundcloudTrack track : tracks)
         {
+            SoundcloudResource trackResource = new SoundcloudResource("http://api.soundcloud.com/tracks", clientId);
             track.setTrackResource(trackResource);
         }
 

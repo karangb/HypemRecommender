@@ -4,7 +4,6 @@ import com.hypemrecommender.blogapi.CloudTrack;
 import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.representations.SoundcloudTrack;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -23,7 +22,7 @@ public class SoundcloudClient implements MusicCloudApi {
     }
 
     @Override
-    public Collection<CloudTrack> fetchFavourites(final String userId) throws IOException {
+    public Collection<CloudTrack> fetchFavourites(final String userId) {
         SoundcloudResource favourites = new SoundcloudResource(String.format("http://api.soundcloud.com/users/%s/favorites.json", userId), clientId);
         SoundcloudTrack[] tracks = favourites.get(SoundcloudTrack[].class);
 

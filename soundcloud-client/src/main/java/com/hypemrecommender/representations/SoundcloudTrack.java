@@ -7,6 +7,7 @@ import com.hypemrecommender.blogapi.CloudTrack;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -33,7 +34,14 @@ public class SoundcloudTrack implements CloudTrack{
 
     @Override
     public Collection<String> getFavouriters() {
-        SoundcloudUser[] soundcloudUsers = trackResource.path(String.format("%s/favoriters", id)).get(SoundcloudUser[].class);
+        SoundcloudUser[] soundcloudUsers = new SoundcloudUser[0];
+        try{
+            soundcloudUsers = trackResource.path(String.format("%s/favoriters", id)).get(SoundcloudUser[].class);
+        }
+        catch (Exception e)
+        {
+            return new LinkedList<>();
+        }
         Collection<String> userIds = new ArrayList<>();
         for(SoundcloudUser user : soundcloudUsers)
         {

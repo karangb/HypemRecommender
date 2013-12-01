@@ -1,9 +1,6 @@
 package com.hypemrecommender;
 
-import com.hypemrecommender.dal.MahoutTrackDao;
-import com.hypemrecommender.dal.MahoutUserDao;
-import com.hypemrecommender.dal.TrackDao;
-import com.hypemrecommender.dal.UserDao;
+import com.hypemrecommender.dal.*;
 import com.hypemrecommender.engine.HypemRecommender;
 import com.hypemrecommender.resources.RecommendationResource;
 import com.mongodb.DB;
@@ -51,9 +48,9 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
         MongoClient client = new MongoClient(configuration.getHost());
         DB db = client.getDB(configuration.getDb());
         DBCollection mongo_data_model_map = db.getCollection("mongo_data_model_map");
-        UserDao userDao = new MahoutUserDao(mongo_data_model_map, db.getCollection("users"));
+        UserDal userDal = new MahoutUserDao(mongo_data_model_map, db.getCollection("users"));
         TrackDao trackDao = new MahoutTrackDao(mongo_data_model_map, db.getCollection("tracks"));
-        environment.addResource(new RecommendationResource(new HypemRecommender(recommender, userDao, trackDao)));
+        environment.addResource(new RecommendationResource(new HypemRecommender(recommender, userDal, trackDao)));
     }
 
     private void allowOrigins(final Environment environment, List<String> allowedOrigins) {

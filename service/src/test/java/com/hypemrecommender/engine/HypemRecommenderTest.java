@@ -1,7 +1,7 @@
 package com.hypemrecommender.engine;
 
 import com.hypemrecommender.dal.TrackDao;
-import com.hypemrecommender.dal.UserDao;
+import com.hypemrecommender.dal.UserDal;
 import com.hypemrecommender.representations.TrackRepresentation;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
  */
 public class HypemRecommenderTest {
     private Recommender mahout;
-    private UserDao userDao;
+    private UserDal userDal;
     private TrackDao trackDao;
     private TrackRepresentation track2;
     private TrackRepresentation track1;
@@ -34,7 +34,7 @@ public class HypemRecommenderTest {
     @Before
     public void setUp()
     {
-        userDao = mock(UserDao.class);
+        userDal = mock(UserDal.class);
         trackDao = mock(TrackDao.class);
         mahout = mock(Recommender.class);
 
@@ -52,12 +52,12 @@ public class HypemRecommenderTest {
     @Test
     public void testGetRecommendationForUser() throws TasteException {
         long userId = 123;
-        when(userDao.getUserId("karan")).thenReturn(userId);
+        when(userDal.getUserId("karan")).thenReturn(userId);
         when(mahout.recommend(userId, 100)).thenReturn(recommendedItems);
         when(trackDao.getTrack(55)).thenReturn(track1);
         when(trackDao.getTrack(66)).thenReturn(track2);
 
-        HypemRecommender musicRecommender = new HypemRecommender(mahout, userDao, trackDao);
+        HypemRecommender musicRecommender = new HypemRecommender(mahout, userDal, trackDao);
         List<TrackRepresentation> recommendedTracks = musicRecommender.getRecommendedTracks("karan");
 
         Assert.assertThat(recommendedTracks.get(0), equalTo(track1));

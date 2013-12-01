@@ -2,14 +2,16 @@ package com.hypemrecommender.models;
 
 
 import com.hypemrecommender.dal.UserDaoRepository;
-import com.hypemrecommender.dal.UserDao;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.mongodb.util.MyAsserts.assertFalse;
+import static com.mongodb.util.MyAsserts.assertTrue;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,5 +38,13 @@ public class UserImplRepositoryTest {
 
         verify(userDaoRepository).create("karan");
         assertThat(user, instanceOf(UserImpl.class));
+    }
+
+    @Test
+    public void testExists()
+    {
+        when(userDaoRepository.userExists("123456")).thenReturn(true);
+        assertTrue(userFactory.exists("123456"));
+        assertFalse(userFactory.exists("789"));
     }
 }

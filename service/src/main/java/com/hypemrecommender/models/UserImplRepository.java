@@ -24,6 +24,6 @@ public class UserImplRepository implements UserRepository {
 
     @Override
     public boolean exists(final String userId) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return this.userDaoRepository.userExists(userId);
     }
 }

@@ -1,13 +1,10 @@
 package com.hypemrecommender.dal;
 
 import com.hypemrecommender.blogapi.CloudTrack;
-import com.hypemrecommender.representations.HypemUserRepresentation;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import org.bson.types.ObjectId;
 
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,11 +31,6 @@ public class SoundcloudUserDao implements UserDao{
     @Override
     public boolean exists(final String username) {
         return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public void provision(final HypemUserRepresentation userRepresentation) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

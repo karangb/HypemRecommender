@@ -1,7 +1,6 @@
 package com.hypemrecommender.dal;
 
 import com.hypemrecommender.blogapi.CloudTrack;
-import com.hypemrecommender.representations.HypemUserRepresentation;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,6 +11,5 @@ import com.hypemrecommender.representations.HypemUserRepresentation;
 public interface UserDao {
     long getUserId(String username);
     boolean exists(String username);
-    void provision(HypemUserRepresentation userRepresentation);
     void provisionFavourite(CloudTrack track);
 }

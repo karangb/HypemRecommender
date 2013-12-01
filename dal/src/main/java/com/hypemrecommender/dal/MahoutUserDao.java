@@ -1,7 +1,6 @@
 package com.hypemrecommender.dal;
 
 import com.hypemrecommender.blogapi.CloudTrack;
-import com.hypemrecommender.representations.HypemUserRepresentation;
 import com.mongodb.*;
 
 
@@ -30,11 +29,6 @@ public class MahoutUserDao implements UserDao{
     @Override
     public boolean exists(final String username) {
         return users.count(new BasicDBObject("username", username)) > 0;
-    }
-
-    @Override
-    public void provision(final HypemUserRepresentation userRepresentation) {
-        //TODO
     }
 
     @Override

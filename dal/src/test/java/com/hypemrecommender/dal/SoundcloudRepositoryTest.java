@@ -1,8 +1,11 @@
 package com.hypemrecommender.dal;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 import static com.mongodb.util.MyAsserts.assertFalse;
 import static org.hamcrest.Matchers.instanceOf;
@@ -29,6 +32,9 @@ public class SoundcloudRepositoryTest extends MongoFixture{
     public void testSoundcloudUserDaoCreated()
     {
         UserDao userDao = repository.create("123456");
+        DBObject doc = userCollection.findOne(new BasicDBObject("soundcloudId", "123456"));
+        List<String> favourites = (List<String>) doc.get("favourites");
+        assertTrue(favourites.isEmpty());
         assertThat(userDao, instanceOf(SoundcloudUserDao.class));
     }
 

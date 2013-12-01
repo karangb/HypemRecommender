@@ -3,6 +3,8 @@ package com.hypemrecommender.dal;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 
+import java.util.LinkedList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb
@@ -21,6 +23,8 @@ public class SoundcloudRepository implements UserDaoRepository{
 
     @Override
     public UserDao create(final String userId) {
+        BasicDBObject doc = new BasicDBObject("soundcloudId", userId).append("favourites", new LinkedList<String>());
+        userCollection.insert(doc);
         return new SoundcloudUserDao(userCollection, trackCollection, Integer.valueOf(userId));
     }
 

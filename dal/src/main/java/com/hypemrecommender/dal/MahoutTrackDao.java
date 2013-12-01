@@ -34,9 +34,4 @@ public class MahoutTrackDao implements TrackDao {
     public boolean exists(final HypemTrackRepresentation trackRepresentation) {
         return false;
     }
-
-    @Override
-    public void provision(final HypemTrackRepresentation trackRepresentation) {
-
-    }
 }

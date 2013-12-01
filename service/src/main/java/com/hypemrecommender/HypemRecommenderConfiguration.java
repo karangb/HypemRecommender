@@ -24,6 +24,14 @@ class HypemRecommenderConfiguration extends Configuration {
     @JsonProperty
     public List<String> allowedOrigins;
 
+    @NotEmpty
+    @JsonProperty
+    public String soundcloudKey;
+
+    @NotEmpty
+    @JsonProperty
+    public String oryxUrl;
+
     public String getHost()
     {
         return host;
@@ -37,5 +45,14 @@ class HypemRecommenderConfiguration extends Configuration {
     public List<String> getAllowedOrigins()
     {
         return allowedOrigins;
+    }
+
+    public String getSoundcloudKey() {
+        return soundcloudKey;
+    }
+
+
+    public String getOryxUrl() {
+        return oryxUrl;
     }
 }

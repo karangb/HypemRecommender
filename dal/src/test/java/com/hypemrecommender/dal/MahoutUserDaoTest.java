@@ -1,7 +1,6 @@
 package com.hypemrecommender.dal;
 
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
 import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,12 +23,10 @@ public class MahoutUserDaoTest extends MongoFixture{
 
     @Before
     public void setUp() throws UnknownHostException {
-        DBCollection users = testDb.createCollection("users", new BasicDBObject());
-
         userDoc = new BasicDBObject("username", "karan");
-        users.insert(userDoc);
+        userCollection.insert(userDoc);
 
-        userDao = new MahoutUserDao(dataModelMap, users);
+        userDao = new MahoutUserDao(dataModelMap, userCollection);
     }
 
     @Test

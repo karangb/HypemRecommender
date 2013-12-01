@@ -13,6 +13,4 @@ public interface TrackDao {
     TrackRepresentation getTrack(long itemID);
 
     boolean exists(HypemTrackRepresentation trackRepresentation);
-
-    void provision(HypemTrackRepresentation trackRepresentation);
 }

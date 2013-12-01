@@ -1,8 +1,14 @@
 package com.hypemrecommender;
 
+import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.dal.*;
 import com.hypemrecommender.engine.HypemRecommender;
+import com.hypemrecommender.models.UserImplRepository;
+import com.hypemrecommender.models.UserRepository;
+import com.hypemrecommender.recommendation.OryxClient;
+import com.hypemrecommender.recommendation.RecommendationClient;
 import com.hypemrecommender.resources.RecommendationResource;
+import com.hypemrecommender.tasks.Crawler;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
@@ -18,6 +24,7 @@ import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.ItemSimilarity;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -47,10 +54,20 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
 
         MongoClient client = new MongoClient(configuration.getHost());
         DB db = client.getDB(configuration.getDb());
+
         DBCollection mongo_data_model_map = db.getCollection("mongo_data_model_map");
-        UserDal userDal = new MahoutUserDao(mongo_data_model_map, db.getCollection("users"));
-        TrackDao trackDao = new MahoutTrackDao(mongo_data_model_map, db.getCollection("tracks"));
+        DBCollection userCollection = db.getCollection("users");
+        DBCollection trackCollection = db.getCollection("tracks");
+
+        UserDal userDal = new MahoutUserDao(mongo_data_model_map, userCollection);
+        TrackDao trackDao = new MahoutTrackDao(mongo_data_model_map, trackCollection);
         environment.addResource(new RecommendationResource(new HypemRecommender(recommender, userDal, trackDao)));
+
+        SoundcloudRepository userDaoRepository = new SoundcloudRepository(userCollection, trackCollection);
+        final RecommendationClient oryxClient = new OryxClient(configuration.getOryxUrl());
+        UserRepository userRepository = new UserImplRepository(userDaoRepository, oryxClient);
+        final MusicCloudApi soundcloudClient = new SoundcloudClient(configuration.getSoundcloudKey());
+        environment.addTask(new Crawler("soundcloudCrawler", userRepository, soundcloudClient, new LinkedList<String>()));
     }
 
     private void allowOrigins(final Environment environment, List<String> allowedOrigins) {

@@ -1,6 +1,5 @@
-package com.hypemrecommender;
+package com.hypemrecommender.dal;
 
-import com.hypemrecommender.dal.UserDao;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,4 +9,5 @@ import com.hypemrecommender.dal.UserDao;
  */
 public interface UserDaoRepository {
     UserDao create(String username);
+    boolean userExists(String userId);
 }

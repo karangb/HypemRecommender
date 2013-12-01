@@ -1,15 +1,17 @@
 package com.hypemrecommender.models;
 
 
-import com.hypemrecommender.UserDaoRepository;
-import com.hypemrecommender.dal.UserDao;
+import com.hypemrecommender.dal.UserDaoRepository;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.mongodb.util.MyAsserts.assertFalse;
+import static com.mongodb.util.MyAsserts.assertTrue;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,24 +21,30 @@ import static org.mockito.Mockito.verify;
  */
 public class UserImplRepositoryTest {
 
-    private UserImplRepository userFactory;
-    private UserDao userDao;
+    private UserImplRepository userRepository;
     private UserDaoRepository userDaoRepository;
 
     @Before
     public void setUp()
     {
-        userDao = mock(UserDao.class);
         userDaoRepository = mock(UserDaoRepository.class);
-        userFactory = new UserImplRepository(userDaoRepository);
+        userRepository = new UserImplRepository(userDaoRepository, null);
     }
 
     @Test
     public void testCreateUser()
     {
-        User user = userFactory.createUser("karan");
+        User user = userRepository.createUser("karan");
 
         verify(userDaoRepository).create("karan");
         assertThat(user, instanceOf(UserImpl.class));
+    }
+
+    @Test
+    public void testExists()
+    {
+        when(userDaoRepository.userExists("123456")).thenReturn(true);
+        assertTrue(userRepository.exists("123456"));
+        assertFalse(userRepository.exists("789"));
     }
 }

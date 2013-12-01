@@ -25,6 +25,7 @@ public class SoundcloudUserDaoTest extends MongoFixture{
     private ObjectId existingTrackId;
     private int soundcloudUserId;
     private SoundcloudUserDao userDao;
+    private BasicDBObject userDoc;
 
     @Before
     public void setUp()
@@ -33,13 +34,19 @@ public class SoundcloudUserDaoTest extends MongoFixture{
         trackCollection = testDb.createCollection("tracks", new BasicDBObject());
 
         soundcloudUserId = 6266041;
-        BasicDBObject userDoc = new BasicDBObject("soundcloudId", soundcloudUserId).append("favourites", new ArrayList<BasicDBObject>());
+        userDoc = new BasicDBObject("soundcloudId", soundcloudUserId).append("favourites", new ArrayList<BasicDBObject>());
         userCollection.insert(userDoc);
 
         BasicDBObject existingTrackDoc = new BasicDBObject("soundcloudId", "1234");
         trackCollection.insert(existingTrackDoc);
         existingTrackId = (ObjectId) existingTrackDoc.get("_id");
         userDao = new SoundcloudUserDao(userCollection, trackCollection, soundcloudUserId);
+    }
+
+    @Test
+    public void testGetId()
+    {
+        assertThat(userDao.getId(), equalTo(userDoc.get("_id").toString()));
     }
 
     @Test

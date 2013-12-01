@@ -24,6 +24,11 @@ public class SoundcloudUserDao implements UserDao{
     }
 
     @Override
+    public String getId() {
+        return getUserDoc().get("_id").toString();
+    }
+
+    @Override
     public void provisionFavourite(final CloudTrack track) {
         if(!trackExists(track.getId()))
         {
@@ -35,8 +40,12 @@ public class SoundcloudUserDao implements UserDao{
             trackCollection.insert(doc);
         }
         DBObject doc = trackCollection.findOne(new BasicDBObject("soundcloudId", track.getId()));
-        DBObject userDoc = userCollection.findOne(new BasicDBObject("soundcloudId", userId));
+        DBObject userDoc = getUserDoc();
         userCollection.update(userDoc, new BasicDBObject("$push", new BasicDBObject("favourites", doc.get("_id"))));
+    }
+
+    private DBObject getUserDoc() {
+        return userCollection.findOne(new BasicDBObject("soundcloudId", userId));
     }
 
     private boolean trackExists(final String soundcloudId) {

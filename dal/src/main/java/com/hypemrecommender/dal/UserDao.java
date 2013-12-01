@@ -9,5 +9,6 @@ import com.hypemrecommender.blogapi.CloudTrack;
  * Time: 22:01
  */
 public interface UserDao {
+    String getId();
     void provisionFavourite(CloudTrack track);
 }

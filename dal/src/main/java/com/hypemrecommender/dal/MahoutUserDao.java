@@ -1,6 +1,5 @@
 package com.hypemrecommender.dal;
 
-import com.hypemrecommender.blogapi.CloudTrack;
 import com.mongodb.*;
 
 
@@ -10,7 +9,7 @@ import com.mongodb.*;
  * Date: 15/10/2013
  * Time: 21:15
  */
-public class MahoutUserDao implements UserDao{
+public class MahoutUserDao implements UserDal{
     private final DBCollection modelMap;
     private final DBCollection users;
 
@@ -29,10 +28,5 @@ public class MahoutUserDao implements UserDao{
     @Override
     public boolean exists(final String username) {
         return users.count(new BasicDBObject("username", username)) > 0;
-    }
-
-    @Override
-    public void provisionFavourite(final CloudTrack track) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }

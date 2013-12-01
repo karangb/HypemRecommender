@@ -24,16 +24,6 @@ public class SoundcloudUserDao implements UserDao{
     }
 
     @Override
-    public long getUserId(final String username) {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public boolean exists(final String username) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
     public void provisionFavourite(final CloudTrack track) {
         if(!trackExists(track.getId()))
         {

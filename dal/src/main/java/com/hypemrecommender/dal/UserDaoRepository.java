@@ -9,4 +9,5 @@ package com.hypemrecommender.dal;
  */
 public interface UserDaoRepository {
     UserDao create(String username);
+    boolean exists(String userId);
 }

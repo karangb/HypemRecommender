@@ -21,12 +21,16 @@ public class MongoFixture {
     public static final String TEST_DB = "test";
     protected DB testDb;
     protected DBCollection dataModelMap;
+    protected DBCollection userCollection;
+    protected DBCollection trackCollection;
 
     @Before
     public void baseSetUp() throws IOException {
         MongoClient client = new MongoClient(HOST);
         testDb = client.getDB(TEST_DB);
         dataModelMap = testDb.createCollection("mongo_data_model_map", new BasicDBObject());
+        userCollection = testDb.createCollection("users", new BasicDBObject());
+        trackCollection = testDb.createCollection("tracks", new BasicDBObject());
     }
 
     @After

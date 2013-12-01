@@ -2,7 +2,6 @@ package com.hypemrecommender.dal;
 
 import com.hypemrecommender.blogapi.CloudTrack;
 import com.mongodb.BasicDBObject;
-import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import org.bson.types.ObjectId;
 import org.junit.Before;
@@ -20,8 +19,6 @@ import static org.junit.Assert.assertThat;
  * Time: 14:19
  */
 public class SoundcloudUserDaoTest extends MongoFixture{
-    private DBCollection userCollection;
-    private DBCollection trackCollection;
     private ObjectId existingTrackId;
     private int soundcloudUserId;
     private SoundcloudUserDao userDao;
@@ -30,9 +27,6 @@ public class SoundcloudUserDaoTest extends MongoFixture{
     @Before
     public void setUp()
     {
-        userCollection = testDb.createCollection("users", new BasicDBObject());
-        trackCollection = testDb.createCollection("tracks", new BasicDBObject());
-
         soundcloudUserId = 6266041;
         userDoc = new BasicDBObject("soundcloudId", soundcloudUserId).append("favourites", new ArrayList<BasicDBObject>());
         userCollection.insert(userDoc);

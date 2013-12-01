@@ -41,7 +41,6 @@ public class SoundcloudUserDao implements UserDao{
         }
         DBObject doc = trackCollection.findOne(new BasicDBObject("soundcloudId", track.getId()));
         DBObject userDoc = getUserDoc();
-        System.out.println(userDoc);
         userCollection.update(userDoc, new BasicDBObject("$push", new BasicDBObject("favourites", doc.get("_id"))));
         return doc.get("_id").toString();
     }

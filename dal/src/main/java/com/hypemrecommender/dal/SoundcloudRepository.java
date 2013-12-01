@@ -11,6 +11,6 @@ import com.hypemrecommender.UserDaoRepository;
 public class SoundcloudRepository implements UserDaoRepository{
     @Override
     public UserDao create(final String userId) {
-        return new SoundcloudUserDao(null, null, Integer.getInteger(userId));
+        return new SoundcloudUserDao(null, null, Integer.valueOf(userId));
     }
 }

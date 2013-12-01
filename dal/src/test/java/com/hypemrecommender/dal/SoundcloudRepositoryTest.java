@@ -16,7 +16,7 @@ public class SoundcloudRepositoryTest {
     public void testSoundcloudUserDaoCreated()
     {
         SoundcloudRepository repository = new SoundcloudRepository();
-        UserDao userDao = repository.create("karan");
+        UserDao userDao = repository.create("123456");
         assertThat(userDao, instanceOf(SoundcloudUserDao.class));
     }
 }

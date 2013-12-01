@@ -15,12 +15,12 @@ import com.mongodb.DBObject;
 public class SoundcloudUserDao implements UserDao{
     private final DBCollection userCollection;
     private final DBCollection trackCollection;
-    private final DBObject userDoc;
+    private final int userId;
 
     public SoundcloudUserDao(final DBCollection userCollection, final DBCollection trackCollection, final int userId) {
         this.userCollection = userCollection;
         this.trackCollection = trackCollection;
-        userDoc = userCollection.findOne(new BasicDBObject("soundcloudId", userId));
+        this.userId = userId;
     }
 
     @Override
@@ -35,6 +35,7 @@ public class SoundcloudUserDao implements UserDao{
             trackCollection.insert(doc);
         }
         DBObject doc = trackCollection.findOne(new BasicDBObject("soundcloudId", track.getId()));
+        DBObject userDoc = userCollection.findOne(new BasicDBObject("soundcloudId", userId));
         userCollection.update(userDoc, new BasicDBObject("$push", new BasicDBObject("favourites", doc.get("_id"))));
     }
 

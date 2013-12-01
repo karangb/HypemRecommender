@@ -21,20 +21,20 @@ import static org.mockito.Mockito.when;
  */
 public class UserImplRepositoryTest {
 
-    private UserImplRepository userFactory;
+    private UserImplRepository userRepository;
     private UserDaoRepository userDaoRepository;
 
     @Before
     public void setUp()
     {
         userDaoRepository = mock(UserDaoRepository.class);
-        userFactory = new UserImplRepository(userDaoRepository);
+        userRepository = new UserImplRepository(userDaoRepository);
     }
 
     @Test
     public void testCreateUser()
     {
-        User user = userFactory.createUser("karan");
+        User user = userRepository.createUser("karan");
 
         verify(userDaoRepository).create("karan");
         assertThat(user, instanceOf(UserImpl.class));
@@ -44,7 +44,7 @@ public class UserImplRepositoryTest {
     public void testExists()
     {
         when(userDaoRepository.userExists("123456")).thenReturn(true);
-        assertTrue(userFactory.exists("123456"));
-        assertFalse(userFactory.exists("789"));
+        assertTrue(userRepository.exists("123456"));
+        assertFalse(userRepository.exists("789"));
     }
 }

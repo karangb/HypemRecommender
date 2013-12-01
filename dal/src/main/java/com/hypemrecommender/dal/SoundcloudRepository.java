@@ -23,9 +23,10 @@ public class SoundcloudRepository implements UserDaoRepository{
 
     @Override
     public UserDao create(final String userId) {
-        BasicDBObject doc = new BasicDBObject("soundcloudId", userId).append("favourites", new LinkedList<String>());
+        int soundcloudUserId = Integer.valueOf(userId);
+        BasicDBObject doc = new BasicDBObject("soundcloudId", soundcloudUserId).append("favourites", new LinkedList<String>());
         userCollection.insert(doc);
-        return new SoundcloudUserDao(userCollection, trackCollection, Integer.valueOf(userId));
+        return new SoundcloudUserDao(userCollection, trackCollection, soundcloudUserId);
     }
 
     @Override

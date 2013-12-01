@@ -16,18 +16,15 @@ import java.util.Collection;
  */
 public class SoundcloudClient implements MusicCloudApi {
 
-    private final SoundcloudResource userResource;
     private final String clientId;
 
     public SoundcloudClient(final String clientId) {
         this.clientId = clientId;
-        userResource = new SoundcloudResource("http://api.soundcloud.com/users", clientId);
     }
 
     @Override
     public Collection<CloudTrack> fetchFavourites(final String userId) throws IOException {
-        SoundcloudResource favourites = userResource.path(String.format("%s/favorites.json", userId));
-
+        SoundcloudResource favourites = new SoundcloudResource(String.format("http://api.soundcloud.com/users/%s/favorites.json", userId), clientId);
         SoundcloudTrack[] tracks = favourites.get(SoundcloudTrack[].class);
 
         for(SoundcloudTrack track : tracks)

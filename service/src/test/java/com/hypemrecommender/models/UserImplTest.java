@@ -28,7 +28,7 @@ public class UserImplTest {
     @Mock CloudTrack track2;
     @Mock RecommendationClient recommendationClient;
     private ArrayList<CloudTrack> favourites;
-
+    private UserImpl user;
 
 
     @Before
@@ -42,10 +42,11 @@ public class UserImplTest {
         when(userDao.getId()).thenReturn("userDao123");
         when(userDao.provisionFavourite(track1)).thenReturn("track123");
         when(userDao.provisionFavourite(track2)).thenReturn("track456");
+        user = new UserImpl(userDao, recommendationClient);
     }
+
     @Test
     public void testAddFavourites() throws IOException {
-        UserImpl user = new UserImpl(userDao, recommendationClient);
         user.addFavourites(favourites);
 
         verify(userDao).provisionFavourite(track1);
@@ -54,4 +55,10 @@ public class UserImplTest {
         verify(recommendationClient).pref("userDao123", "track456", 5);
     }
 
+    @Test
+    public void testSetTrackPref()
+    {
+       user.setTrackPref("track123", 3);
+       verify(recommendationClient).pref("userDao123", "track123", 3);
+    }
 }

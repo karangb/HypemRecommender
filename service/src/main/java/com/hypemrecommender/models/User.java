@@ -12,4 +12,6 @@ import java.util.Collection;
  */
 public interface User {
     void addFavourites(Collection<CloudTrack> favourites);
+
+    void setTrackPref(String track123, int i);
 }

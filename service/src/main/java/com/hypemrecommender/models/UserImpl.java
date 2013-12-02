@@ -29,4 +29,11 @@ public class UserImpl implements User{
             recommendationClient.pref(userDao.getId(), id, 5);
         }
     }
+
+    @Override
+    public void setTrackPref(final String trackId, final int prefValue) {
+        recommendationClient.pref(userDao.getId(), trackId, prefValue);
+    }
+
+
 }

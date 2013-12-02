@@ -7,5 +7,6 @@ package com.hypemrecommender.recommendation;
  * Time: 16:36
  */
 public interface RecommendationClient {
+    String getTopRecommendation(String userId);
     void pref(String userId, String itemId, int rating);
 }

@@ -52,7 +52,7 @@ public class SoundcloudRepositoryTest extends MongoFixture{
     }
 
     @Test
-    public void testExists()
+    public void testUserExists()
     {
         userCollection.insert(new BasicDBObject("soundcloudId", "123456"));
         assertTrue(repository.userExists("123456"));

@@ -24,7 +24,6 @@ import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.apache.mahout.cf.taste.similarity.ItemSimilarity;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -60,8 +59,8 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
         DBCollection trackCollection = db.getCollection("tracks");
 
         UserDal userDal = new MahoutUserDao(mongo_data_model_map, userCollection);
-        TrackDao trackDao = new MahoutTrackDao(mongo_data_model_map, trackCollection);
-        environment.addResource(new RecommendationResource(new HypemRecommender(recommender, userDal, trackDao)));
+        TrackDal trackDal = new MahoutTrackDal(mongo_data_model_map, trackCollection);
+        environment.addResource(new RecommendationResource(new HypemRecommender(recommender, userDal, trackDal)));
 
         SoundcloudRepository userDaoRepository = new SoundcloudRepository(userCollection, trackCollection);
         final RecommendationClient oryxClient = new OryxClient(configuration.getOryxUrl());

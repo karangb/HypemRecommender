@@ -11,11 +11,11 @@ import org.bson.types.ObjectId;
  * Date: 26/09/2013
  * Time: 21:53
  */
-public class MahoutTrackDao implements TrackDao {
+public class MahoutTrackDal implements TrackDal {
     private final DBCollection modelMap;
     private final DBCollection tracks;
 
-    public MahoutTrackDao(DBCollection modelMap, DBCollection tracks) {
+    public MahoutTrackDal(DBCollection modelMap, DBCollection tracks) {
         this.modelMap = modelMap;
         this.tracks = tracks;
     }

@@ -9,7 +9,7 @@ import com.hypemrecommender.representations.TrackRepresentation;
  * Date: 11/09/2013
  * Time: 22:13
  */
-public interface TrackDao {
+public interface TrackDal {
     TrackRepresentation getTrack(long itemID);
 
     boolean exists(HypemTrackRepresentation trackRepresentation);

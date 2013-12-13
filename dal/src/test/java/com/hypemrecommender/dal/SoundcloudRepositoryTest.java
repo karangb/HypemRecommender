@@ -8,7 +8,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static com.mongodb.util.MyAsserts.assertFalse;
-import static com.mongodb.util.MyAsserts.assertNotNull;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -42,10 +42,12 @@ public class SoundcloudRepositoryTest extends MongoFixture{
     @Test
     public void testCreateTrackDao()
     {
-        TrackDao trackDao = repository.createTrackDao("123456");
+        TrackDao trackDao = repository.createTrackDao("123456", "myTitle", "myArtist", "myStreamUrl");
         DBObject doc = userCollection.findOne(new BasicDBObject("soundcloudId", 123456));
 
-        assertNotNull(doc);
+        assertThat((String)doc.get("title"), equalTo("myTitle"));
+        assertThat((String)doc.get("artist"), equalTo("myArtist"));
+        assertThat((String)doc.get("streamUrl"), equalTo("myStreamUrl"));
         assertThat(trackDao, instanceOf(SoundcloudTrackDao.class));
     }
 

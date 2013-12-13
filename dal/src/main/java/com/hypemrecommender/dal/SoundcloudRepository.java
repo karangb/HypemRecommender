@@ -31,7 +31,7 @@ public class SoundcloudRepository implements UserDaoRepository{
 
     @Override
     public boolean userExists(final String userId) {
-        return userCollection.find(new BasicDBObject("soundcloudId", Integer.valueOf(userId))).limit(1).count() != 0;
+        return soundcloudResourceExists(userCollection, Integer.valueOf(userId));
     }
 
     public TrackDao createTrackDao(final String trackId,
@@ -49,6 +49,12 @@ public class SoundcloudRepository implements UserDaoRepository{
     }
 
     public boolean trackExists(final String trackId) {
-        return trackCollection.find(new BasicDBObject("soundcloudId", Integer.valueOf(trackId))).limit(1).count() != 0;
+        return soundcloudResourceExists(trackCollection, Integer.valueOf(trackId));
     }
+
+    private boolean soundcloudResourceExists(DBCollection collection, int soundcloudId)
+    {
+        return collection.find(new BasicDBObject("soundcloudId", soundcloudId)).limit(1).count() != 0;
+    }
+
 }

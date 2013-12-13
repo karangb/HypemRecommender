@@ -36,7 +36,7 @@ public class UserImplRepositoryTest {
     {
         User user = userRepository.createUser("karan");
 
-        verify(userDaoRepository).create("karan");
+        verify(userDaoRepository).createUserDao("karan");
         assertThat(user, instanceOf(UserImpl.class));
     }
 

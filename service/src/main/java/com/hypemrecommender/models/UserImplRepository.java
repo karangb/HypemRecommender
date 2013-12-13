@@ -21,7 +21,7 @@ public class UserImplRepository implements UserRepository {
 
     @Override
     public User createUser(final String primaryId) {
-        return new UserImpl(userDaoRepository.create(primaryId), recommendationClient);
+        return new UserImpl(userDaoRepository.createUserDao(primaryId), recommendationClient);
     }
 
     @Override

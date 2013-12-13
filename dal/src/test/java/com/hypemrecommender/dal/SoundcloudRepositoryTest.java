@@ -31,7 +31,7 @@ public class SoundcloudRepositoryTest extends MongoFixture{
     @Test
     public void testSoundcloudUserDaoCreated()
     {
-        UserDao userDao = repository.create("123456");
+        UserDao userDao = repository.createUserDao("123456");
         DBObject doc = userCollection.findOne(new BasicDBObject("soundcloudId", 123456));
         List<String> favourites = (List<String>) doc.get("favourites");
         assertTrue(favourites.isEmpty());

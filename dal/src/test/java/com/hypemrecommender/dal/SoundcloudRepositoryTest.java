@@ -63,7 +63,6 @@ public class SoundcloudRepositoryTest extends MongoFixture{
     public void testTrackExists()
     {
         repository.createTrackDao("123456", "myTitle", "myArtist", "myStreamUrl");
-//        trackCollection.insert(new BasicDBObject("soundcloudId", "123456"));
         assertTrue(repository.trackExists("123456"));
         assertFalse(repository.trackExists("789"));
     }

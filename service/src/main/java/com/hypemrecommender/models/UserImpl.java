@@ -3,6 +3,7 @@ package com.hypemrecommender.models;
 import com.hypemrecommender.blogapi.CloudTrack;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.recommendation.RecommendationClient;
+import com.hypemrecommender.representations.TrackRepresentation;
 
 import java.util.Collection;
 
@@ -35,5 +36,8 @@ public class UserImpl implements User{
         recommendationClient.pref(userDao.getId(), trackId, prefValue);
     }
 
-
+    @Override
+    public TrackRepresentation getTopRecommendation(final String s, final int i) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

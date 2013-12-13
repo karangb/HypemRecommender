@@ -1,6 +1,7 @@
 package com.hypemrecommender.models;
 
 import com.hypemrecommender.blogapi.CloudTrack;
+import com.hypemrecommender.representations.TrackRepresentation;
 
 import java.util.Collection;
 
@@ -13,5 +14,7 @@ import java.util.Collection;
 public interface User {
     void addFavourites(Collection<CloudTrack> favourites);
 
-    void setTrackPref(String track123, int i);
+    void setTrackPref(String trackId, int pref);
+
+    TrackRepresentation getTopRecommendation(String prevTrackId, int pref);
 }

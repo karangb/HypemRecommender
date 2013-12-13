@@ -10,4 +10,6 @@ public interface UserRepository {
     User createUser(String primaryId);
 
     boolean exists(String userId);
+
+    User getUser(String userId);
 }

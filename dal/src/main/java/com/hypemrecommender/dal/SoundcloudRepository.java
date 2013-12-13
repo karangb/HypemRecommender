@@ -31,7 +31,7 @@ public class SoundcloudRepository implements UserDaoRepository{
 
     @Override
     public boolean userExists(final String userId) {
-        return userCollection.find(new BasicDBObject("soundcloudId", userId)).limit(1).count() != 0;
+        return userCollection.find(new BasicDBObject("soundcloudId", Integer.valueOf(userId))).limit(1).count() != 0;
     }
 
     public TrackDao createTrackDao(final String trackId,

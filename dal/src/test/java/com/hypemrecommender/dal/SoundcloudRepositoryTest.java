@@ -54,7 +54,7 @@ public class SoundcloudRepositoryTest extends MongoFixture{
     @Test
     public void testUserExists()
     {
-        userCollection.insert(new BasicDBObject("soundcloudId", "123456"));
+        repository.createUserDao("123456");
         assertTrue(repository.userExists("123456"));
         assertFalse(repository.userExists("789"));
     }

@@ -43,7 +43,7 @@ public class SoundcloudRepositoryTest extends MongoFixture{
     public void testCreateTrackDao()
     {
         TrackDao trackDao = repository.createTrackDao("123456", "myTitle", "myArtist", "myStreamUrl");
-        DBObject doc = userCollection.findOne(new BasicDBObject("soundcloudId", 123456));
+        DBObject doc = trackCollection.findOne(new BasicDBObject("soundcloudId", 123456));
 
         assertThat((String)doc.get("title"), equalTo("myTitle"));
         assertThat((String)doc.get("artist"), equalTo("myArtist"));
@@ -57,5 +57,14 @@ public class SoundcloudRepositoryTest extends MongoFixture{
         userCollection.insert(new BasicDBObject("soundcloudId", "123456"));
         assertTrue(repository.userExists("123456"));
         assertFalse(repository.userExists("789"));
+    }
+
+    @Test
+    public void testTrackExists()
+    {
+        repository.createTrackDao("123456", "myTitle", "myArtist", "myStreamUrl");
+//        trackCollection.insert(new BasicDBObject("soundcloudId", "123456"));
+        assertTrue(repository.trackExists("123456"));
+        assertFalse(repository.trackExists("789"));
     }
 }

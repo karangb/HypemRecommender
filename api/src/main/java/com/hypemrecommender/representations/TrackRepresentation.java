@@ -69,6 +69,16 @@ public class TrackRepresentation {
         this.artist = artist;
     }
 
+    public void setStreamUrl(String streamUrl)
+    {
+        this.streamUrl = streamUrl;
+    }
+
+    public String getStreamUrl()
+    {
+        return streamUrl;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;

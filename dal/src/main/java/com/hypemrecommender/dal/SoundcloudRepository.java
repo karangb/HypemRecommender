@@ -22,16 +22,16 @@ public class SoundcloudRepository implements UserDaoRepository{
     }
 
     @Override
-    public UserDao createUserDao(final String userId) {
-        int soundcloudUserId = Integer.valueOf(userId);
+    public UserDao createUserDao(final String cloudUserId) {
+        int soundcloudUserId = Integer.valueOf(cloudUserId);
         BasicDBObject doc = new BasicDBObject("soundcloudId", soundcloudUserId).append("favourites", new LinkedList<String>());
         userCollection.insert(doc);
         return new SoundcloudUserDao(userCollection, trackCollection, soundcloudUserId);
     }
 
     @Override
-    public boolean userExists(final String userId) {
-        return soundcloudResourceExists(userCollection, Integer.valueOf(userId));
+    public boolean userExists(final String soundcloudId) {
+        return soundcloudResourceExists(userCollection, Integer.valueOf(soundcloudId));
     }
 
     public TrackDao createTrackDao(final String trackId,

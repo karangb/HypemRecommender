@@ -22,17 +22,17 @@ public class UserImplRepository implements UserRepository {
     }
 
     @Override
-    public User createUser(final String primaryId) {
-        return new UserImpl(userDaoRepository.createUserDao(primaryId), trackRepository, recommendationClient);
+    public User createUser(final String cloudUserId) {
+        return new UserImpl(userDaoRepository.createUserDao(cloudUserId), trackRepository, recommendationClient);
     }
 
     @Override
-    public boolean exists(final String userId) {
-        return this.userDaoRepository.userExists(userId);
+    public boolean exists(final String cloudUserId) {
+        return this.userDaoRepository.userExists(cloudUserId);
     }
 
     @Override
-    public User getUser(final String s) {
+    public User getUser(final String cloudUserId) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

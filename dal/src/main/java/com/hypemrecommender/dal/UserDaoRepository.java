@@ -8,6 +8,6 @@ package com.hypemrecommender.dal;
  * Time: 23:22
  */
 public interface UserDaoRepository {
-    UserDao createUserDao(String username);
-    boolean userExists(String userId);
+    UserDao createUserDao(String cloudUserId);
+    boolean userExists(String cloudUserId);
 }

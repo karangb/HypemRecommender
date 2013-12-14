@@ -7,9 +7,9 @@ package com.hypemrecommender.models;
  * Time: 23:25
  */
 public interface UserRepository {
-    User createUser(String primaryId);
+    User createUser(String cloudUserId);
 
-    boolean exists(String userId);
+    boolean exists(String cloudUserId);
 
-    User getUser(String userId);
+    User getUser(String cloudUserId);
 }

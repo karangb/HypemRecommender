@@ -15,10 +15,12 @@ import java.util.Collection;
  */
 public class UserImpl implements User{
     private final UserDao userDao;
+    private final TrackRepository trackRepository;
     private final RecommendationClient recommendationClient;
 
-    public UserImpl(final UserDao userDao, final RecommendationClient recommendationClient) {
+    public UserImpl(final UserDao userDao, final TrackRepository trackRepository, final RecommendationClient recommendationClient) {
         this.userDao = userDao;
+        this.trackRepository = trackRepository;
         this.recommendationClient = recommendationClient;
     }
 
@@ -37,7 +39,9 @@ public class UserImpl implements User{
     }
 
     @Override
-    public TrackRepresentation getTopRecommendation(final String s, final int i) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public TrackRepresentation getTopRecommendation(final String trackId, final int pref) {
+        recommendationClient.pref(userDao.getId(), trackId, pref);
+        String recommendedTrackId = recommendationClient.getTopRecommendation(userDao.getId());
+        return trackRepository.get(recommendedTrackId);
     }
 }

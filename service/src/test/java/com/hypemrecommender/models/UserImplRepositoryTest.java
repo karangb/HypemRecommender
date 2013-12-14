@@ -28,7 +28,7 @@ public class UserImplRepositoryTest {
     public void setUp()
     {
         userDaoRepository = mock(UserDaoRepository.class);
-        userRepository = new UserImplRepository(userDaoRepository, null);
+        userRepository = new UserImplRepository(userDaoRepository, null, null);
     }
 
     @Test

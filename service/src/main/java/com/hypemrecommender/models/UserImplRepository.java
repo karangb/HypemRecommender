@@ -12,16 +12,18 @@ import com.hypemrecommender.recommendation.RecommendationClient;
 public class UserImplRepository implements UserRepository {
 
     private final UserDaoRepository userDaoRepository;
+    private final TrackRepository trackRepository;
     private RecommendationClient recommendationClient;
 
-    public UserImplRepository(final UserDaoRepository userDaoRepository, RecommendationClient recommendationClient) {
+    public UserImplRepository(final UserDaoRepository userDaoRepository, final TrackRepository trackRepository, RecommendationClient recommendationClient) {
         this.userDaoRepository = userDaoRepository;
+        this.trackRepository = trackRepository;
         this.recommendationClient = recommendationClient;
     }
 
     @Override
     public User createUser(final String primaryId) {
-        return new UserImpl(userDaoRepository.createUserDao(primaryId), recommendationClient);
+        return new UserImpl(userDaoRepository.createUserDao(primaryId), trackRepository, recommendationClient);
     }
 
     @Override

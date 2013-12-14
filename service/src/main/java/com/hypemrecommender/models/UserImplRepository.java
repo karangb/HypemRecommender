@@ -1,5 +1,6 @@
 package com.hypemrecommender.models;
 
+import com.hypemrecommender.dal.TrackDaoRepository;
 import com.hypemrecommender.dal.UserDaoRepository;
 import com.hypemrecommender.recommendation.RecommendationClient;
 
@@ -12,10 +13,10 @@ import com.hypemrecommender.recommendation.RecommendationClient;
 public class UserImplRepository implements UserRepository {
 
     private final UserDaoRepository userDaoRepository;
-    private final TrackRepository trackRepository;
+    private final TrackDaoRepository trackRepository;
     private RecommendationClient recommendationClient;
 
-    public UserImplRepository(final UserDaoRepository userDaoRepository, final TrackRepository trackRepository, RecommendationClient recommendationClient) {
+    public UserImplRepository(final UserDaoRepository userDaoRepository, final TrackDaoRepository trackRepository, RecommendationClient recommendationClient) {
         this.userDaoRepository = userDaoRepository;
         this.trackRepository = trackRepository;
         this.recommendationClient = recommendationClient;

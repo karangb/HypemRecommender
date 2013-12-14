@@ -1,6 +1,9 @@
 package com.hypemrecommender.models;
 
 import com.hypemrecommender.blogapi.CloudTrack;
+import com.hypemrecommender.dal.CloudTrackId;
+import com.hypemrecommender.dal.TrackDao;
+import com.hypemrecommender.dal.TrackDaoRepository;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.recommendation.RecommendationClient;
 import com.hypemrecommender.representations.TrackRepresentation;
@@ -15,12 +18,12 @@ import java.util.Collection;
  */
 public class UserImpl implements User{
     private final UserDao userDao;
-    private final TrackRepository trackRepository;
+    private final TrackDaoRepository trackDaoRepository;
     private final RecommendationClient recommendationClient;
 
-    public UserImpl(final UserDao userDao, final TrackRepository trackRepository, final RecommendationClient recommendationClient) {
+    public UserImpl(final UserDao userDao, final TrackDaoRepository trackDaoRepository, final RecommendationClient recommendationClient) {
         this.userDao = userDao;
-        this.trackRepository = trackRepository;
+        this.trackDaoRepository = trackDaoRepository;
         this.recommendationClient = recommendationClient;
     }
 
@@ -39,9 +42,15 @@ public class UserImpl implements User{
     }
 
     @Override
-    public TrackRepresentation getTopRecommendation(final String trackId, final int pref) {
-        recommendationClient.pref(userDao.getId(), trackId, pref);
+    public TrackRepresentation getTopRecommendation(final CloudTrackId trackId, final int pref) {
+        TrackDao recentlyListenedTrack = trackDaoRepository.get(trackId);
+        recommendationClient.pref(userDao.getId(), recentlyListenedTrack.getId(), pref);
+
         String recommendedTrackId = recommendationClient.getTopRecommendation(userDao.getId());
-        return trackRepository.get(recommendedTrackId);
+        TrackDao recommendedTrack = trackDaoRepository.get(recommendedTrackId);
+        return new TrackRepresentation(recommendedTrack.getCloudId(),
+                                       recommendedTrack.getTitle(),
+                                       recommendedTrack.getArtist(),
+                                       recommendedTrack.getStreamUrl());
     }
 }

@@ -1,5 +1,6 @@
 package com.hypemrecommender.resources;
 
+import com.hypemrecommender.dal.CloudTrackId;
 import com.hypemrecommender.models.User;
 import com.hypemrecommender.models.UserRepository;
 import com.hypemrecommender.representations.TrackRepresentation;
@@ -32,7 +33,7 @@ public class TopRecommendation {
                                     @QueryParam("prevTrackId") String prevTrackId,
                                     @QueryParam("rating") int rating) {
         User user = userRepository.getUser(userId);
-        return user.getTopRecommendation(prevTrackId, rating);
+        return user.getTopRecommendation(new CloudTrackId(prevTrackId), rating);
     }
 
 }

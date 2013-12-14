@@ -7,4 +7,13 @@ package com.hypemrecommender.dal;
  * Time: 14:08
  */
 public interface TrackDao {
+    String getTitle();
+
+    String getArtist();
+
+    String getStreamUrl();
+
+    String getId();
+
+    String getCloudId();
 }

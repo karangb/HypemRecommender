@@ -17,4 +17,29 @@ public class SoundcloudTrackDao implements TrackDao {
         this.trackCollection = trackCollection;
         this.trackId = trackId;
     }
+
+    @Override
+    public String getTitle() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public String getArtist() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public String getStreamUrl() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public String getId() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public String getCloudId() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

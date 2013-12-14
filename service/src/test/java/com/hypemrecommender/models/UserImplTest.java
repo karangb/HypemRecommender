@@ -2,6 +2,9 @@ package com.hypemrecommender.models;
 
 import com.hypemrecommender.blogapi.CloudTrack;
 import com.hypemrecommender.blogapi.MusicCloudApi;
+import com.hypemrecommender.dal.CloudTrackId;
+import com.hypemrecommender.dal.TrackDao;
+import com.hypemrecommender.dal.TrackDaoRepository;
 import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.recommendation.RecommendationClient;
 import com.hypemrecommender.representations.TrackRepresentation;
@@ -30,11 +33,11 @@ public class UserImplTest {
     @Mock CloudTrack track1;
     @Mock CloudTrack track2;
     @Mock RecommendationClient recommendationClient;
-    @Mock TrackRepository trackRepository;
+    @Mock TrackDaoRepository trackDaoRepository;
+    @Mock TrackDao topTrackDao;
+    @Mock TrackDao ratedTrackDao;
     private ArrayList<CloudTrack> favourites;
     private UserImpl user;
-
-
 
     @Before
     public void setUp()
@@ -47,7 +50,16 @@ public class UserImplTest {
         when(userDao.getId()).thenReturn("userDao123");
         when(userDao.provisionFavourite(track1)).thenReturn("track123");
         when(userDao.provisionFavourite(track2)).thenReturn("track456");
-        user = new UserImpl(userDao, trackRepository, recommendationClient);
+
+        when(ratedTrackDao.getId()).thenReturn("track123")
+        ;
+        when(topTrackDao.getId()).thenReturn("track456");
+        when(topTrackDao.getCloudId()).thenReturn("cloudTrack456");
+        when(topTrackDao.getTitle()).thenReturn("myTitle");
+        when(topTrackDao.getArtist()).thenReturn("myArtist");
+        when(topTrackDao.getStreamUrl()).thenReturn("myStreamUrl");
+
+        user = new UserImpl(userDao, trackDaoRepository, recommendationClient);
     }
 
     @Test
@@ -70,12 +82,17 @@ public class UserImplTest {
     @Test
     public void testGetTopRecommendation()
     {
-        final TrackRepresentation topTrack = new TrackRepresentation();
-        when(recommendationClient.getTopRecommendation("userDao123")).thenReturn("track456");
-        when(trackRepository.get("track456")).thenReturn(topTrack); 
-        
 
-        assertThat(user.getTopRecommendation("track123", 3), equalTo(topTrack));
+        CloudTrackId ratedCloudTrackId = new CloudTrackId("cloudTrack123");
+        when(trackDaoRepository.get(ratedCloudTrackId)).thenReturn(ratedTrackDao);
+
+        final TrackRepresentation topTrack = new TrackRepresentation("cloudTrack456", "myTitle", "myArtist", "myStreamUrl");
+        when(recommendationClient.getTopRecommendation("userDao123")).thenReturn("track456");
+        when(trackDaoRepository.get("track456")).thenReturn(topTrackDao);
+
+        TrackRepresentation topRecommendation = user.getTopRecommendation(ratedCloudTrackId, 3);
+
+        assertThat(topRecommendation, equalTo(topTrack));
         verify(recommendationClient).pref("userDao123", "track123", 3);
     }
 }

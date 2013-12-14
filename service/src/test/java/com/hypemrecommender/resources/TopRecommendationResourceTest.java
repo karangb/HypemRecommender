@@ -1,5 +1,6 @@
 package com.hypemrecommender.resources;
 
+import com.hypemrecommender.dal.CloudTrackId;
 import com.hypemrecommender.models.User;
 import com.hypemrecommender.models.UserRepository;
 import com.hypemrecommender.representations.TrackRepresentation;
@@ -34,7 +35,7 @@ public class TopRecommendationResourceTest extends ResourceTest {
     {
         final TrackRepresentation topRecommendation = new TrackRepresentation();
         when(userRepository.getUser("abc20999414")).thenReturn(user);
-        when(user.getTopRecommendation("def122132", 5)).thenReturn(topRecommendation);
+        when(user.getTopRecommendation(new CloudTrackId("def122132"), 5)).thenReturn(topRecommendation);
 
         TrackRepresentation result = client().resource("/topRecommendation").
                 queryParam("userId", "abc20999414").

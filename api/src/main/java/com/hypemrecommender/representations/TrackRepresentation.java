@@ -21,6 +21,9 @@ public class TrackRepresentation {
     @JsonProperty
     private String artist;
 
+    @JsonProperty
+    private String streamUrl;
+
     @SuppressWarnings("UnusedDeclaration")
     public TrackRepresentation()
     {
@@ -31,6 +34,13 @@ public class TrackRepresentation {
         this.hypemId = hypemId;
         this.title = title;
         this.artist = artist;
+    }
+
+    public TrackRepresentation(final String hypemId, final String title, final String artist, final String streamUrl) {
+        this.hypemId = hypemId;
+        this.title = title;
+        this.artist = artist;
+        this.streamUrl = streamUrl;
     }
 
 

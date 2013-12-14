@@ -43,9 +43,17 @@ public class TrackRepresentation {
         this.streamUrl = streamUrl;
     }
 
+    public void setHypemId(String hypemId)
+    {
+        this.hypemId = hypemId;
+    }
+
+    public String getHypemId()
+    {
+        return hypemId;
+    }
 
     public String getTitle() {
-
         return title;
     }
 

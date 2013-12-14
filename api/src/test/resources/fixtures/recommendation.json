@@ -4,12 +4,14 @@
         {
             "hypemId": "1yhd0",
             "title": "Melt Feat. Kilo Kish",
-            "artist": "Chet Faker"
+            "artist": "Chet Faker",
+            "streamUrl": null
         },
         {
             "hypemId": "1yy7c",
             "title": "Think Of You RAC Mix",
-            "artist": "MS MR"
+            "artist": "MS MR",
+            "streamUrl": null
         }
     ]
 }

@@ -66,11 +66,12 @@ public class TrackRepresentation {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        final TrackRepresentation trackRepresentation = (TrackRepresentation) o;
+        final TrackRepresentation that = (TrackRepresentation) o;
 
-        if (artist != null ? !artist.equals(trackRepresentation.artist) : trackRepresentation.artist != null) return false;
-        if (hypemId != null ? !hypemId.equals(trackRepresentation.hypemId) : trackRepresentation.hypemId != null) return false;
-        if (title != null ? !title.equals(trackRepresentation.title) : trackRepresentation.title != null) return false;
+        if (artist != null ? !artist.equals(that.artist) : that.artist != null) return false;
+        if (hypemId != null ? !hypemId.equals(that.hypemId) : that.hypemId != null) return false;
+        if (streamUrl != null ? !streamUrl.equals(that.streamUrl) : that.streamUrl != null) return false;
+        if (title != null ? !title.equals(that.title) : that.title != null) return false;
 
         return true;
     }
@@ -80,6 +81,7 @@ public class TrackRepresentation {
         int result = hypemId != null ? hypemId.hashCode() : 0;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (artist != null ? artist.hashCode() : 0);
+        result = 31 * result + (streamUrl != null ? streamUrl.hashCode() : 0);
         return result;
     }
 }

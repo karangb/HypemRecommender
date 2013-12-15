@@ -7,7 +7,7 @@ package com.hypemrecommender.dal;
  * Time: 13:58
  */
 public interface TrackDaoRepository {
-    TrackDao get(String cloudTrackId);
+    TrackDao get(String trackId);
 
     TrackDao get(CloudId cloudTrackId);
 }

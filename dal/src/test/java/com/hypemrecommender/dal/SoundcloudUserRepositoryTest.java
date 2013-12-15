@@ -19,14 +19,14 @@ import static org.junit.Assert.assertTrue;
  * Date: 28/11/2013
  * Time: 22:06
  */
-public class SoundcloudRepositoryTest extends MongoFixture{
+public class SoundcloudUserRepositoryTest extends MongoFixture{
 
-    private SoundcloudRepository repository;
+    private SoundcloudUserRepository repository;
 
     @Before
     public void setUp()
     {
-        repository = new SoundcloudRepository(userCollection, trackCollection);
+        repository = new SoundcloudUserRepository(userCollection, trackCollection);
     }
 
     @Test

@@ -62,7 +62,7 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
         TrackDal trackDal = new MahoutTrackDal(mongo_data_model_map, trackCollection);
         environment.addResource(new RecommendationResource(new HypemRecommender(recommender, userDal, trackDal)));
 
-        SoundcloudRepository userDaoRepository = new SoundcloudRepository(userCollection, trackCollection);
+        SoundcloudUserRepository userDaoRepository = new SoundcloudUserRepository(userCollection, trackCollection);
         final RecommendationClient oryxClient = new OryxClient(configuration.getOryxUrl());
         UserRepository userRepository = new UserImplRepository(userDaoRepository, null, oryxClient); // TODO: fill in concrete track repository
         final MusicCloudApi soundcloudClient = new SoundcloudClient(configuration.getSoundcloudKey());

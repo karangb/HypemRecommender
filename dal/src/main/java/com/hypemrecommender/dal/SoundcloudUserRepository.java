@@ -11,11 +11,11 @@ import java.util.LinkedList;
  * Date: 28/11/2013
  * Time: 22:07
  */
-public class SoundcloudRepository implements UserDaoRepository{
+public class SoundcloudUserRepository implements UserDaoRepository{
     private final DBCollection userCollection;
     private final DBCollection trackCollection;
 
-    public SoundcloudRepository(final DBCollection userCollection, final DBCollection trackCollection) {
+    public SoundcloudUserRepository(final DBCollection userCollection, final DBCollection trackCollection) {
 
         this.userCollection = userCollection;
         this.trackCollection = trackCollection;

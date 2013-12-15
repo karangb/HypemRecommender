@@ -9,13 +9,11 @@ import com.mongodb.DBCollection;
  * Time: 14:09
  */
 public class SoundcloudTrackDao implements TrackDao {
-    private final DBCollection trackCollection;
-    private final String trackId;
 
     public SoundcloudTrackDao(final DBCollection trackCollection, final String trackId) {
+    }
 
-        this.trackCollection = trackCollection;
-        this.trackId = trackId;
+    public SoundcloudTrackDao(final DBCollection trackCollection, final CloudId cloudTrackId) {
     }
 
     @Override

@@ -53,6 +53,28 @@ public class SoundcloudUserDao implements UserDao{
         return trackCollection.find(new BasicDBObject("soundcloudId", soundcloudId)).limit(1).count() != 0;
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        final SoundcloudUserDao that = (SoundcloudUserDao) o;
+
+        if (userId != that.userId) return false;
+        if (trackCollection != null ? !trackCollection.equals(that.trackCollection) : that.trackCollection != null)
+            return false;
+        if (userCollection != null ? !userCollection.equals(that.userCollection) : that.userCollection != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = userCollection != null ? userCollection.hashCode() : 0;
+        result = 31 * result + (trackCollection != null ? trackCollection.hashCode() : 0);
+        result = 31 * result + userId;
+        return result;
+    }
 }
 

@@ -66,4 +66,11 @@ public class SoundcloudRepositoryTest extends MongoFixture{
         assertTrue(repository.trackExists("123456"));
         assertFalse(repository.trackExists("789"));
     }
+
+    @Test
+    public void testGet()
+    {
+        UserDao originalUserDao = repository.createUserDao("123456");
+        assertThat(repository.get(new CloudId("123456")), equalTo(originalUserDao));
+    }
 }

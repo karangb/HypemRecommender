@@ -36,7 +36,7 @@ public class SoundcloudRepository implements UserDaoRepository{
 
     @Override
     public UserDao get(final CloudId cloudUserId) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return new SoundcloudUserDao(userCollection, trackCollection, Integer.valueOf(cloudUserId.getId()));
     }
 
     public TrackDao createTrackDao(final String trackId,

@@ -2,7 +2,7 @@ package com.hypemrecommender.models;
 
 import com.hypemrecommender.blogapi.CloudTrack;
 import com.hypemrecommender.blogapi.MusicCloudApi;
-import com.hypemrecommender.dal.CloudTrackId;
+import com.hypemrecommender.dal.CloudId;
 import com.hypemrecommender.dal.TrackDao;
 import com.hypemrecommender.dal.TrackDaoRepository;
 import com.hypemrecommender.dal.UserDao;
@@ -83,7 +83,7 @@ public class UserImplTest {
     public void testGetTopRecommendation()
     {
 
-        CloudTrackId ratedCloudTrackId = new CloudTrackId("cloudTrack123");
+        CloudId ratedCloudTrackId = new CloudId("cloudTrack123");
         when(trackDaoRepository.get(ratedCloudTrackId)).thenReturn(ratedTrackDao);
 
         final TrackRepresentation topTrack = new TrackRepresentation("cloudTrack456", "myTitle", "myArtist", "myStreamUrl");

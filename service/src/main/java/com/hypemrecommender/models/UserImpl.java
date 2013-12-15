@@ -1,7 +1,7 @@
 package com.hypemrecommender.models;
 
 import com.hypemrecommender.blogapi.CloudTrack;
-import com.hypemrecommender.dal.CloudTrackId;
+import com.hypemrecommender.dal.CloudId;
 import com.hypemrecommender.dal.TrackDao;
 import com.hypemrecommender.dal.TrackDaoRepository;
 import com.hypemrecommender.dal.UserDao;
@@ -42,7 +42,7 @@ public class UserImpl implements User{
     }
 
     @Override
-    public TrackRepresentation getTopRecommendation(final CloudTrackId trackId, final int pref) {
+    public TrackRepresentation getTopRecommendation(final CloudId trackId, final int pref) {
         TrackDao recentlyListenedTrack = trackDaoRepository.get(trackId);
         recommendationClient.pref(userDao.getId(), recentlyListenedTrack.getId(), pref);
 

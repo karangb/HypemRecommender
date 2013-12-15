@@ -6,10 +6,10 @@ package com.hypemrecommender.dal;
  * Date: 14/12/2013
  * Time: 20:35
  */
-public class CloudTrackId {
+public class CloudId {
     private final String id;
 
-    public CloudTrackId(final String id) {
+    public CloudId(final String id) {
         this.id = id;
     }
 
@@ -22,7 +22,7 @@ public class CloudTrackId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        final CloudTrackId that = (CloudTrackId) o;
+        final CloudId that = (CloudId) o;
 
         if (!id.equals(that.id)) return false;
 

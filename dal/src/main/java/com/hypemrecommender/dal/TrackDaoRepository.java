@@ -9,5 +9,5 @@ package com.hypemrecommender.dal;
 public interface TrackDaoRepository {
     TrackDao get(String cloudTrackId);
 
-    TrackDao get(CloudTrackId cloudTrackId);
+    TrackDao get(CloudId cloudTrackId);
 }

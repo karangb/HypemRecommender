@@ -1,6 +1,8 @@
 package com.hypemrecommender.models;
 
 
+import com.hypemrecommender.dal.CloudId;
+import com.hypemrecommender.dal.UserDao;
 import com.hypemrecommender.dal.UserDaoRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,10 +25,12 @@ public class UserImplRepositoryTest {
 
     private UserImplRepository userRepository;
     private UserDaoRepository userDaoRepository;
+    private UserDao userDao;
 
     @Before
     public void setUp()
     {
+        userDao = mock(UserDao.class);
         userDaoRepository = mock(UserDaoRepository.class);
         userRepository = new UserImplRepository(userDaoRepository, null, null);
     }
@@ -46,5 +50,17 @@ public class UserImplRepositoryTest {
         when(userDaoRepository.userExists("123456")).thenReturn(true);
         assertTrue(userRepository.exists("123456"));
         assertFalse(userRepository.exists("789"));
+    }
+
+    @Test
+    public void testGetUser()
+    {
+        CloudId userId = new CloudId("1234");
+        when(userDaoRepository.get(userId)).thenReturn(userDao);
+
+        User user = userRepository.getUser(userId);
+
+        assertThat(user, instanceOf(UserImpl.class));
+        verify(userDaoRepository.get(userId));
     }
 }

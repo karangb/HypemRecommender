@@ -1,5 +1,6 @@
 package com.hypemrecommender.models;
 
+import com.hypemrecommender.dal.CloudId;
 import com.hypemrecommender.dal.TrackDaoRepository;
 import com.hypemrecommender.dal.UserDaoRepository;
 import com.hypemrecommender.recommendation.RecommendationClient;
@@ -33,7 +34,7 @@ public class UserImplRepository implements UserRepository {
     }
 
     @Override
-    public User getUser(final String cloudUserId) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public User getUser(final CloudId cloudUserId) {
+        return new UserImpl(this.userDaoRepository.get(cloudUserId), trackRepository, recommendationClient);
     }
 }

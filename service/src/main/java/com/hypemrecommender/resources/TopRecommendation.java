@@ -32,7 +32,7 @@ public class TopRecommendation {
     public TrackRepresentation getTopRecommendation(@QueryParam("userId") String userId,
                                     @QueryParam("prevTrackId") String prevTrackId,
                                     @QueryParam("rating") int rating) {
-        User user = userRepository.getUser(userId);
+        User user = userRepository.getUser(new CloudId(userId));
         return user.getTopRecommendation(new CloudId(prevTrackId), rating);
     }
 

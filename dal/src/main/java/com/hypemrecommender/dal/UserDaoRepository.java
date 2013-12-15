@@ -10,4 +10,5 @@ package com.hypemrecommender.dal;
 public interface UserDaoRepository {
     UserDao createUserDao(String cloudUserId);
     boolean userExists(String cloudUserId);
+    UserDao get(CloudId cloudUserId);
 }

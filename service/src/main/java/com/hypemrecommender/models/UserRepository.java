@@ -1,5 +1,7 @@
 package com.hypemrecommender.models;
 
+import com.hypemrecommender.dal.CloudId;
+
 /**
  * Created with IntelliJ IDEA.
  * User: @karangb
@@ -11,5 +13,5 @@ public interface UserRepository {
 
     boolean exists(String cloudUserId);
 
-    User getUser(String cloudUserId);
+    User getUser(CloudId cloudUserId);
 }

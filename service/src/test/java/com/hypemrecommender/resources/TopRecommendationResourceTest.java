@@ -34,7 +34,7 @@ public class TopRecommendationResourceTest extends ResourceTest {
     public void testTopRecommendation()
     {
         final TrackRepresentation topRecommendation = new TrackRepresentation();
-        when(userRepository.getUser("abc20999414")).thenReturn(user);
+        when(userRepository.getUser(new CloudId("abc20999414"))).thenReturn(user);
         when(user.getTopRecommendation(new CloudId("def122132"), 5)).thenReturn(topRecommendation);
 
         TrackRepresentation result = client().resource("/topRecommendation").

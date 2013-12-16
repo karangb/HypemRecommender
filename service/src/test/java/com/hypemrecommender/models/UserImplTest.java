@@ -59,8 +59,9 @@ public class UserImplTest {
         when(topTrackDao.getArtist()).thenReturn("myArtist");
         when(topTrackDao.getStreamUrl()).thenReturn("myStreamUrl");
 
-        topTrack = new TrackRepresentation("456", "myTitle", "myArtist", "myStreamUrl");
-        user = new UserImpl(userDao, trackDaoRepository, recommendationClient);
+        String clientId = "clientId123";
+        topTrack = new TrackRepresentation("456", "myTitle", "myArtist", "myStreamUrl?clientId=" + clientId);
+        user = new UserImpl(userDao, trackDaoRepository, recommendationClient, clientId);
     }
 
     @Test
@@ -98,7 +99,6 @@ public class UserImplTest {
     @Test
     public void testGetTopRecommendation()
     {
-
         when(recommendationClient.getTopRecommendation("userDao123")).thenReturn("track456");
         when(trackDaoRepository.get("track456")).thenReturn(topTrackDao);
 

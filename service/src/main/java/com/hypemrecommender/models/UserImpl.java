@@ -20,11 +20,13 @@ public class UserImpl implements User{
     private final UserDao userDao;
     private final TrackDaoRepository trackDaoRepository;
     private final RecommendationClient recommendationClient;
+    private final String clientId;
 
-    public UserImpl(final UserDao userDao, final TrackDaoRepository trackDaoRepository, final RecommendationClient recommendationClient) {
+    public UserImpl(final UserDao userDao, final TrackDaoRepository trackDaoRepository, final RecommendationClient recommendationClient, final String clientId) {
         this.userDao = userDao;
         this.trackDaoRepository = trackDaoRepository;
         this.recommendationClient = recommendationClient;
+        this.clientId = clientId;
     }
 
     @Override
@@ -59,6 +61,6 @@ public class UserImpl implements User{
         return new TrackRepresentation(recommendedTrack.getCloudId(),
                 recommendedTrack.getTitle(),
                 recommendedTrack.getArtist(),
-                recommendedTrack.getStreamUrl());
+                recommendedTrack.getStreamUrl() + "?clientId=" + clientId);
     }
 }

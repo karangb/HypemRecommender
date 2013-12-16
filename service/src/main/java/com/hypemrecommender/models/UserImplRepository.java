@@ -25,7 +25,7 @@ public class UserImplRepository implements UserRepository {
 
     @Override
     public User createUser(final CloudId cloudUserId) {
-        return new UserImpl(userDaoRepository.createUserDao(cloudUserId), trackRepository, recommendationClient);
+        return new UserImpl(userDaoRepository.createUserDao(cloudUserId), trackRepository, recommendationClient, "clientId123");
     }
 
     @Override
@@ -35,6 +35,6 @@ public class UserImplRepository implements UserRepository {
 
     @Override
     public User getUser(final CloudId cloudUserId) {
-        return new UserImpl(this.userDaoRepository.get(cloudUserId), trackRepository, recommendationClient);
+        return new UserImpl(this.userDaoRepository.get(cloudUserId), trackRepository, recommendationClient, "clientId123");
     }
 }

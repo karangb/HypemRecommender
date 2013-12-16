@@ -9,9 +9,9 @@ import com.hypemrecommender.dal.CloudId;
  * Time: 23:25
  */
 public interface UserRepository {
-    User createUser(String cloudUserId);
+    User createUser(CloudId cloudUserId);
 
-    boolean exists(String cloudUserId);
+    boolean exists(CloudId cloudUserId);
 
     User getUser(CloudId cloudUserId);
 }

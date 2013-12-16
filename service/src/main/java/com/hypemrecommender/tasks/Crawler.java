@@ -3,6 +3,7 @@ package com.hypemrecommender.tasks;
 import com.google.common.collect.ImmutableMultimap;
 import com.hypemrecommender.blogapi.CloudTrack;
 import com.hypemrecommender.blogapi.MusicCloudApi;
+import com.hypemrecommender.dal.CloudId;
 import com.hypemrecommender.models.User;
 import com.hypemrecommender.models.UserRepository;
 import com.yammer.dropwizard.tasks.Task;
@@ -37,11 +38,10 @@ public class Crawler extends Task {
 
         while(!users.isEmpty())
         {
-            String username = users.poll();
-            if(seen.contains(username) || userRepository.exists(username))
+            CloudId username = new CloudId(Integer.valueOf(users.poll()));
+            if(seen.contains(username.toString()) || userRepository.exists(username))
                 continue;
-
-            Collection<CloudTrack> favourites = api.fetchFavourites(username);
+            Collection<CloudTrack> favourites = api.fetchFavourites(username.toString());
 
             User user = userRepository.createUser(username);
             user.addFavourites(favourites);
@@ -51,7 +51,7 @@ public class Crawler extends Task {
                 Collection<String> favouritedBy = favourite.getFavouriters();
                 users.addAll(favouritedBy);
             }
-            seen.add(username);
+            seen.add(username.toString());
         }
     }
 }

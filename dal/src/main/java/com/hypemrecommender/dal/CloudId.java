@@ -7,14 +7,20 @@ package com.hypemrecommender.dal;
  * Time: 20:35
  */
 public class CloudId {
-    private final String id;
+    private final int id;
 
-    public CloudId(final String id) {
+    public CloudId(final int id) {
         this.id = id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.valueOf(id);
     }
 
     @Override
@@ -22,15 +28,15 @@ public class CloudId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        final CloudId that = (CloudId) o;
+        final CloudId cloudId = (CloudId) o;
 
-        if (!id.equals(that.id)) return false;
+        if (id != cloudId.id) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id;
     }
 }

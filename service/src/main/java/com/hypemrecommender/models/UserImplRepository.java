@@ -24,12 +24,12 @@ public class UserImplRepository implements UserRepository {
     }
 
     @Override
-    public User createUser(final String cloudUserId) {
+    public User createUser(final CloudId cloudUserId) {
         return new UserImpl(userDaoRepository.createUserDao(cloudUserId), trackRepository, recommendationClient);
     }
 
     @Override
-    public boolean exists(final String cloudUserId) {
+    public boolean exists(final CloudId cloudUserId) {
         return this.userDaoRepository.userExists(cloudUserId);
     }
 

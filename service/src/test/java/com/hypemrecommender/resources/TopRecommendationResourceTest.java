@@ -34,12 +34,12 @@ public class TopRecommendationResourceTest extends ResourceTest {
     public void testTopRecommendation()
     {
         final TrackRepresentation topRecommendation = new TrackRepresentation();
-        when(userRepository.getUser(new CloudId("abc20999414"))).thenReturn(user);
-        when(user.getTopRecommendation(new CloudId("def122132"), 5)).thenReturn(topRecommendation);
+        when(userRepository.getUser(new CloudId(20999414))).thenReturn(user);
+        when(user.getTopRecommendation(new CloudId(122132), 5)).thenReturn(topRecommendation);
 
         TrackRepresentation result = client().resource("/topRecommendation").
-                queryParam("userId", "abc20999414").
-                queryParam("prevTrackId", "def122132").
+                queryParam("userId", "20999414").
+                queryParam("prevTrackId", "122132").
                 queryParam("rating", "5").
                 get(TrackRepresentation.class);
 

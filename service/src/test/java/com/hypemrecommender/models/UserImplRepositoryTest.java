@@ -38,29 +38,32 @@ public class UserImplRepositoryTest {
     @Test
     public void testCreateUser()
     {
-        User user = userRepository.createUser("karan");
+        CloudId userId = new CloudId(123);
+        User user = userRepository.createUser(userId);
 
-        verify(userDaoRepository).createUserDao("karan");
+        verify(userDaoRepository).createUserDao(userId);
         assertThat(user, instanceOf(UserImpl.class));
     }
 
     @Test
     public void testExists()
     {
-        when(userDaoRepository.userExists("123456")).thenReturn(true);
-        assertTrue(userRepository.exists("123456"));
-        assertFalse(userRepository.exists("789"));
+        CloudId userId = new CloudId(123456);
+        when(userDaoRepository.userExists(userId)).thenReturn(true);
+
+        assertTrue(userRepository.exists(userId));
+        assertFalse(userRepository.exists(new CloudId(0)));
     }
 
     @Test
     public void testGetUser()
     {
-        CloudId userId = new CloudId("1234");
+        CloudId userId = new CloudId(1234);
         when(userDaoRepository.get(userId)).thenReturn(userDao);
 
         User user = userRepository.getUser(userId);
 
         assertThat(user, instanceOf(UserImpl.class));
-        verify(userDaoRepository.get(userId));
+        verify(userDaoRepository).get(userId);
     }
 }

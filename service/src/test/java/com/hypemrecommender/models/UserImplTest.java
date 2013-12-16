@@ -51,10 +51,9 @@ public class UserImplTest {
         when(userDao.provisionFavourite(track1)).thenReturn("track123");
         when(userDao.provisionFavourite(track2)).thenReturn("track456");
 
-        when(ratedTrackDao.getId()).thenReturn("track123")
-        ;
+        when(ratedTrackDao.getId()).thenReturn("track123");
         when(topTrackDao.getId()).thenReturn("track456");
-        when(topTrackDao.getCloudId()).thenReturn("cloudTrack456");
+        when(topTrackDao.getCloudId()).thenReturn("456");
         when(topTrackDao.getTitle()).thenReturn("myTitle");
         when(topTrackDao.getArtist()).thenReturn("myArtist");
         when(topTrackDao.getStreamUrl()).thenReturn("myStreamUrl");
@@ -83,10 +82,10 @@ public class UserImplTest {
     public void testGetTopRecommendation()
     {
 
-        CloudId ratedCloudTrackId = new CloudId("cloudTrack123");
+        CloudId ratedCloudTrackId = new CloudId(123);
         when(trackDaoRepository.get(ratedCloudTrackId)).thenReturn(ratedTrackDao);
 
-        final TrackRepresentation topTrack = new TrackRepresentation("cloudTrack456", "myTitle", "myArtist", "myStreamUrl");
+        final TrackRepresentation topTrack = new TrackRepresentation("456", "myTitle", "myArtist", "myStreamUrl");
         when(recommendationClient.getTopRecommendation("userDao123")).thenReturn("track456");
         when(trackDaoRepository.get("track456")).thenReturn(topTrackDao);
 

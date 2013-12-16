@@ -17,10 +17,10 @@ public class SoundcloudTrackRepositoryTest extends MongoFixture{
     @Test
     public void testGetWithCloudId()
     {
-        trackCollection.insert(new SoundcloudDBObject("1234"));
+        trackCollection.insert(new SoundcloudDBObject(1234));
 
         SoundcloudTrackRepository repository = new SoundcloudTrackRepository(trackCollection);
-        assertThat(repository.get(new CloudId("1234")), instanceOf(SoundcloudTrackDao.class));
+        assertThat(repository.get(new CloudId(1234)), instanceOf(SoundcloudTrackDao.class));
     }
 
     @Test

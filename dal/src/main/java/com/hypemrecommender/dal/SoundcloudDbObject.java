@@ -10,7 +10,7 @@ import com.mongodb.BasicDBObject;
  * Time: 20:30
  */
 public class SoundcloudDBObject extends BasicDBObject {
-    public SoundcloudDBObject(final String soundcloudId) {
+    public SoundcloudDBObject(final int soundcloudId) {
         super();
         this.append("soundcloudId", soundcloudId);
     }

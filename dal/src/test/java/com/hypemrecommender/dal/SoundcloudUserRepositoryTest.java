@@ -32,7 +32,7 @@ public class SoundcloudUserRepositoryTest extends MongoFixture{
     @Test
     public void testSoundcloudUserDaoCreated()
     {
-        UserDao userDao = repository.createUserDao("123456");
+        UserDao userDao = repository.createUserDao(new CloudId(123456));
         DBObject doc = userCollection.findOne(new BasicDBObject("soundcloudId", 123456));
         List<String> favourites = (List<String>) doc.get("favourites");
         assertTrue(favourites.isEmpty());
@@ -42,7 +42,7 @@ public class SoundcloudUserRepositoryTest extends MongoFixture{
     @Test
     public void testCreateTrackDao()
     {
-        TrackDao trackDao = repository.createTrackDao("123456", "myTitle", "myArtist", "myStreamUrl");
+        TrackDao trackDao = repository.createTrackDao(new CloudId(123456), "myTitle", "myArtist", "myStreamUrl");
         DBObject doc = trackCollection.findOne(new BasicDBObject("soundcloudId", 123456));
 
         assertThat((String)doc.get("title"), equalTo("myTitle"));
@@ -54,23 +54,26 @@ public class SoundcloudUserRepositoryTest extends MongoFixture{
     @Test
     public void testUserExists()
     {
-        repository.createUserDao("123456");
-        assertTrue(repository.userExists("123456"));
-        assertFalse(repository.userExists("789"));
+        CloudId userId = new CloudId(123456);
+        repository.createUserDao(userId);
+        assertTrue(repository.userExists(userId));
+        assertFalse(repository.userExists(new CloudId(456)));
     }
 
     @Test
     public void testTrackExists()
     {
-        repository.createTrackDao("123456", "myTitle", "myArtist", "myStreamUrl");
-        assertTrue(repository.trackExists("123456"));
-        assertFalse(repository.trackExists("789"));
+        CloudId trackId = new CloudId(123456);
+        repository.createTrackDao(trackId, "myTitle", "myArtist", "myStreamUrl");
+        assertTrue(repository.trackExists(trackId));
+        assertFalse(repository.trackExists(new CloudId(789)));
     }
 
     @Test
     public void testGet()
     {
-        UserDao originalUserDao = repository.createUserDao("123456");
-        assertThat(repository.get(new CloudId("123456")), equalTo(originalUserDao));
+        CloudId userId = new CloudId(123456);
+        UserDao originalUserDao = repository.createUserDao(userId);
+        assertThat(repository.get(userId), equalTo(originalUserDao));
     }
 }

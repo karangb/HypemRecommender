@@ -22,44 +22,43 @@ public class SoundcloudUserRepository implements UserDaoRepository{
     }
 
     @Override
-    public UserDao createUserDao(final String cloudUserId) {
-        int soundcloudUserId = Integer.valueOf(cloudUserId);
-        BasicDBObject doc = new BasicDBObject("soundcloudId", soundcloudUserId).append("favourites", new LinkedList<String>());
+    public UserDao createUserDao(final CloudId cloudUserId) {
+        int soundcloudUserId = cloudUserId.getId();
+        BasicDBObject doc = new SoundcloudDBObject(soundcloudUserId).append("favourites", new LinkedList<String>());
         userCollection.insert(doc);
         return new SoundcloudUserDao(userCollection, trackCollection, soundcloudUserId);
     }
 
     @Override
-    public boolean userExists(final String soundcloudId) {
-        return soundcloudResourceExists(userCollection, Integer.valueOf(soundcloudId));
+    public boolean userExists(final CloudId soundcloudId) {
+        return soundcloudResourceExists(userCollection, soundcloudId);
     }
 
     @Override
     public UserDao get(final CloudId cloudUserId) {
-        return new SoundcloudUserDao(userCollection, trackCollection, Integer.valueOf(cloudUserId.getId()));
+        return new SoundcloudUserDao(userCollection, trackCollection, cloudUserId.getId());
     }
 
-    public TrackDao createTrackDao(final String trackId,
+    public TrackDao createTrackDao(final CloudId cloudId,
                                    final String title,
                                    final String artist,
                                    final String streamUrl) {
 
-        int soundcloudTrackId = Integer.valueOf(trackId);
-        BasicDBObject doc = new BasicDBObject("soundcloudId", soundcloudTrackId).
+        BasicDBObject doc = new SoundcloudDBObject(cloudId.getId()).
                             append("title", title).
                             append("artist", artist).
                             append("streamUrl", streamUrl);
         trackCollection.insert(doc);
-        return new SoundcloudTrackDao(trackCollection, trackId);
+        return new SoundcloudTrackDao(trackCollection, cloudId);
     }
 
-    public boolean trackExists(final String trackId) {
-        return soundcloudResourceExists(trackCollection, Integer.valueOf(trackId));
+    public boolean trackExists(final CloudId trackId) {
+        return soundcloudResourceExists(trackCollection, trackId);
     }
 
-    private boolean soundcloudResourceExists(DBCollection collection, int soundcloudId)
+    private boolean soundcloudResourceExists(DBCollection collection, CloudId soundcloudId)
     {
-        return collection.find(new BasicDBObject("soundcloudId", soundcloudId)).limit(1).count() != 0;
+        return collection.find(new SoundcloudDBObject(soundcloudId.getId())).limit(1).count() != 0;
     }
 
 }

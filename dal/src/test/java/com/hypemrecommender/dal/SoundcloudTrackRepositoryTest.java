@@ -3,6 +3,7 @@ package com.hypemrecommender.dal;
 import com.mongodb.BasicDBObject;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.Assert.assertThat;
 
@@ -20,7 +21,9 @@ public class SoundcloudTrackRepositoryTest extends MongoFixture{
         trackCollection.insert(new SoundcloudDBObject(1234));
 
         SoundcloudTrackRepository repository = new SoundcloudTrackRepository(trackCollection);
-        assertThat(repository.get(new CloudId(1234)), instanceOf(SoundcloudTrackDao.class));
+        TrackDao actual = repository.get(new CloudId(1234));
+        assertThat(actual, instanceOf(SoundcloudTrackDao.class));
+        assertThat(actual.getCloudId(), equalTo("1234"));
     }
 
     @Test

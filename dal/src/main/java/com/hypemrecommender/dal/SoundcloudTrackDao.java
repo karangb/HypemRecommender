@@ -1,6 +1,9 @@
 package com.hypemrecommender.dal;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import org.bson.types.ObjectId;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,34 +13,38 @@ import com.mongodb.DBCollection;
  */
 public class SoundcloudTrackDao implements TrackDao {
 
+    private final DBObject doc;
+
     public SoundcloudTrackDao(final DBCollection trackCollection, final String trackId) {
+        doc = trackCollection.findOne(new BasicDBObject("_id", new ObjectId(trackId)));
     }
 
     public SoundcloudTrackDao(final DBCollection trackCollection, final CloudId cloudTrackId) {
+        doc = trackCollection.findOne(new SoundcloudDBObject(cloudTrackId.getId()));
     }
 
     @Override
     public String getTitle() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return doc.get("title").toString();
     }
 
     @Override
     public String getArtist() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return doc.get("artist").toString();
     }
 
     @Override
     public String getStreamUrl() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return doc.get("streamUrl").toString();
     }
 
     @Override
     public String getId() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return doc.get("_id").toString();
     }
 
     @Override
     public String getCloudId() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return doc.get("soundcloudId").toString();
     }
 }

@@ -60,7 +60,7 @@ public class UserImplTest {
         when(topTrackDao.getStreamUrl()).thenReturn("myStreamUrl");
 
         String clientId = "clientId123";
-        topTrack = new TrackRepresentation("456", "myTitle", "myArtist", "myStreamUrl?clientId=" + clientId);
+        topTrack = new TrackRepresentation("456", "myTitle", "myArtist", "myStreamUrl?client_id=" + clientId);
         user = new UserImpl(userDao, trackDaoRepository, recommendationClient, clientId);
     }
 

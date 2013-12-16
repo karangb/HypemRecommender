@@ -61,6 +61,6 @@ public class UserImpl implements User{
         return new TrackRepresentation(recommendedTrack.getCloudId(),
                 recommendedTrack.getTitle(),
                 recommendedTrack.getArtist(),
-                recommendedTrack.getStreamUrl() + "?clientId=" + clientId);
+                recommendedTrack.getStreamUrl() + "?client_id=" + clientId);
     }
 }

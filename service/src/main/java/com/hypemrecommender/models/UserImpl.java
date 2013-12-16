@@ -45,17 +45,20 @@ public class UserImpl implements User{
     public TrackRepresentation getTopRecommendation(final CloudId trackId, final int pref) {
         TrackDao recentlyListenedTrack = trackDaoRepository.get(trackId);
         recommendationClient.pref(userDao.getId(), recentlyListenedTrack.getId(), pref);
-
-        String recommendedTrackId = recommendationClient.getTopRecommendation(userDao.getId());
-        TrackDao recommendedTrack = trackDaoRepository.get(recommendedTrackId);
-        return new TrackRepresentation(recommendedTrack.getCloudId(),
-                                       recommendedTrack.getTitle(),
-                                       recommendedTrack.getArtist(),
-                                       recommendedTrack.getStreamUrl());
+        return getTopTrack();
     }
 
     @Override
     public TrackRepresentation getTopRecommendation() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return getTopTrack();
+    }
+
+    private TrackRepresentation getTopTrack() {
+        String recommendedTrackId = recommendationClient.getTopRecommendation(userDao.getId());
+        TrackDao recommendedTrack = trackDaoRepository.get(recommendedTrackId);
+        return new TrackRepresentation(recommendedTrack.getCloudId(),
+                recommendedTrack.getTitle(),
+                recommendedTrack.getArtist(),
+                recommendedTrack.getStreamUrl());
     }
 }

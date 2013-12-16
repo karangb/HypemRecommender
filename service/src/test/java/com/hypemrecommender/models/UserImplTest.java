@@ -38,6 +38,7 @@ public class UserImplTest {
     @Mock TrackDao ratedTrackDao;
     private ArrayList<CloudTrack> favourites;
     private UserImpl user;
+    private TrackRepresentation topTrack;
 
     @Before
     public void setUp()
@@ -58,6 +59,7 @@ public class UserImplTest {
         when(topTrackDao.getArtist()).thenReturn("myArtist");
         when(topTrackDao.getStreamUrl()).thenReturn("myStreamUrl");
 
+        topTrack = new TrackRepresentation("456", "myTitle", "myArtist", "myStreamUrl");
         user = new UserImpl(userDao, trackDaoRepository, recommendationClient);
     }
 
@@ -79,13 +81,11 @@ public class UserImplTest {
     }
 
     @Test
-    public void testGetTopRecommendation()
+    public void testGetTopRecommendationWithPrevTrack()
     {
-
         CloudId ratedCloudTrackId = new CloudId(123);
         when(trackDaoRepository.get(ratedCloudTrackId)).thenReturn(ratedTrackDao);
 
-        final TrackRepresentation topTrack = new TrackRepresentation("456", "myTitle", "myArtist", "myStreamUrl");
         when(recommendationClient.getTopRecommendation("userDao123")).thenReturn("track456");
         when(trackDaoRepository.get("track456")).thenReturn(topTrackDao);
 
@@ -93,5 +93,17 @@ public class UserImplTest {
 
         assertThat(topRecommendation, equalTo(topTrack));
         verify(recommendationClient).pref("userDao123", "track123", 3);
+    }
+
+    @Test
+    public void testGetTopRecommendation()
+    {
+
+        when(recommendationClient.getTopRecommendation("userDao123")).thenReturn("track456");
+        when(trackDaoRepository.get("track456")).thenReturn(topTrackDao);
+
+        TrackRepresentation topRecommendation = user.getTopRecommendation();
+
+        assertThat(topRecommendation, equalTo(topTrack));
     }
 }

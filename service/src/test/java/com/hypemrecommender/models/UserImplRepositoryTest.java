@@ -32,7 +32,7 @@ public class UserImplRepositoryTest {
     {
         userDao = mock(UserDao.class);
         userDaoRepository = mock(UserDaoRepository.class);
-        userRepository = new UserImplRepository(userDaoRepository, null, null);
+        userRepository = new UserImplRepository(userDaoRepository, null, null, "clientId");
     }
 
     @Test

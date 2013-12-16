@@ -16,11 +16,13 @@ public class UserImplRepository implements UserRepository {
     private final UserDaoRepository userDaoRepository;
     private final TrackDaoRepository trackRepository;
     private RecommendationClient recommendationClient;
+    private final String clientId;
 
-    public UserImplRepository(final UserDaoRepository userDaoRepository, final TrackDaoRepository trackRepository, RecommendationClient recommendationClient) {
+    public UserImplRepository(final UserDaoRepository userDaoRepository, final TrackDaoRepository trackRepository, RecommendationClient recommendationClient, String clientId) {
         this.userDaoRepository = userDaoRepository;
         this.trackRepository = trackRepository;
         this.recommendationClient = recommendationClient;
+        this.clientId = clientId;
     }
 
     @Override
@@ -35,6 +37,6 @@ public class UserImplRepository implements UserRepository {
 
     @Override
     public User getUser(final CloudId cloudUserId) {
-        return new UserImpl(this.userDaoRepository.get(cloudUserId), trackRepository, recommendationClient, "clientId123");
+        return new UserImpl(this.userDaoRepository.get(cloudUserId), trackRepository, recommendationClient, clientId);
     }
 }

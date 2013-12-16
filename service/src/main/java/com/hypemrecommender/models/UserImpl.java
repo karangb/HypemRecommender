@@ -53,4 +53,9 @@ public class UserImpl implements User{
                                        recommendedTrack.getArtist(),
                                        recommendedTrack.getStreamUrl());
     }
+
+    @Override
+    public TrackRepresentation getTopRecommendation() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
 }

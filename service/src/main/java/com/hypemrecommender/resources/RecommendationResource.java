@@ -1,7 +1,11 @@
 package com.hypemrecommender.resources;
 
+import com.hypemrecommender.dal.CloudId;
 import com.hypemrecommender.engine.RecommendationEngine;
+import com.hypemrecommender.models.User;
+import com.hypemrecommender.models.UserRepository;
 import com.hypemrecommender.representations.Recommendation;
+import com.hypemrecommender.representations.TrackRepresentation;
 import com.yammer.metrics.annotation.Timed;
 import org.apache.mahout.cf.taste.common.TasteException;
 
@@ -20,9 +24,11 @@ import javax.ws.rs.core.MediaType;
 @Path("/recommendations")
 @Produces(MediaType.APPLICATION_JSON)
 public class RecommendationResource {
+    private final UserRepository userRepository;
     private final RecommendationEngine recommendationEngine;
 
-    public RecommendationResource(RecommendationEngine recommendationEngine) {
+    public RecommendationResource(final UserRepository userRepository, RecommendationEngine recommendationEngine) {
+        this.userRepository = userRepository;
         this.recommendationEngine = recommendationEngine;
     }
 
@@ -30,5 +36,23 @@ public class RecommendationResource {
     @Timed
     public Recommendation getRating(@QueryParam("username") String username) throws TasteException {
         return new Recommendation(recommendationEngine.getRecommendedTracks(username));
+    }
+
+    @GET
+    @Timed
+    @Path("/top")
+    public TrackRepresentation getTopRecommendation(@QueryParam("userId") String userId){
+        User user = userRepository.getUser(new CloudId(Integer.valueOf(userId)));
+        return user.getTopRecommendation();
+    }
+
+    @GET
+    @Timed
+    @Path("/next")
+    public TrackRepresentation getTopRecommendation(@QueryParam("userId") String userId,
+                                                    @QueryParam("prevTrackId") String prevTrackId,
+                                                    @QueryParam("rating") int rating) {
+        User user = userRepository.getUser(new CloudId(Integer.valueOf(userId)));
+        return user.getTopRecommendation(new CloudId(Integer.valueOf(prevTrackId)), rating);
     }
 }

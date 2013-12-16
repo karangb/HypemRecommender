@@ -18,4 +18,6 @@ public interface User {
     void setTrackPref(String trackId, int pref);
 
     TrackRepresentation getTopRecommendation(CloudId trackId, int pref);
+
+    TrackRepresentation getTopRecommendation();
 }

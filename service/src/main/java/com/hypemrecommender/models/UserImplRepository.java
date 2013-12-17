@@ -27,7 +27,7 @@ public class UserImplRepository implements UserRepository {
 
     @Override
     public User createUser(final CloudId cloudUserId) {
-        return new UserImpl(userDaoRepository.createUserDao(cloudUserId), trackRepository, recommendationClient, "clientId123");
+        return new UserImpl(userDaoRepository.createUserDao(cloudUserId), trackRepository, recommendationClient, clientId);
     }
 
     @Override

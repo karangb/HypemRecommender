@@ -1,5 +1,7 @@
 package com.hypemrecommender.resources;
 
+import com.hypemrecommender.blogapi.CloudTrack;
+import com.hypemrecommender.blogapi.MusicCloudApi;
 import com.hypemrecommender.dal.CloudId;
 import com.hypemrecommender.engine.RecommendationEngine;
 import com.hypemrecommender.models.User;
@@ -14,6 +16,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
+import java.util.Collection;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,10 +30,12 @@ import javax.ws.rs.core.MediaType;
 public class RecommendationResource {
     private final UserRepository userRepository;
     private final RecommendationEngine recommendationEngine;
+    private final MusicCloudApi musicCloudApi;
 
-    public RecommendationResource(final UserRepository userRepository, RecommendationEngine recommendationEngine) {
+    public RecommendationResource(final UserRepository userRepository, RecommendationEngine recommendationEngine, final MusicCloudApi musicCloudApi) {
         this.userRepository = userRepository;
         this.recommendationEngine = recommendationEngine;
+        this.musicCloudApi = musicCloudApi;
     }
 
     @GET
@@ -41,8 +47,20 @@ public class RecommendationResource {
     @GET
     @Timed
     @Path("/top")
-    public TrackRepresentation getTopRecommendation(@QueryParam("userId") String userId){
-        User user = userRepository.getUser(new CloudId(Integer.valueOf(userId)));
+    public TrackRepresentation getTopRecommendation(@QueryParam("userId") String userId) throws IOException {
+        CloudId cloudUserId = new CloudId(Integer.valueOf(userId));
+        User user;
+        if(!userRepository.exists(cloudUserId))
+        {
+            Collection<CloudTrack> favs = musicCloudApi.fetchFavourites(cloudUserId.toString());
+            user = userRepository.createUser(cloudUserId);
+            user.addFavourites(favs);
+        }
+        else
+        {
+            user = userRepository.getUser(cloudUserId);
+        }
+
         return user.getTopRecommendation();
     }
 

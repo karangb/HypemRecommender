@@ -66,7 +66,7 @@ public class HypemRecommenderService extends Service<HypemRecommenderConfigurati
         UserRepository userRepository = new UserImplRepository(userDaoRepository, new SoundcloudTrackRepository(trackCollection), oryxClient, configuration.getSoundcloudKey());
         final MusicCloudApi soundcloudClient = new SoundcloudClient(configuration.getSoundcloudKey());
 
-        environment.addResource(new RecommendationResource(userRepository, new HypemRecommender(recommender, userDal, trackDal)));
+        environment.addResource(new RecommendationResource(userRepository, new HypemRecommender(recommender, userDal, trackDal), soundcloudClient));
         environment.addTask(new Crawler("soundcloudCrawler", userRepository, soundcloudClient, new TimedQueue<String>(20000)));
     }
 

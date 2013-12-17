@@ -51,6 +51,7 @@ public class RecommendationResourceTest extends ResourceTest {
         tracks.add(track2);
         recommendation = new Recommendation(tracks);
         topRecommendation = new TrackRepresentation();
+        topRecommendation.setHypemId("555");
         when(recommendationEngine.getRecommendedTracks("karan")).thenReturn(tracks);
     }
 
@@ -91,12 +92,13 @@ public class RecommendationResourceTest extends ResourceTest {
     @Test
     public void testTopRecommendationWithPrevTrack()
     {
+        when(user.getTopRecommendation()).thenReturn(topRecommendation);
         when(userRepository.getUser(new CloudId(20999414))).thenReturn(user);
-        when(user.getTopRecommendation(new CloudId(122132), 5)).thenReturn(topRecommendation);
+        CloudId topRecommendationTrackId = new CloudId(Integer.valueOf(topRecommendation.getHypemId()));
+        when(user.getTopRecommendation(topRecommendationTrackId, 5)).thenReturn(topRecommendation);
 
         TrackRepresentation result = client().resource("/recommendations/next").
                 queryParam("userId", "20999414").
-                queryParam("prevTrackId", "122132").
                 queryParam("rating", "5").
                 get(TrackRepresentation.class);
 

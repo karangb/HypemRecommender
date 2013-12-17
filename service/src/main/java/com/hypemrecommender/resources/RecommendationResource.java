@@ -68,9 +68,9 @@ public class RecommendationResource {
     @Timed
     @Path("/next")
     public TrackRepresentation getTopRecommendation(@QueryParam("userId") String userId,
-                                                    @QueryParam("prevTrackId") String prevTrackId,
                                                     @QueryParam("rating") int rating) {
         User user = userRepository.getUser(new CloudId(Integer.valueOf(userId)));
-        return user.getTopRecommendation(new CloudId(Integer.valueOf(prevTrackId)), rating);
+        TrackRepresentation prevListenedTrack = user.getTopRecommendation();
+        return user.getTopRecommendation(new CloudId(Integer.valueOf(prevListenedTrack.getHypemId())), rating);
     }
 }
